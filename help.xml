@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<!-- $Id: help.xml,v 1.1 2011-05-21 23:04:13 anders Exp $ -->
+<!--
+  Goodyear K-type airship.
+
+  Copyright (C) 2010  Anders Gidenstam  (anders(at)gidenstam.org)
+  This file is licensed under the GPL license v2 or later.
+-->
+<PropertyList>
+
+ <title>Goodyear Type-K airship</title>
+ <!-- Specific keys -->
+ <key>
+  <name>W</name>
+  <desc>Weigh-off to 1000 lbs heavy by adding/removing ballast. (Takes about 10 seconds and only works on ground.)</desc>
+ </key>
+ <key>
+  <name>w</name>
+  <desc>Show current on-ground weight.</desc>
+ </key>
+ <key>
+  <name>F/f</name>
+  <desc>Open/close gas valve.</desc>
+ </key>
+ <key>
+  <name>R</name>
+  <desc>Pull the rip cord. Do NOT use in midair.</desc>
+ </key>
+ <key>
+  <name>Q/q</name>
+  <desc>Open/close the damper for the forward ballonet.</desc>
+ </key>
+ <key>
+  <name>Ctrl-Q</name>
+  <desc>Open forward ballonet air valve.</desc>
+ </key>
+ <key>
+  <name>A/a</name>
+  <desc>Open/close the damper for the aft ballonet.</desc>
+ </key>
+ <key>
+  <name>Ctrl-A</name>
+  <desc>Open aft ballonet air valve.</desc>
+ </key>
+ <key>
+  <name>Y</name>
+  <desc>Release mooring mast connection or wire.</desc>
+ </key>
+ <key>
+  <name>U</name>
+  <desc>Attach mooring wire. Only possible within 100 feet of the mooring mast.</desc>
+ </key>
+ <key>
+  <name>y/u</name>
+  <desc>Play out/winch in mooring wire.</desc>
+ </key>
+ <key>
+  <name>Alt + click</name>
+  <desc>Place mooring mast.</desc>
+ </key>
+ <key>
+  <name>w</name>
+  <desc>Walk view: walk forwards, +shift to run.</desc>
+ </key>
+ <key>
+  <name>s</name>
+  <desc>Walk view: walk backwards.</desc>
+ </key>
+ <key>
+  <name>a</name>
+  <desc>Walk view: side step left, +shift to run.</desc>
+ </key>
+ <key>
+  <name>d</name>
+  <desc>Walk view: side step right, +shift to run.</desc>
+ </key>
+
+ <!-- Handling instructions. -->
+ <text>
+ ____________________Engine controls____________________
+ 
+ <!-- Real data -->
+ ____________________Limitations____________________
+ Vne   : 70 kt
+ Vmo   :
+
+ Maximum permissible rate of climb:   2400 ft/min
+ Maximum permissible rate of descent: 1200 ft/min (1.25 inH20 @ 50 kt)
+
+ Envelope
+     Maximum pressure    3.0 inH2O ( 747 Pa; 15.6 psf)
+     Minimum pressure    0.5 inH2O ( 125 Pa;  2.6 psf)
+
+
+ C.G. Range
+     Normal                    1346.4 in
+
+ Maximum total car load:   18300 lbs (2300 lbs over design load)
+
+ Maximum equilibrium weight                   :  lbs ( kg)
+ Maximum static heavyness:   In Flight        :  lbs ( kg)
+                             Take off/Landing :  lbs ( kg)
+ Maximum static lightness                     :  lbs ( kg)
+
+ Maximum operating altitude                   :  ft
+
+ ________________FlightGear Pilot's Notes_______________
+
+ http://wiki.flightgear.org/index.php/Goodyear_K-Type_Airship
+ </text>
+</PropertyList>

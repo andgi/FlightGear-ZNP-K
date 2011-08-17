@@ -1,0 +1,1274 @@
+<?xml version="1.0"?>
+<!--
+
+  Goodyear K-type airship flight model for JSBSim.
+
+    Copyright (C) 2010 - 2011  Anders Gidenstam  (anders(at)gidenstam.org)
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+  
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+  
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+  
+-->
+<?xml-stylesheet type="text/xsl" href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
+<fdm_config name="ZNP-K" version="2.0" release="BETA"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
+
+ <fileheader>
+
+  <author>Anders Gidenstam</author>
+  <email>anders at gidenstam dot org</email>
+
+  <filecreationdate>2010-01-28</filecreationdate>
+  <version>$Id: ZNP-K.xml,v 1.1 2011-05-21 23:04:13 anders Exp $</version>
+
+  <description>JSBSim model of a Goodyear K-type airship.</description>
+
+  <license>
+   <licenseName>GPL</licenseName>
+   <licenseURL>http://www.gnu.org/licenses/gpl.html</licenseURL>
+  </license>
+  <note>
+   This model was created using publicly available data, publicly available
+   technical reports, textbooks, and guesses. It contains no proprietary or
+   restricted data. It has been validated only to the extent that it may seem
+   to "fly right", and possibly to comply to published, publicly known, 
+   performance data (maximum speed, endurance, etc.).
+
+   This model is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+  </note>
+
+  <reference
+   refID="FAA:1948:GACK"
+   author="FAA"
+   title="http://www.airweb.faa.gov/Regulatory_and_Guidance_Library%5CrgMakeModel.nsf/0/F34C433B2E32ABC9852567370062F258?OpenDocument"
+   date="25 Oct 1948"/>
+
+  <reference
+   refID="GAC:1942:PM"
+   author="Goodyear Aircraft Corporation"
+   title="United States Navy K-Type Airships  Pilot's Manual"
+   date="Sep 1942"/>
+
+  <reference
+   refID="GAC:1942:DS"
+   author="Goodyear Aircraft Corporation"
+   title="United States Navy K-Type Airships  Descriptive Specification"
+   date="Sep 1942"/>
+
+  <reference
+   refID="KNOX:1942:GMK"
+   author="Captain C. V. S. Knox, USN"
+   title="Design Details of the Goodyear Model K Airship"
+   date="1945"/>
+
+  <reference
+   refID="FAA:TC-5E-2"
+   author="FAA"
+   title="http://www.airweb.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/557844629a50a6388525676a006740c9/$FILE/ATTY2APL/5E-2.pdf"
+   date="?"/>
+
+ </fileheader>
+
+ <!--
+ ==== Metrics ===============================================================
+ -->
+
+ <metrics>
+
+  <documentation>
+   NOTE: The center of the mooring coupler at bow of the hull is the
+         origo of the body coordinate system.
+         x/y/z = back/right/up
+  </documentation>
+
+  <documentation>
+   Dimensions from [GAC:1942:PM].
+  </documentation>
+
+  <wingarea unit="FT2"> 11322.5</wingarea>  <!-- Approximated planfold area. -->
+  <wingspan unit="FT">   57.85 </wingspan>  <!-- Envelope diameter. -->
+  <chord unit="FT">     249.20 </chord>     <!-- Envelope length. -->
+  <htailarea unit="FT2"> 992.0 </htailarea>
+  <htailarm unit="FT">    96.9 </htailarm> <!-- From CG. Guesstimate. -->
+  <vtailarea unit="FT2"> 815.0 </vtailarea>
+  <vtailarm unit="FT">    96.9 </vtailarm> <!-- From CG. Guesstimate. -->
+  <!-- Total envelope volume vol = 12317.83 m^3 -->
+
+  <!-- Aerodynamic Reference Point.
+       Placed at the CoB of the envelope according to [GAC:1942:PM]. -->
+  <location name="AERORP" unit="M">
+   <x> 34.73 </x>
+   <y>  0.00 </y>
+   <z>  0.00 </z>
+  </location>
+
+  <location name="EYEPOINT" unit="M">
+   <x>  28.7 </x>
+   <y>   0.0 </y>
+   <z> -10.6 </z>
+  </location>
+
+  <!-- Visual Reference Point -->
+  <location name="VRP" unit="M">
+   <x>  0.0  </x>
+   <y>  0.0  </y>
+   <z>  0.0  </z>
+  </location>
+
+ </metrics>
+
+ <!--
+ ==== Mass balance =========================================================
+ -->
+
+ <mass_balance>
+
+  <documentation>
+   C.G. and other data according to [GAC:1942:PM]:
+     Center of Buoyancy: 20.53 ft aft of Frame 9. (113.95ft aft of nose?)
+     Center of Gravity
+       Ship as whole:     1.75 ft forward of CoB. (1346.4 in aft in SF.)
+       Loaded car:        8.45 ft forward of CoB.
+       Envelope:         10.00 ft aft of CoB.     (37.78 m in SF.)
+
+   Weights:
+     Total empty weight: 18430 lb
+     Car   empty weight:  8080 lb
+  </documentation>
+
+  <!-- 10350 lb - 600 lb in dummy weights. -->
+  <emptywt unit="LBS"> 9750.0 </emptywt> 
+
+  <documentation>
+   The empty weight is estimated to consist of:
+    - The weight of the envelope and fittings, estimated as
+      total empty weight - car empty weight.
+
+   The car and engines etc will be added as point masses.
+  </documentation>
+
+  <documentation>
+   % Very rough estimation model of the empty weight CG and inertia tensor.
+   % Assume the empty weight is to 100% a cylindrical shell.
+
+   m = 3895.0   % KG
+   r = 8.82     % meter
+   l = 75.96    % meter
+
+   % Very rough estimate of center of gravity (based on the inertial estimate):
+   CGx = 0
+   CGy = 0
+   CGz = 0
+
+   % Steiners theorem:
+   % Ixx = \bar{Ixx} + m sqrt(\bar{y}^2 + \bar{z}^2)
+   % Ixy = \bar{Ixy} + m \bar{x} \bar{y}
+
+   % Very rough estimation model of Ixx, Iyy and Izz relative the CG.
+   Ixx = m * r^2
+         
+   Iyy = 1/2*m * r^2 + 1/12*m*l^2
+
+   Izz = 1/2*m * r^2 + 1/12*m*l^2
+
+   Ixy = 0
+   Ixz = 0
+   Iyz = 0
+
+  </documentation>
+
+  <ixx unit="KG*M2">  303000.0 </ixx>
+  <iyy unit="KG*M2"> 2024300.0 </iyy>
+  <izz unit="KG*M2"> 2024300.0 </izz>
+  <ixy unit="KG*M2">       0.0 </ixy>
+  <ixz unit="KG*M2">       0.0 </ixz>
+  <iyz unit="KG*M2">       0.0 </iyz>
+
+  <location name="CG" unit="M">
+   <x> 37.78 </x> <!-- 37.78 m according to [GAC:1942:PM]. -->
+   <y>  0.00 </y>
+   <z>  0.00 </z>
+  </location>
+
+  <!--
+  === Ballast ================================================
+  -->
+  <documentation>
+   Ballast according to []:
+     In Flight:
+
+     Ground:
+  </documentation>
+
+  <!-- Experimental ballast setup. -->
+  <!-- Center initial weigh-off ballast n=0 -->
+  <pointmass name="Ballast_Center">
+   <location unit="M">
+    <x>  34.0 </x>
+    <y>   0.0 </y>
+    <z> -9.00 </z>
+   </location>
+   <weight unit="KG"> 2000 </weight>
+  </pointmass>
+
+  <!-- 
+  === Crew, equipment and payload ============================
+  -->
+  <documentation>
+   Payload according to [GAC:1942:PM]:
+     Max car payload: 10,220 lb (2300 lb over design load)
+  </documentation>
+  <documentation>
+   Typical load calculation according to [GAC:1942:PM]:
+     Crew
+       10 crew members          10*175 lb
+     Fuel
+       Overhead tanks           2850 lb (475 usgal @ 6 lb/gal)
+       Slip tanks               1080 lb (180 usgal @ 6 lb/gal)
+     Oil
+       Service tanks             150 lb (20 usgal  @ 7.5 lb/gal)
+       Storage tanks             187 lb (25 usgal  @ 7.5 lb/gal)
+     Armament
+       30. cal MGs                31 lb
+       500 rounds amunition       44 lb
+       4 bomb racks 4-MkXLIm2     83 lb (20.8 lb each)
+       4 Depth bombs M17m2-4    1300 lb (325 lb each)
+     Pyrotechnics
+       1 Very pistol               3.6 lb
+       24 rounds Very amunition    7.2 lb
+       24 floats lights MD IV     52.8 lb (2.2 lb each)
+       12 Drift signals           36.0 lb (3 lb each)
+     Equipment
+       Total radio               392 lb
+       Radar                     480 lb
+       MAD                       200 lb
+  </documentation>
+  <pointmass name="Pilot"> <!-- n=1 -->
+   <weight unit="KG"> 85.0 </weight>
+   <location name="POINTMASS" unit="M">
+    <x>  29.30 </x>
+    <y>  -0.70 </y>
+    <z> -11.10 </z>
+   </location>
+  </pointmass>
+  <pointmass name="Pilot"> <!-- n=2 -->
+   <weight unit="KG"> 85.0 </weight>
+   <location name="POINTMASS" unit="M">
+    <x> 29.30 </x>
+    <y>  0.70 </y>
+    <z>-11.10 </z>
+   </location>
+  </pointmass>
+  <pointmass name="Bombardier"> <!-- n=3 -->
+   <weight unit="KG"> 80.0 </weight>
+   <location name="POINTMASS" unit="M">
+    <x> 28.70 </x>
+    <y>  0.00 </y>
+    <z>-11.10 </z>
+   </location>
+  </pointmass>
+  <pointmass name="Navigator"> <!-- n=4 -->
+   <weight unit="KG"> 80.0 </weight>
+   <location name="POINTMASS" unit="M">
+    <x> 30.20 </x>
+    <y> -0.40 </y>
+    <z>-11.10 </z>
+   </location>
+  </pointmass>
+  <pointmass name="Flight engineer"> <!-- n=5 -->
+   <weight unit="KG"> 80.0 </weight>
+   <location name="POINTMASS" unit="M">
+    <x>  31.70 </x>
+    <y>  -0.70 </y>
+    <z> -11.10 </z>
+   </location>
+  </pointmass>
+  <pointmass name="Operator 1"> <!-- n=6 -->
+   <weight unit="KG"> 80.0 </weight>
+   <location name="POINTMASS" unit="M">
+    <x> 31.70 </x>
+    <y>  0.70 </y>
+    <z>-11.10 </z>
+   </location>
+  </pointmass>
+  <pointmass name="Operator 2"> <!-- n=7 -->
+   <weight unit="KG"> 80.0 </weight>
+   <location name="POINTMASS" unit="M">
+    <x> 34.30 </x>
+    <y> -0.60 </y>
+    <z>-11.10 </z>
+   </location>
+  </pointmass>
+  <pointmass name="Operator 3"> <!-- n=8 -->
+   <weight unit="KG"> 80.0 </weight>
+   <location name="POINTMASS" unit="M">
+    <x> 35.60 </x>
+    <y>  0.40 </y>
+    <z>-11.10 </z>
+   </location>
+  </pointmass>
+  <pointmass name="Operator 4"> <!-- n=9 -->
+   <weight unit="KG"> 80.0 </weight>
+   <location name="POINTMASS" unit="M">
+    <x> 36.80 </x>
+    <y>  0.40 </y>
+    <z>-11.10 </z>
+   </location>
+  </pointmass>
+
+  <pointmass name="Bomb load"> <!-- n=10 -->
+   <weight unit="LBS"> 675.0 </weight>
+   <location name="POINTMASS" unit="M">
+    <x>  30.2 </x>
+    <y>   0.0 </y>
+    <z> -12.1 </z>
+   </location>
+  </pointmass>
+
+  <!-- 
+  === Engines ================================================
+  -->
+  <!-- P&W R-1340-AN-2 Wasp: dry weight 938 lb [FAA:TC-5E-2]. -->
+  <pointmass name="Left_Engine">
+   <weight unit="LBS"> 938.0 </weight>
+   <location name="POINTMASS" unit="M">
+    <x>  32.3 </x>
+    <y>  -3.4 </y>
+    <z> -10.6 </z>
+   </location>
+  </pointmass>
+  <pointmass name="Right_Engine">
+   <weight unit="LBS"> 938.0 </weight>
+   <location name="POINTMASS" unit="M">
+    <x>  32.3 </x>
+    <y>   3.4 </y>
+    <z> -10.6 </z>
+   </location>
+  </pointmass>
+
+  <!-- 
+  === Structure ==============================================
+  -->
+
+  <pointmass name="Car"> <!-- 8080 lb - 2*938 lb (engines) -->
+   <weight unit="LBS"> 6204.0 </weight>
+   <location name="POINTMASS" unit="M">
+    <x>  32.1 </x>
+    <y>   0.0 </y>
+    <z> -11.6 </z>
+   </location>
+  </pointmass>
+
+  <!-- Dummy weights. Do they keep the added mass system in check? -->
+  <pointmass name="Ballast_Forward">
+   <location unit="M">
+    <x> 0.0 </x>
+    <y> 0.0 </y>
+    <z> -1.0 </z>
+   </location>
+   <weight unit="LBS"> 400 </weight>
+  </pointmass>
+  <!-- Aft ballast n=2 -->
+  <pointmass type="Ballast_Aft">
+   <location unit="M">
+    <x> 75.0 </x>
+    <y>  0.0 </y>
+    <z> -1.0 </z>
+   </location>
+   <weight unit="LBS"> 200 </weight>
+  </pointmass>
+
+ </mass_balance>
+
+ <!--
+ ==== Ground reactions ======================================================
+ -->
+
+ <ground_reactions>
+
+  <!--
+  === Landing gears ===================================================
+  -->
+  <contact type="BOGEY" name="CAR_GEAR">
+   <location unit="M">
+    <x>  31.70 </x>
+    <y>   0.00 </y>
+    <z> -14.24 </z>
+   </location>
+   <static_friction>  0.8 </static_friction>
+   <dynamic_friction> 0.5 </dynamic_friction>
+   <rolling_friction> 0.2 </rolling_friction>
+   <spring_coeff unit="N/M"> 112500 </spring_coeff>
+   <damping_coeff unit="N/M/SEC"> 22500 </damping_coeff>
+   <max_steer unit="DEG"> 360.0 </max_steer>
+   <brake_group> NONE </brake_group>
+   <retractable>1</retractable>
+  </contact>
+  <contact type="BOGEY" name="TAIL_GEAR">
+   <location unit="M">
+    <x> 67.2 </x>
+    <y>  0.0 </y>
+    <z> -8.5 </z>
+   </location>
+   <static_friction>  0.8 </static_friction>
+   <dynamic_friction> 0.5 </dynamic_friction>
+   <rolling_friction> 0.2 </rolling_friction>
+   <spring_coeff unit="N/M"> 50000 </spring_coeff>
+   <damping_coeff unit="N/M/SEC"> 10000 </damping_coeff>
+   <max_steer unit="DEG"> 360.0 </max_steer>
+   <brake_group> NONE </brake_group>
+   <retractable>0</retractable>
+  </contact>
+
+
+  <!--
+  === Other contact points ============================================
+  -->
+  <!-- These should induce structural failure. -->
+  <contact type="STRUCTURE" name="NOSE">
+   <location unit="M">
+    <x> 0.0 </x>
+    <y> 0.0 </y>
+    <z> 0.0 </z>
+   </location>
+   <static_friction>  0.2 </static_friction>
+   <dynamic_friction> 0.2 </dynamic_friction>
+   <spring_coeff unit="N/M">      100000 </spring_coeff>
+   <damping_coeff unit="N/M/SEC">  20000 </damping_coeff>
+  </contact>
+
+  <contact type="STRUCTURE" name="LEFT_FIN">
+   <location unit="M">
+    <x> 67.2 </x>
+    <y> -9.5 </y>
+    <z>  0.0 </z>
+   </location>
+   <static_friction>  0.2 </static_friction>
+   <dynamic_friction> 0.2 </dynamic_friction>
+   <spring_coeff unit="N/M">      100000 </spring_coeff>
+   <damping_coeff unit="N/M/SEC">  20000 </damping_coeff>
+  </contact>
+
+  <contact type="STRUCTURE" name="RIGHT_FIN">
+   <location unit="M">
+    <x> 67.2 </x>
+    <y>  9.5 </y>
+    <z>  0.0 </z>
+   </location>
+   <static_friction>  0.2 </static_friction>
+   <dynamic_friction> 0.2 </dynamic_friction>
+   <spring_coeff unit="N/M">      100000 </spring_coeff>
+   <damping_coeff unit="N/M/SEC">  20000 </damping_coeff>
+  </contact>
+
+  <contact type="STRUCTURE" name="TAIL">
+   <location unit="M">
+    <x> 76.70 </x>
+    <y>  0.00 </y>
+    <z>  0.00 </z>
+   </location>
+   <static_friction>  0.2 </static_friction>
+   <dynamic_friction> 0.2 </dynamic_friction>
+   <spring_coeff unit="N/M">      100000 </spring_coeff>
+   <damping_coeff unit="N/M/SEC">  20000 </damping_coeff>
+  </contact>
+
+ </ground_reactions>
+
+ <!--
+ ==== Propulsion ============================================================
+ -->
+
+ <propulsion>
+ 
+  <!--
+  === Engine ================================================
+  -->
+  <documentation>
+   [GAC:1942:PM]:
+    Engine     R-1340-AN2  425 H.P. at 1775 RPM (engine or prop RPM?).
+               Geared 3:2
+    Propellers 3 blades 12' 0" diameter (K9- K-13)
+    Propellers 3 blades 12' 6" diameter (K-14 -)
+    Average performance:
+      Knots    RPM(prop/eng?)  Fuel lb/hr  
+        40      1050            102
+        50      1290            148
+        67.5    1740            400
+ 
+   [GAC:1942:DS]:
+    Propellers (K-14 and Future):
+      "3-bladed, 12'-6" dia., Hartzell Type aluminum alloy blades"
+
+    Engine controls (pp.39-40):
+      Auxiliary controls at the mechanic's station
+        Mixture                                 - full rich is forward
+        Air preheater temperature control valve - cold air is forward
+        Oil cooler scoop                        - cool oil is forward
+        Engine primers
+      Primary controls at the altitude pilot and the mechanic's station.
+        Throttles
+
+  </documentation>
+  <!-- Port engine -->
+  <engine file="eng_PWR-1430-AN2">
+   <location unit="M">
+    <x>  32.3 </x>
+    <y>  -3.4 </y>
+    <z> -10.6 </z>
+   </location>
+   <orient unit="DEG">
+    <roll>  0.0 </roll>
+    <pitch> 0.0 </pitch>
+    <yaw>   0.0 </yaw>
+   </orient>
+   <feed>2</feed>
+   <thruster file="prop_HamiltonStd5415">
+    <location unit="M">
+     <x>  31.9 </x>
+     <y>  -3.4 </y>
+     <z> -10.6 </z>
+    </location>
+    <orient unit="DEG">
+     <roll>  0.0 </roll>
+     <pitch> 0.0 </pitch>
+     <yaw>   0.0 </yaw>
+    </orient>
+   </thruster>
+  </engine>
+  <!-- Starboard engine -->
+  <engine file="eng_PWR-1430-AN2">
+   <location unit="M">
+    <x>  32.3 </x>
+    <y>   3.4 </y>
+    <z> -10.6 </z>
+   </location>
+   <orient unit="DEG">
+    <roll>  0.0 </roll>
+    <pitch> 0.0 </pitch>
+    <yaw>   0.0 </yaw>
+   </orient>
+   <feed>3</feed>
+   <thruster file="prop_HamiltonStd5415">
+    <location unit="M">
+     <x>  31.9 </x>
+     <y>   3.4 </y>
+     <z> -10.6 </z>
+    </location>
+    <orient unit="DEG">
+     <roll>  0.0 </roll>
+     <pitch> 0.0 </pitch>
+     <yaw>   0.0 </yaw>
+    </orient>
+   </thruster>
+  </engine>
+
+  <!--
+  === Fuel tanks ============================================
+  -->
+  <documentation>
+   Fuel capacity according to [GAC:1942:PM] and [KNOX:1942:GMK]:
+     8 125 US gallon overhead tanks
+     1  80 US gallon slip tank
+     1 100 US gallon slip tank
+
+   Oil system:
+     2 26 US gallon service tanks, one in each narcelle.
+     1 tank in the car.
+  </documentation>
+
+  <!-- Overhead tanks frame 7-8 -->
+  <tank type="FUEL">
+   <location unit="M">
+    <x> 31.6 </x>
+    <y> -0.6 </y>
+    <z> -9.2 </z>
+   </location>
+   <!-- 125 US gallon AVGAS, density 0.72 kg/liter. -->
+   <capacity unit="KG"> 347.0 </capacity>
+   <contents unit="KG"> 347.0 </contents>
+  </tank>
+  <tank type="FUEL">
+   <location unit="M">
+    <x> 31.6 </x>
+    <y>  0.6 </y>
+    <z> -9.2 </z>
+   </location>
+   <!-- 125 US gallon AVGAS, density 0.72 kg/liter. -->
+   <capacity unit="KG"> 347.0 </capacity>
+   <contents unit="KG"> 347.0 </contents>
+  </tank>
+
+  <!-- Overhead tanks frame 6-7 --> <!-- Port engine service tank -->
+  <tank type="FUEL">
+   <location unit="M">
+    <x> 32.7 </x>
+    <y> -0.6 </y>
+    <z> -9.2 </z>
+   </location>
+   <!-- 125 US gallon AVGAS, density 0.72 kg/liter. -->
+   <capacity unit="KG"> 347.0 </capacity>
+   <contents unit="KG"> 200.0 </contents>
+  </tank>
+
+  <!-- Overhead tanks frame 4-5 --> <!-- Starboard engine service tank -->
+  <tank type="FUEL">
+   <location unit="M">
+    <x> 35.3 </x>
+    <y>  0.5 </y>
+    <z> -9.2 </z>
+   </location>
+   <!-- 125 US gallon AVGAS, density 0.72 kg/liter. -->
+   <capacity unit="KG"> 347.0 </capacity>
+   <contents unit="KG"> 200.0 </contents>
+  </tank>
+
+  <!-- Overhead tanks frame 3-4 -->
+  <tank type="FUEL">
+   <location unit="M">
+    <x> 36.5 </x>
+    <y> -0.4 </y>
+    <z> -9.2 </z>
+   </location>
+   <!-- 125 US gallon AVGAS, density 0.72 kg/liter. -->
+   <capacity unit="KG"> 347.0 </capacity>
+   <contents unit="KG"> 200.0 </contents>
+  </tank>
+  <tank type="FUEL">
+   <location unit="M">
+    <x> 36.5 </x>
+    <y>  0.4 </y>
+    <z> -9.2 </z>
+   </location>
+   <!-- 125 US gallon AVGAS, density 0.72 kg/liter. -->
+   <capacity unit="KG"> 347.0 </capacity>
+   <contents unit="KG"> 200.0 </contents>
+  </tank>
+
+  <!-- Overhead tanks frame 2-3 -->
+  <tank type="FUEL">
+   <location unit="M">
+    <x> 37.7 </x>
+    <y> -0.4 </y>
+    <z> -9.2 </z>
+   </location>
+   <!-- 125 US gallon AVGAS, density 0.72 kg/liter. -->
+   <capacity unit="KG"> 347.0 </capacity>
+   <contents unit="KG"> 200.0 </contents>
+  </tank>
+  <tank type="FUEL">
+   <location unit="M">
+    <x> 37.7 </x>
+    <y>  0.4 </y>
+    <z> -9.2 </z>
+   </location>
+   <!-- 125 US gallon AVGAS, density 0.72 kg/liter. -->
+   <capacity unit="KG"> 347.0 </capacity>
+   <contents unit="KG"> 200.0 </contents>
+  </tank>
+
+  <!-- Slip tank Frame 3-4 -->
+  <tank type="FUEL">
+   <location unit="M">
+    <x>  35.2 </x>
+    <y>   0.0 </y>
+    <z> -11.1 </z>
+   </location>
+   <!-- 80 US gallon AVGAS, density 0.72 kg/liter. -->
+   <capacity unit="KG"> 218.0 </capacity>
+   <contents unit="KG"> 100.0 </contents>
+  </tank>
+
+  <!-- Slip tank Frame 2-3 -->
+  <tank type="FUEL">
+   <location unit="M">
+    <x>  36.4 </x>
+    <y>   0.0 </y>
+    <z> -11.1 </z>
+   </location>
+   <!-- 80 US gallon AVGAS, density 0.72 kg/liter. -->
+   <capacity unit="KG"> 272.5 </capacity>
+   <contents unit="KG"> 100.0 </contents>
+  </tank>
+
+ </propulsion>
+
+ <!--
+ === Gas cell ==============================================================
+ -->
+
+ <buoyant_forces>
+  <documentation>
+   Envelope and ballonet according to [GAC:1942:PM]:
+     Volume  envelope      425,000 ft^3 (after stretch 435,000)
+             ballonet fwd   55,700 ft^3
+             ballonet aft   58,400 ft^3
+     Surface area
+             envelope       35,685 ft^2
+             ballonet fwd    4,896 ft^2
+             ballonet aft    5,058 ft^2
+     Length                 249.20 ft
+     Diameter                57.85 ft
+     Fitness Ratio            4.31
+
+   Buoyancy Centre          113.95 ft aft of bow.
+   Maximum Section           98.40 ft aft of bow.
+
+   Pressures
+     Envelope
+       Maximum pressure    3.00 inH2O (747 Pa)
+       Minimum pressure    0.50 inH2O (125 Pa)
+       Gas valve opens     2.63 inH2O (655 Pa)  
+     Ballonets
+       Forward valve       1.50 inH2O (read on manometer)
+       Aft valve           2.00 inH2O (read on manometer)
+
+   p.21 "When the ballonets are partly inflated there is a difference of
+         pressure between the air in the ballonets and the gas in the
+         envelope. This difference depends upon the height of the upper part
+         of the ballonets or ... degree of inflation, lift coefficient of
+         the gas and ... fabric weight ... ."
+   p.23 "... the difference is about .50 in (H2O) at full inflation and
+         nearly zero ... fully deflated."
+  </documentation>
+  <limitations>
+   NOTE: The ballonets are placed based on a guess.
+  </limitations>
+
+  <!-- External environment properties -->
+  <property> environment/sun-angle-rad </property>
+  <property> environment/sun-radiation-norm </property>
+
+  <!-- Ballonet system interface properties -->
+  <property value="0.0"> ballonets/in-flow-ft3ps[0] </property>
+  <property value="0.0"> ballonets/in-flow-ft3ps[1] </property>
+
+  <gas_cell type="HELIUM">
+   <location unit="FT">
+    <x> 113.95 </x>
+    <y>   0.00 </y>
+    <z>   0.00 </z>
+   </location>
+   <x_radius unit="FT"> 124.000 </x_radius>
+   <y_radius unit="FT">  28.925 </y_radius>
+   <z_radius unit="FT">  28.925 </z_radius>
+   <max_overpressure unit="PA"> 800.0 </max_overpressure> 
+   <valve_coefficient unit="M4*SEC/KG"> 0.0075 </valve_coefficient>
+   <fullness>0.95</fullness>
+
+   <!-- heat exchange with the environment. [lb ft / sec] -->
+   <!-- Note: The surface area of an ellipsiod is approximately
+              4*pi*((a^p*b^p + a^p*c^p + b^p*c^p)/3)^(1/p)
+              where p=1.6075
+   -->
+   <heat>
+    <!-- Heat transfer due to temperature difference. -->
+    <function name="buoyant_forces/gas-cell/dU_conduction">
+     <product>
+      <value> 35685.00 </value> <!-- Surface area [ft2] -->
+      <value>     0.05 </value> <!-- Conductivity [lb / (K ft sec)] (Guess) -->
+      <difference>
+       <property> atmosphere/T-R </property>
+       <property> buoyant_forces/gas-cell/temp-R </property>
+      </difference>
+     </product>
+    </function>
+    <function name="buoyant_forces/gas-cell/dU_radiation">
+     <product>
+      <value> 0.1714e-8 </value> <!-- Stefan-Boltzmann's constant
+                                      [Btu / (h ft^2 R^4)] -->
+      <value>       0.2 </value> <!-- Emissivity [0,1] (Guess) -->
+      <value>   35685.0 </value> <!-- Surface area [ft2] -->
+      <difference>
+       <pow>
+        <property> atmosphere/T-R </property>
+        <value> 4.0 </value>
+       </pow>
+       <pow>
+        <property> buoyant_forces/gas-cell/temp-R </property>
+        <value> 4.0 </value>
+       </pow>
+      </difference>
+     </product>
+    </function>
+    <!-- Heat gain due to solar radiation. Pure guess work. -->
+    <function name="buoyant_forces/gas-cell/dU_sun">
+     <product>
+      <value>   7.2330 </value> <!-- Conversion to [lb ft / s] -->
+      <value>  1051.89 </value> <!-- Estimated projected surface area [m2] -->
+      <value>  1300.00 </value> <!-- Solar energy flow [W/m2] -->
+      <value>     0.01 </value> <!-- Guess -->
+      <property> environment/sun-radiation-norm </property>
+      <max>
+       <value> 0.0 </value>
+       <difference>
+        <value> 1.5708 </value>
+        <property> environment/sun-angle-rad </property>
+       </difference>
+      </max>
+     </product>
+    </function>    
+
+   </heat>
+
+   <!-- Fore ballonet -->
+   <ballonet type="AIR">
+    <location unit="M">
+     <x> 15.0 </x>
+     <y>  0.0 </y>
+     <z> -4.0 </z>
+    </location>
+    <x_radius unit="M">  12.6 </x_radius>
+    <y_radius unit="M">   6.0 </y_radius>
+    <z_radius unit="M">   5.0 </z_radius>
+    <max_overpressure unit="PA"> 750.0 </max_overpressure> 
+    <valve_coefficient unit="M4*SEC/KG"> 0.01 </valve_coefficient>
+    <fullness>0.6</fullness>
+    <heat>
+     <!-- Heat transfer due to temperature difference. -->
+     <function name="buoyant_forces/gas-cell/ballonet[0]/dU_conduction">
+      <product>
+       <value> 4896.00 </value> <!-- Surface area [ft2] -->
+       <value>    0.05 </value> <!-- Conductivity [lb / (K ft sec)] (Guess) -->
+       <difference>
+        <property> buoyant_forces/gas-cell/temp-R </property>
+        <property> buoyant_forces/gas-cell/ballonet[0]/temp-R </property>
+       </difference>
+      </product>
+     </function>
+     <function name="buoyant_forces/gas-cell/ballonet[0]/dU_radiation">
+      <product>
+       <value> 0.1714e-8 </value> <!-- Stefan-Boltzmann's constant
+                                       [Btu / (h ft^2 R^4)] -->
+       <value>       0.2 </value> <!-- Emissivity [0,1] (Guess) -->
+       <value>    4896.0 </value> <!-- Surface area [ft2] -->
+       <difference>
+        <pow>
+         <property> buoyant_forces/gas-cell/temp-R </property>
+         <value> 4.0 </value>
+        </pow>
+        <pow>
+         <property> buoyant_forces/gas-cell/ballonet[0]/temp-R </property>
+         <value> 4.0 </value>
+        </pow>
+       </difference>
+      </product>
+     </function>
+    </heat>
+    <blower_input>
+     <function name="buoyant_forces/gas-cell/ballonet[0]/in-flow-ft3ps">
+      <property>ballonets/in-flow-ft3ps[0]</property>
+     </function>
+    </blower_input>
+   </ballonet>
+   <!-- Aft ballonet -->
+   <ballonet type="AIR">
+    <location unit="M">
+     <x> 54.0 </x>
+     <y>  0.0 </y>
+     <z> -4.0 </z>
+    </location>
+    <x_radius unit="M"> 12.9 </x_radius>
+    <y_radius unit="M">  6.1 </y_radius>
+    <z_radius unit="M">  5.0 </z_radius>
+    <max_overpressure unit="PA"> 750.0 </max_overpressure> 
+    <valve_coefficient unit="M4*SEC/KG"> 0.01 </valve_coefficient>
+    <fullness>0.5</fullness>
+    <heat>
+     <!-- Heat transfer due to temperature difference. -->
+     <function name="buoyant_forces/gas-cell/ballonet[1]/dU_conduction">
+      <product>
+       <value> 5058.00 </value> <!-- Surface area [ft2] -->
+       <value>    0.05 </value> <!-- Conductivity [lb / (K ft sec)] (Guess) -->
+       <difference>
+        <property> buoyant_forces/gas-cell/temp-R </property>
+        <property> buoyant_forces/gas-cell/ballonet[1]/temp-R </property>
+       </difference>
+      </product>
+     </function>
+     <function name="buoyant_forces/gas-cell/ballonet[1]/dU_radiation">
+      <product>
+       <value> 0.1714e-8 </value> <!-- Stefan-Boltzmann's constant
+                                       [Btu / (h ft^2 R^4)] -->
+       <value>       0.2 </value> <!-- Emissivity [0,1] (Guess) -->
+       <value>    5058.0 </value> <!-- Surface area [ft2] -->
+       <difference>
+        <pow>
+         <property> buoyant_forces/gas-cell/temp-R </property>
+         <value> 4.0 </value>
+        </pow>
+        <pow>
+         <property> buoyant_forces/gas-cell/ballonet[1]/temp-R </property>
+         <value> 4.0 </value>
+        </pow>
+       </difference>
+      </product>
+     </function>
+    </heat>
+    <blower_input>
+     <function name="buoyant_forces/gas-cell/ballonet[1]/in-flow-ft3ps">
+      <property>ballonets/in-flow-ft3ps[1]</property>
+     </function>
+    </blower_input>
+   </ballonet>
+
+  </gas_cell>
+
+ </buoyant_forces>
+
+ <!--
+ === Air control system ===============================================
+ -->
+ <system file="air-system-jsbsim.xml"/>
+
+ <!--
+ === Gas control system ===============================================
+ -->
+ <system file="gas-system-jsbsim.xml"/>
+
+ <!--
+ ==== Initial static condition weigh-off ====================================
+ -->
+ <system name="Weigh_Off">
+  <channel name="Initial_Static_Weigh_Off">
+   <!-- This system ensures that the ship starts slightly heavy. -->
+   <!-- The weight of inertia/pointmass-weight-lbs[0] is set from Nasal. -->
+
+   <summer name="static-condition/net-lift-lbs">
+    <input> buoyant_forces/gas-cell[0]/buoyancy-lbs </input>
+    <input> -inertia/weight-lbs </input>
+   </summer>
+
+  </channel>
+ </system>
+
+ <!--
+ ==== Flight control system =================================================
+ -->
+ <system file="instrumentation-jsbsim"/> <!-- Instruments and sensors. -->
+ <flight_control name="FCS">
+
+  <documentation>
+   Controls according to [KNOX:1942:GMK]:
+     Control Surface Movements
+       Elevators:     +/- 35 degrees.
+       Upper rudder:  +/- 20 degrees.
+       Lower rudder:  +/- 45 degrees.
+  </documentation>
+
+  <!--
+  === Pitch ==================================================
+  -->
+  <channel name="Pitch">
+
+   <summer name="fcs/elevator/cmd-norm">
+    <input>fcs/elevator-cmd-norm</input>
+    <input>fcs/pitch-trim-cmd-norm</input>
+    <clipto>
+     <min>-1</min>
+     <max>1</max>
+    </clipto>
+   </summer>
+
+   <aerosurface_scale name="fcs/elevator/pos-rad">
+    <input>fcs/elevator/cmd-norm</input>
+    <domain>
+     <min>-1</min>
+     <max>1</max>
+    </domain>
+    <range>
+     <min>-0.6109</min>
+     <max>0.6109</max>
+    </range>
+    <output>fcs/elevator-pos-rad</output>
+   </aerosurface_scale>
+
+   <aerosurface_scale name="fcs/elevator/pos-norm">
+    <input>fcs/elevator/pos-rad</input>
+    <domain>
+     <min>-0.6109</min>
+     <max>0.6109</max>
+    </domain>
+    <range>
+     <min>-1</min>
+     <max>1</max>
+    </range>
+    <output>fcs/elevator-pos-norm</output>
+   </aerosurface_scale>
+  </channel>
+
+  <!--
+  === Yaw ====================================================
+  -->
+  <channel name="Yaw">
+   <summer name="fcs/rudder/cmd-norm">
+    <input>fcs/rudder-cmd-norm</input>
+    <input>-fcs/aileron-cmd-norm</input> <!-- For convenience -->
+    <input>fcs/yaw-trim-cmd-norm</input>
+    <clipto>
+     <min>-1</min>
+     <max>1</max>
+    </clipto>
+   </summer>
+
+   <aerosurface_scale name="fcs/rudder/pos-rad">
+    <input>fcs/rudder/cmd-norm</input>
+    <domain>
+     <min>-1</min>
+     <max>1</max>
+    </domain>
+    <range>
+     <min>-0.7854</min>
+     <max>0.7854</max>
+    </range>
+    <output>fcs/rudder-pos-rad</output>
+   </aerosurface_scale>
+
+   <aerosurface_scale name="fcs/rudder/pos-norm">
+    <input>fcs/rudder-pos-rad</input>
+    <domain>
+     <min>-0.7854</min>
+     <max>0.7854</max>
+    </domain>
+    <range>
+     <min>-1</min>
+     <max>1</max>
+    </range>
+    <output>fcs/rudder-pos-norm</output>
+   </aerosurface_scale>
+
+  </channel>
+
+  <channel name="Propellers">
+
+   <fcs_function name="fcs/propeller/blade-angle-deg[0]">
+    <function>
+     <value>15.0</value>
+    </function>
+    <output>propulsion/engine[0]/blade-angle</output>
+   </fcs_function>
+
+   <fcs_function name="fcs/propeller/blade-angle-deg[1]">
+    <function>
+     <value>15.0</value>
+    </function>
+    <output>propulsion/engine[1]/blade-angle</output>
+   </fcs_function>
+   
+  </channel>
+
+ </flight_control>
+
+ <!--
+ === Gear control system ==============================================
+ -->
+ <system file="gear-control-jsbsim.xml"/>
+
+ <!--
+ ==== External reactions ====================================================
+ -->
+
+ <external_reactions>
+
+  <force name="mooring-coupling-north" frame="LOCAL">
+   <location unit="M">
+    <x> 0.0 </x>
+    <y> 0.0 </y>
+    <z> 0.0 </z>
+   </location>
+   <direction>
+    <x> 1.0 </x>
+    <y> 0.0 </y>
+    <z> 0.0 </z>
+   </direction>
+  </force>
+  <force name="mooring-coupling-east" frame="LOCAL">
+   <location unit="M">
+    <x> 0.0 </x>
+    <y> 0.0 </y>
+    <z> 0.0 </z>
+   </location>
+   <direction>
+    <x> 0.0 </x>
+    <y> 1.0 </y>
+    <z> 0.0 </z>
+   </direction>
+  </force>
+  <force name="mooring-coupling-down" frame="LOCAL">
+   <location unit="M">
+    <x> 0.0 </x>
+    <y> 0.0 </y>
+    <z> 0.0 </z>
+   </location>
+   <direction>
+    <x> 0.0 </x>
+    <y> 0.0 </y>
+    <z> 1.0 </z>
+   </direction>
+  </force>
+
+  <force name="added-mass-bx" frame="BODY">
+   <location unit="M">
+    <x> 34.73 </x>
+    <y>  0.00 </y>
+    <z>  0.00 </z>
+   </location>
+   <direction>
+    <x> 1.0 </x>
+    <y> 0.0 </y>
+    <z> 0.0 </z>
+   </direction>
+  </force>
+  <force name="added-mass-by" frame="BODY">
+   <location unit="M">
+    <x> 34.73 </x>
+    <y>  0.00 </y>
+    <z>  0.00 </z>
+   </location>
+   <direction>
+    <x> 0.0 </x>
+    <y> 1.0 </y>
+    <z> 0.0 </z>
+   </direction>
+  </force>
+  <force name="added-mass-bz" frame="BODY">
+   <location unit="M">
+    <x> 34.73 </x>
+    <y>  0.00 </y>
+    <z>  0.00 </z>
+   </location>
+   <direction>
+    <x> 0.0 </x>
+    <y> 0.0 </y>
+    <z> 1.0 </z>
+   </direction>
+  </force>
+
+  <force name="added-mass-pitch[0]" frame="BODY">
+   <location unit="M">
+    <x> 34.73 </x>
+    <y>  0.00 </y>
+    <z> -0.3048 </z>
+   </location>
+   <direction>
+    <x> 1.0 </x>
+    <y> 0.0 </y>
+    <z> 0.0 </z>
+   </direction>
+  </force>
+  <force name="added-mass-pitch[1]" frame="BODY">
+   <location unit="M">
+    <x> 34.73 </x>
+    <y>  0.00 </y>
+    <z>  0.3048 </z>
+   </location>
+   <direction>
+    <x> 1.0 </x>
+    <y> 0.0 </y>
+    <z> 0.0 </z>
+   </direction>
+  </force>
+
+  <force name="added-mass-yaw[0]" frame="BODY">
+   <location unit="M">
+    <x> 34.73 </x>
+    <y> -0.3048 </y>
+    <z>  0.0 </z>
+   </location>
+   <direction>
+    <x> 1.0 </x>
+    <y> 0.0 </y>
+    <z> 0.0 </z>
+   </direction>
+  </force>
+  <force name="added-mass-yaw[1]" frame="BODY">
+   <location unit="M">
+    <x> 34.73 </x>
+    <y>  0.3048 </y>
+    <z>  0.00 </z>
+   </location>
+   <direction>
+    <x> 1.0 </x>
+    <y> 0.0 </y>
+    <z> 0.0 </z>
+   </direction>
+  </force>
+
+ </external_reactions>
+
+ <!-- system file="fgfs4jsbsim"/ -->
+ <system file="mooring-jsbsim">
+
+  <!-- Constants -->
+  <!--  Mooring -->
+  <property value="10000.0"> mooring/mooring-spring-coeff </property>
+  <property value="-10000.0"> mooring/mooring-damping-coeff </property>
+  <property value="100000.0"> mooring/max-mooring-force-lbs </property>
+  <!--  Wire -->
+  <property value="500.0"> mooring/wire-spring-coeff </property>
+  <property value="10000.0"> mooring/max-wire-force-lbs </property>
+  <property value="5.0"> mooring/max-winch-speed-fps </property>
+
+ </system>
+
+ <!--
+ ==== Aerodynamics ==========================================================
+ -->
+ <system name="constants">
+
+  <documentation>
+   The constants are taken from [GAC:1942:PM] and are the theoretical
+   envelope without stretch. With stretch the volume increases to
+   435000 ft^3. The envelope's theoretical fitness ratio is 4.31.
+  </documentation>
+
+  <!-- Aerodynamic constants. -->
+  <property value="249.20"> aero/constants/length-ft </property>
+  <property value="57.85"> aero/constants/diameter-ft </property>
+  <property value="65447.3"> aero/constants/length-diameter-ft2 </property>
+  <property value="425000.0"> aero/constants/volume-ft3 </property>
+  <property value="5652.7"> aero/constants/volume-ft3_2_3 </property>
+
+  <!-- Added mass constants. -->
+  <property value="-0.08"> aero/constants/added-mass/k-axial </property>
+  <property value="-0.88"> aero/constants/added-mass/k-traverse </property>
+  <property value="-0.65"> aero/constants/added-mass/k-rotational </property>
+
+  <channel name="Temporary hack to prevent oscillations.">
+   <fcs_function name="aero/constants/added-mass/tweak-factor">
+    <function>
+     <difference>
+      <value> 1.0 </value>
+      <property> mooring/moored </property>
+     </difference>
+    </function>
+    <clipto>
+     <min> 0.0 </min>
+     <max> 1.0 </max>
+    </clipto>
+   </fcs_function>
+  </channel>
+
+ </system>
+
+ <system file="airship_added_mass"/>
+
+ <!-- aerodynamics file="Systems/gerris_aero"/ -->
+ <aerodynamics file="Systems/datcom_aero"/>
+
+</fdm_config>

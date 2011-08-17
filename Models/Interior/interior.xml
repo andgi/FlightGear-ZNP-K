@@ -1,0 +1,85 @@
+<!--
+  Goodyear K-type airship.
+
+  Copyright (C) 2011  Anders Gidenstam  (anders(at)gidenstam.org)
+  This file is licensed under the GPL license v2 or later.
+-->
+<PropertyList>
+
+ <!-- No main model. -->
+ <!-- The origin of the car interior is at 26.55, 0.00, -9.10 in the
+      model frame.
+ -->
+
+ <model>
+  <!-- Interior exported in the model frame. -->
+  <path>interior.ac</path>
+  <offsets>
+   <!-- x/y/z == back/right/up -->
+   <x-m>-26.55</x-m>
+   <y-m>  0.00</y-m>
+   <z-m>  9.10</z-m>
+  </offsets>
+ </model>
+
+ <!-- Main instrument panel ================================================-->
+ <model>
+  <name>Main instrument panel</name>
+  <path>Aircraft/ZNP-K/Models/Interior/main_instrument_panel.xml</path>
+  <offsets>
+   <!-- x/y/z == back/right/up -->
+   <x-m>  1.28 </x-m>
+   <y-m>  0.00 </y-m>
+   <z-m> -1.62 </z-m>
+   <pitch-deg>11.31</pitch-deg>
+  </offsets>
+ </model>
+ <model>
+  <name>Main toggle panel</name>
+  <path>Aircraft/ZNP-K/Models/Interior/main_toggle_panel.xml</path>
+  <offsets>
+   <!-- x/y/z == back/right/up -->
+   <x-m>  1.28 </x-m>
+   <y-m>  0.00 </y-m>
+   <z-m> -1.62 </z-m>
+   <pitch-deg>30.96</pitch-deg>
+  </offsets>
+ </model>
+
+
+ <!-- Animations ===========================================================-->
+ <animation>
+  <type>rotate</type>
+  <object-name>rudder_wheel</object-name>
+  <property>surface-positions/rudder-pos-norm</property>
+  <factor>-360.0</factor>
+  <center>
+   <x-m> 28.10 </x-m>
+   <y-m>  0.50 </y-m>
+   <z-m>-11.40 </z-m>
+  </center>
+  <axis>
+   <x> 1.00 </x>
+   <y> 0.00 </y>
+   <z> 0.00 </z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>elevator_wheel</object-name>
+  <property>surface-positions/elevator-pos-norm</property>
+  <factor>-360.0</factor>
+  <center>
+   <x-m> 28.45 </x-m>
+   <y-m> -0.50 </y-m>
+   <z-m>-11.93 </z-m>
+  </center>
+  <axis>
+   <x> 0.00 </x>
+   <y> 1.00 </y>
+   <z> 0.00 </z>
+  </axis>
+ </animation>
+
+</PropertyList>

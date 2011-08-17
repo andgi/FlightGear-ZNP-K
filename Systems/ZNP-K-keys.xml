@@ -1,0 +1,319 @@
+<?xml version="1.0"  encoding="UTF-8"?>
+<!--
+  Goodyear K-type airship for FlightGear.
+
+  Copyright (C) 2011  Anders Gidenstam  (anders(at)gidenstam.org)
+  This file is licensed under the GPL license v2 or later.
+-->
+<PropertyList>
+
+ <!-- Keyboard commands -->
+
+ <!-- Ballast commands ====================================== -->
+ <key n="87">
+  <name>W</name>
+  <desc>Perform on-ground weigh-off.</desc>
+  <binding>
+   <command>nasal</command>
+   <script>
+     if (!walkview.forward(4.0)) {
+         gui.popupTip("Weigh-off in progress.");
+         ZNPK.auto_weighoff();
+     }
+   </script>
+  </binding>
+  <mod-up>
+   <binding>
+    <command>nasal</command>
+    <script>
+      walkview.forward(0);
+    </script>
+   </binding>
+  </mod-up>
+ </key>
+
+ <key n="119">
+  <name>w</name>
+  <desc>Show current on-ground weight.</desc>
+  <binding>
+   <command>nasal</command>
+   <script>
+     if (!walkview.forward(1.0)) {
+         ZNPK.print_wow();
+     }
+   </script>
+  </binding>
+  <mod-up>
+   <binding>
+    <command>nasal</command>
+    <script>
+      walkview.forward(0);
+    </script>
+   </binding>
+  </mod-up>
+ </key>
+
+ <!-- Gas cell commands ====================================== -->
+ <key n="70">
+  <name>F</name>
+  <desc>Open gas valve.</desc>
+  <binding>
+   <command>nasal</command>
+   <script>
+     ZNPK.step_gas_valve_cmd(0, 2.0);
+   </script>
+  </binding>
+ </key>
+
+ <key n="102">
+  <name>f</name>
+  <desc>Close gas valve.</desc>
+  <binding>
+   <command>nasal</command>
+   <script>
+     ZNPK.step_gas_valve_cmd(0, -2.0);
+   </script>
+  </binding>
+ </key>
+
+ <key n="82">
+  <name>R</name>
+  <desc>Rip envelope</desc>
+  <binding>
+   <command>nasal</command>
+   <script>
+     setprop("/sim/messages/pilot", "Ripping the envelope!");
+     setprop(ZNPK.gas_rip_cord_p[0], 1.0);
+   </script>
+  </binding>
+ </key>
+
+ <!-- Ballonet commands ====================================== -->
+ <key n="113">
+  <name>q</name>
+  <desc>Close forward damper</desc>
+  <repeatable type="bool">true</repeatable>
+  <binding>
+   <command>nasal</command>
+   <script>
+     ZNPK.step_air_damper_cmd(0, -0.05);
+   </script>
+  </binding>
+ </key>
+ <key n="81">
+  <name>Q</name>
+  <desc>Open forward damper</desc>
+  <repeatable type="bool">true</repeatable>
+  <binding>
+   <command>nasal</command>
+   <script>
+     ZNPK.step_air_damper_cmd(0, 0.05);
+   </script>
+  </binding>
+ </key>
+ <key n="17">
+  <name>Ctrl-Q</name>
+  <desc>Open forward air valve</desc>
+  <binding>
+   <command>nasal</command>
+   <script>
+     if (getprop(ZNPK.air_valve_cmd_p[0])) {
+         ZNPK.step_air_valve_cmd(0, -2.0);
+     } else {
+         ZNPK.step_air_valve_cmd(0, 2.0);
+     }
+   </script>
+  </binding>
+ </key>
+
+ <key n="97">
+  <name>a</name>
+  <desc>Close aft damper</desc>
+  <repeatable type="bool">true</repeatable>
+  <binding>
+   <command>nasal</command>
+   <script>
+     if (!walkview.side_step(-0.5)) {
+         ZNPK.step_air_damper_cmd(1, -0.05);
+     }
+   </script>
+  </binding>
+  <mod-up>
+   <binding>
+    <command>nasal</command>
+    <script>
+      walkview.side_step(0);
+    </script>
+   </binding>
+  </mod-up>
+ </key>
+ <key n="65">
+  <name>A</name>
+  <desc>Open aft damper</desc>
+  <repeatable type="bool">true</repeatable>
+  <binding>
+   <command>nasal</command>
+   <script>
+     if (!walkview.side_step(-1.0)) {
+         ZNPK.step_air_damper_cmd(1, 0.05);
+     }
+   </script>
+  </binding>
+  <mod-up>
+   <binding>
+    <command>nasal</command>
+    <script>
+      walkview.side_step(0);
+    </script>
+   </binding>
+  </mod-up>
+ </key>
+ <key n="1">
+  <name>Ctrl-A</name>
+  <desc>Open aft air valve</desc>
+  <binding>
+   <command>nasal</command>
+   <script>
+     if (getprop(ZNPK.air_valve_cmd_p[1])) {
+         ZNPK.step_air_valve_cmd(1, -2.0);
+     } else {
+         ZNPK.step_air_valve_cmd(1, 2.0);
+     }
+   </script>
+  </binding>
+ </key>
+
+ <!-- Mooring commands ======================================= -->
+ <key n="85">
+  <name>U</name>
+  <desc>Attach mooring wire.</desc>
+  <binding>
+   <command>nasal</command>
+   <script>
+     ZNPK.mooring.attach_mooring_wire();
+   </script>
+  </binding>
+ </key>
+
+ <key n="89">
+  <name>Y</name>
+  <desc>Release mooring connection or wire.</desc>
+  <binding>
+   <command>nasal</command>
+   <script>
+     ZNPK.mooring.release_mooring();
+   </script>
+  </binding>
+ </key>
+
+ <key n="117">
+  <name>u</name>
+  <desc>Winch in mooring wire.</desc>
+  <binding>
+   <command>nasal</command>
+   <script>
+     var sp = getprop("/fdm/jsbsim/mooring/winch-speed-fps");
+     ZNPK.mooring.set_winch_speed(sp - 0.5);
+   </script>
+  </binding>
+ </key>
+
+ <key n="121">
+  <name>y</name>
+  <desc>Winch out mooring wire.</desc>
+  <binding>
+   <command>nasal</command>
+   <script>
+     var sp = getprop("/fdm/jsbsim/mooring/winch-speed-fps");
+     ZNPK.mooring.set_winch_speed(sp + 0.5);
+   </script>
+  </binding>
+ </key>
+
+ <!-- Walkview commands ======================================== -->
+ <key n="100">
+  <name>d</name>
+  <desc>WalkView: Side step right</desc>
+  <repeatable type="bool">true</repeatable>
+  <binding>
+   <command>nasal</command>
+   <script>
+     if (!walkview.side_step(0.5)) {
+     }
+   </script>
+  </binding>
+  <mod-up>
+   <binding>
+    <command>nasal</command>
+    <script>
+      walkview.side_step(0);
+    </script>
+   </binding>
+  </mod-up>
+ </key>
+
+ <key n="68">
+  <name>D</name>
+  <desc>WalkView: Side step right</desc>
+  <repeatable type="bool">true</repeatable>
+  <binding>
+   <command>nasal</command>
+   <script>
+     if (!walkview.side_step(1.0)) {
+     }
+   </script>
+  </binding>
+  <mod-up>
+   <binding>
+    <command>nasal</command>
+    <script>
+      walkview.side_step(0);
+    </script>
+   </binding>
+  </mod-up>
+ </key>
+
+ <key n="115">
+  <name>s</name>
+  <desc>Walk backwards.</desc>
+  <binding>
+   <command>nasal</command>
+   <script>
+     if (!walkview.forward(-1.0)) {
+         controls.startEngine(1);
+     }
+   </script>
+  </binding>
+  <mod-up>
+   <binding>
+    <command>nasal</command>
+    <script>
+      walkview.forward(0);
+      controls.startEngine(0);
+    </script>
+   </binding>
+  </mod-up>
+ </key>
+ <!-- Remove this if you for some reason have 2d panels and want the default
+      Swap panels function on 'S'.
+ -->
+ <key n="83">
+  <name>S</name>
+  <desc>Walk backwards.</desc>
+  <binding>
+   <command>nasal</command>
+   <script>
+     walkview.forward(-1.0);
+   </script>
+  </binding>
+  <mod-up>
+   <binding>
+    <command>nasal</command>
+    <script>
+      walkview.forward(0);
+    </script>
+   </binding>
+  </mod-up>
+ </key>
+
+</PropertyList>

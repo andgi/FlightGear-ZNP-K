@@ -1,0 +1,244 @@
+<!--
+  Goodyear K-type airship.
+
+  Copyright (C) 2011  Anders Gidenstam  (anders(at)gidenstam.org)
+  This file is licensed under the GPL license v2 or later.
+-->
+<PropertyList>
+
+ <!-- No main model. -->
+ <!-- x/y/z == back/right/up -->
+
+ <!-- 
+      Based on the 3d model the origin of the toggle panel is
+      at 1.28, 0.0, -1.62 in the car interior frame. This is at the
+      middle of the upper edge of the panel.
+      The panel is 1.62m wide and 0.05m tall (excluding slant).
+      The slant is 30.96 degrees.
+ -->
+
+ <!--
+      According to [GAC:1942:PM] the main instrument panel contained
+      the following toggles (left to right):
+      - Mechanic's signal
+      - Forward air damper
+      - Forward air valve open
+      - Aft     air valve open
+      - Aft     air damper
+      - Forward air valve close
+      - Aft     air valve close
+      - Port      gas valve open
+      - Starboard gas valve open
+ -->
+
+ <model>
+  <name>Toggle signal mechanic</name>
+  <path>Aircraft/ZNP-K/Instruments/Toggle/toggle.xml</path>
+  <offsets>
+   <x-m> 0.000</x-m>
+   <y-m>-0.700</y-m>
+   <z-m>-0.025</z-m>
+  </offsets>
+  <overlay>
+   <params>
+    <toggle-pos-norm>/controls/electric/tmp[1]</toggle-pos-norm>
+    <pick-action-script n="0">
+      setprop("/controls/electric/tmp[1]", 1.0);
+    </pick-action-script>
+    <release-action-script n="0">
+      setprop("/controls/electric/tmp[1]", 0.0);
+    </release-action-script>
+   </params>
+  </overlay>
+ </model>
+
+ <model>
+  <name>Toggle forward air damper</name>
+  <path>Aircraft/ZNP-K/Instruments/Toggle/toggle.xml</path>
+  <offsets>
+   <x-m> 0.000</x-m>
+   <y-m>-0.500</y-m>
+   <z-m>-0.025</z-m>
+  </offsets>
+  <overlay>
+   <params>
+    <toggle-pos-norm>/controls/air/damper[0]</toggle-pos-norm>
+    <pick-action-script n="0">
+      ZNPK.step_air_damper_cmd(0, 0.05);
+    </pick-action-script>
+    <pick-action-script n="1">
+      ZNPK.step_air_damper_cmd(0, -0.05);
+    </pick-action-script>
+    <pick-action-script n="3">
+      ZNPK.step_air_damper_cmd(0, -0.05);
+    </pick-action-script>
+    <pick-action-script n="4">
+      ZNPK.step_air_damper_cmd(0, 0.05);
+    </pick-action-script>
+   </params>
+  </overlay>
+ </model>
+
+ <model>
+  <name>Toggle open forward air valve</name>
+  <path>Aircraft/ZNP-K/Instruments/Toggle/toggle.xml</path>
+  <offsets>
+   <x-m> 0.000</x-m>
+   <y-m>-0.440</y-m>
+   <z-m>-0.025</z-m>
+  </offsets>
+  <overlay>
+   <params>
+    <toggle-pos-norm>/controls/air/open-valve[0]</toggle-pos-norm>
+    <pick-action-script n="0">
+      setprop("/controls/air/open-valve[0]", 1.0);
+      ZNPK.step_air_valve_cmd(0, 2.0);
+    </pick-action-script>
+    <release-action-script n="0">
+      setprop("/controls/air/open-valve[0]", 0.0);
+      ZNPK.step_air_valve_cmd(0, -2.0);
+    </release-action-script>
+   </params>
+  </overlay>
+ </model>
+
+ <model>
+  <name>Toggle open aft air valve</name>
+  <path>Aircraft/ZNP-K/Instruments/Toggle/toggle.xml</path>
+  <offsets>
+   <x-m> 0.000</x-m>
+   <y-m>-0.380</y-m>
+   <z-m>-0.025</z-m>
+  </offsets>
+  <overlay>
+   <params>
+    <toggle-pos-norm>/controls/air/open-valve[1]</toggle-pos-norm>
+    <pick-action-script n="0">
+      setprop("/controls/air/open-valve[1]", 1.0);
+      ZNPK.step_air_valve_cmd(1, 2.0);
+    </pick-action-script>
+    <release-action-script n="0">
+      setprop("/controls/air/open-valve[1]", 0.0);
+      ZNPK.step_air_valve_cmd(1, -2.0);
+    </release-action-script>
+   </params>
+  </overlay>
+ </model>
+
+ <model>
+  <name>Toggle aft air damper</name>
+  <path>Aircraft/ZNP-K/Instruments/Toggle/toggle.xml</path>
+  <offsets>
+   <x-m> 0.000</x-m>
+   <y-m>-0.320</y-m>
+   <z-m>-0.025</z-m>
+  </offsets>
+  <overlay>
+   <params>
+    <toggle-pos-norm>/controls/air/damper[1]</toggle-pos-norm>
+    <pick-action-script n="0">
+      ZNPK.step_air_damper_cmd(1, 0.05);
+    </pick-action-script>
+    <pick-action-script n="1">
+      ZNPK.step_air_damper_cmd(1, -0.05);
+    </pick-action-script>
+    <pick-action-script n="3">
+      ZNPK.step_air_damper_cmd(1, -0.05);
+    </pick-action-script>
+    <pick-action-script n="4">
+      ZNPK.step_air_damper_cmd(1, 0.05);
+    </pick-action-script>
+   </params>
+  </overlay>
+ </model>
+
+ <model>
+  <name>Toggle close forward air valve</name>
+  <path>Aircraft/ZNP-K/Instruments/Toggle/toggle.xml</path>
+  <offsets>
+   <x-m> 0.000</x-m>
+   <y-m>-0.240</y-m>
+   <z-m>-0.025</z-m>
+  </offsets>
+  <overlay>
+   <params>
+    <toggle-pos-norm>/controls/air/close-valve[0]</toggle-pos-norm>
+    <pick-action-script n="0">
+      setprop("/controls/air/close-valve[0]", 1.0);
+      ZNPK.step_air_valve_cmd(0, -2.0);
+    </pick-action-script>
+    <release-action-script n="0">
+      setprop("/controls/air/close-valve[0]", 0.0);
+    </release-action-script>
+   </params>
+  </overlay>
+ </model>
+
+ <model>
+  <name>Toggle close aft air valve</name>
+  <path>Aircraft/ZNP-K/Instruments/Toggle/toggle.xml</path>
+  <offsets>
+   <x-m> 0.000</x-m>
+   <y-m>-0.180</y-m>
+   <z-m>-0.025</z-m>
+  </offsets>
+  <overlay>
+   <params>
+    <toggle-pos-norm>/controls/air/close-valve[1]</toggle-pos-norm>
+    <pick-action-script n="0">
+      setprop("/controls/air/close-valve[1]", 1.0);
+      ZNPK.step_air_valve_cmd(1, -2.0);
+    </pick-action-script>
+    <release-action-script n="0">
+      setprop("/controls/air/close-valve[1]", 0.0);
+    </release-action-script>
+   </params>
+  </overlay>
+ </model>
+
+ <model>
+  <name>Toggle open port gas valve</name>
+  <path>Aircraft/ZNP-K/Instruments/Toggle/toggle.xml</path>
+  <offsets>
+   <x-m> 0.000</x-m>
+   <y-m> 0.310</y-m>
+   <z-m>-0.025</z-m>
+  </offsets>
+  <overlay>
+   <params>
+    <toggle-pos-norm>/controls/gas/open-valve[0]</toggle-pos-norm>
+    <pick-action-script n="0">
+      setprop("/controls/gas/open-valve[0]", 1.0);
+      ZNPK.step_gas_valve_cmd(0, 2.0);
+    </pick-action-script>
+    <release-action-script n="0">
+      setprop("/controls/gas/open-valve[0]", 0.0);
+      ZNPK.step_gas_valve_cmd(0, -2.0);
+    </release-action-script>
+   </params>
+  </overlay>
+ </model>
+ <model>
+  <name>Toggle open starboard gas valve</name>
+  <path>Aircraft/ZNP-K/Instruments/Toggle/toggle.xml</path>
+  <offsets>
+   <x-m> 0.000</x-m>
+   <y-m> 0.390</y-m>
+   <z-m>-0.025</z-m>
+  </offsets>
+  <overlay>
+   <params>
+    <toggle-pos-norm>/controls/gas/open-valve[1]</toggle-pos-norm>
+    <pick-action-script n="0">
+      setprop("/controls/gas/open-valve[1]", 1.0);
+      ZNPK.step_gas_valve_cmd(1, 2.0);
+    </pick-action-script>
+    <release-action-script n="0">
+      setprop("/controls/gas/open-valve[1]", 0.0);
+      ZNPK.step_gas_valve_cmd(1, -2.0);
+    </release-action-script>
+   </params>
+  </overlay>
+ </model>
+
+</PropertyList>

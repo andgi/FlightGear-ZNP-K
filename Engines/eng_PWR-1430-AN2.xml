@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!--
+  Pratt and Whitney R-1340-AN2 for JSBSim
+
+    Copyright (C) 2010  Anders Gidenstam  (anders(at)gidenstam.org)
+    This file is licensed under the GPL license version 2 or later.
+
+  <reference
+   refID="FAA:TC-5E-2"
+   author="FAA"
+   title="http://www.airweb.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/557844629a50a6388525676a006740c9/$FILE/ATTY2APL/5E-2.pdf"
+   date="?"/>
+
+-->
+<piston_engine name="R-1340-AN2">
+ <displacement unit="IN3"> 1344.0 </displacement>
+ <bore unit="IN">            5.75 </bore>
+ <stroke unit="IN">          5.75 </stroke>
+ <compression-ratio>         6.00 </compression-ratio>
+ <cylinders>                 9.00 </cylinders>
+ <cycles>                    4.00 </cycles>
+
+ <maxhp>                   600.0 </maxhp>
+ <!--bsfc>                      0.37 </bsfc-->
+ <!--volumetric-efficiency>     0.85 </volumetric-efficiency -->
+ <idlerpm>                 550.0 </idlerpm>
+ <maxrpm>                 2250.0 </maxrpm>
+
+ <numboostspeeds> 1.0 </numboostspeeds>
+ <boostoverride>  0 </boostoverride>
+
+ <ratedboost1 unit="INHG">     2.58 </ratedboost1>
+ <ratedpower1 unit="HP">     550.00 </ratedpower1>
+ <ratedrpm1>                2200.00 </ratedrpm1>
+ <ratedaltitude1 unit="FT"> 5000.00 </ratedaltitude1>
+
+ <takeoffboost unit="INHG">    6.08 </takeoffboost>
+
+ <sparkfaildrop>               0.10 </sparkfaildrop>
+
+ <minmp unit="INHG">           6.50 </minmp> <!-- Deprecated -->
+ <maxmp unit="INHG">          36.00 </maxmp>
+ <maxthrottle>                 1.00 </maxthrottle>
+ <minthrottle>                 0.10 </minthrottle>
+</piston_engine>

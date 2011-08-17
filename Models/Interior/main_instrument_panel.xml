@@ -1,0 +1,285 @@
+<!--
+  Goodyear K-type airship.
+
+  Copyright (C) 2011  Anders Gidenstam  (anders(at)gidenstam.org)
+  This file is licensed under the GPL license v2 or later.
+-->
+<PropertyList>
+
+ <!-- No main model. -->
+ <!-- x/y/z == back/right/up -->
+
+ <!-- 
+      Based on the 3d model the origin of the instrument panel is
+      at 1.28, 0.0, -1.62 in the car interior frame. This is at the
+      middle of the lower edge of the panel.
+      The panel is 1.62m wide and 0.35m tall (excluding slant).
+      The slant is 11.31 degrees.
+ -->
+
+ <!--
+      According to [GAC:1942:PM] the main instrument panel contained
+      the following instruments:
+        In front of the elevator pilot:
+        At the very left:
+         - 2 magneto switches, and below
+         - 1 safety switch for the main electrical junktion box
+        On a sub assembly to the right of that:
+         - 2 electric engine tachometers
+         - 1 airspeed indicator
+         - 1 mechanical manometer
+         - 1 (outside?) air temperature indicator
+         - 1 Bureau of Standards superheat indicator with selective control
+         Based on a photo in [GAC:1942:PM] the layout is
+           Upper row, left to right: tachometers, airspeed
+           Lower row, left to right: manometer, unknown, OAT, superheat
+             "unknown" might be the elevator angle indicator that was moved to
+             the window frame instrument panel in the later ships.
+             It could also be a clock.
+        Centerally
+         - A schematic drawing of the car showing the location of all the
+           fuel tanks; below this
+         - 4 toggles for the valves on the dump tanks.
+           Possible sequence: L dump 1 & 2, R dump 1 & 2.
+           Above, over the main panel, are two toggles for dropping the slip
+           tanks. To the right
+         - 1 pitch indicator / inclinometer
+        In front of the rudder pilot on a sub assembly
+         - "all the necessary light switches and fuses"
+ -->
+
+ <!-- Preliminary instruments and controls. Top-bottom, left-right  -->
+
+ <model>
+  <name>Fuel slip tank toggle 1</name>
+  <path>Aircraft/ZNP-K/Instruments/Toggle/toggle.xml</path>
+  <offsets>
+   <x-m> 0.000</x-m>
+   <y-m>-0.030</y-m>
+   <z-m> 0.320</z-m>
+  </offsets>
+  <overlay>
+   <params>
+    <toggle-pos-norm>/controls/fuel/slip[0]</toggle-pos-norm>
+    <pick-action-script>
+      setprop("/controls/fuel/slip[0]", 1);
+    </pick-action-script>
+    <release-action-script>
+      setprop("/controls/fuel/slip[0]", 0);
+    </release-action-script>
+   </params>
+  </overlay>
+ </model>
+ <model>
+  <name>Fuel slip tank toggle 2</name>
+  <path>Aircraft/ZNP-K/Instruments/Toggle/toggle.xml</path>
+  <offsets>
+   <x-m> 0.000</x-m>
+   <y-m> 0.030</y-m>
+   <z-m> 0.320</z-m>
+  </offsets>
+  <overlay>
+   <params>
+    <toggle-pos-norm>/controls/fuel/slip[1]</toggle-pos-norm>
+    <pick-action-script>
+      setprop("/controls/fuel/slip[1]", 1);
+    </pick-action-script>
+    <release-action-script>
+      setprop("/controls/fuel/slip[1]", 0);
+    </release-action-script>
+   </params>
+  </overlay>
+ </model>
+
+ <model>
+  <name>Left tachometer</name>
+  <path>Aircraft/Instruments-3d/tach/tach.xml</path>
+  <offsets>
+   <x-m> 0.020</x-m>
+   <y-m>-0.550</y-m>
+   <z-m> 0.200</z-m>
+  </offsets>
+  <overlay>
+   <animation n="1">
+    <property>/engines/engine[0]/rpm</property>
+   </animation>
+  </overlay>
+ </model>
+
+ <model>
+  <name>Right tachometer</name>
+  <path>Aircraft/Instruments-3d/tach/tach.xml</path>
+  <offsets>
+   <x-m> 0.020</x-m>
+   <y-m>-0.450</y-m>
+   <z-m> 0.200</z-m>
+  </offsets>
+  <overlay>
+   <animation n="1">
+    <property>/engines/engine[1]/rpm</property>
+   </animation>
+  </overlay>
+ </model>
+
+ <model>
+  <name>Pitch indicator</name>
+  <path>Aircraft/Short_Empire/Instruments/SmithForeAftLevel/smith_fore_aft_level.xml</path>
+  <offsets>
+   <x-m> 0.007</x-m>
+   <y-m> 0.200</y-m>
+   <z-m> 0.150</z-m>
+  </offsets>
+  <overlay>
+   <params>
+    <indicated-inclination-deg>orientation/pitch-deg</indicated-inclination-deg>
+    <serviceable>instrumentation/inclinometer[0]/serviceable</serviceable>
+   </params>
+  </overlay>
+ </model>
+
+ <model>
+  <name>Toggle Safety Switch</name>
+  <path>Aircraft/ZNP-K/Instruments/Toggle/toggle.xml</path>
+  <offsets>
+   <x-m> 0.000</x-m>
+   <y-m>-0.700</y-m>
+   <z-m> 0.040</z-m>
+  </offsets>
+  <overlay>
+   <params>
+    <toggle-pos-norm>/controls/electric/tmp[0]</toggle-pos-norm>
+    <pick-action-script>
+      setprop("/controls/electric/tmp[0]", 1.0);
+    </pick-action-script>
+    <release-action-script>
+      setprop("/controls/electric/tmp[0]", 0.0);
+    </release-action-script>
+   </params>
+  </overlay>
+ </model>
+
+ <model>
+  <name>Fuel dump toggle 1</name>
+  <path>Aircraft/ZNP-K/Instruments/Toggle/toggle.xml</path>
+  <offsets>
+   <x-m> 0.000</x-m>
+   <y-m>-0.090</y-m>
+   <z-m> 0.040</z-m>
+  </offsets>
+  <overlay>
+   <params>
+    <toggle-pos-norm>/controls/fuel/dump[0]</toggle-pos-norm>
+    <pick-action-script>
+      setprop("/controls/fuel/dump[0]", 1);
+    </pick-action-script>
+    <release-action-script>
+      setprop("/controls/fuel/dump[0]", 0);
+    </release-action-script>
+   </params>
+  </overlay>
+ </model>
+ <model>
+  <name>Fuel dump toggle 2</name>
+  <path>Aircraft/ZNP-K/Instruments/Toggle/toggle.xml</path>
+  <offsets>
+   <x-m> 0.000</x-m>
+   <y-m>-0.030</y-m>
+   <z-m> 0.040</z-m>
+  </offsets>
+  <overlay>
+   <params>
+    <toggle-pos-norm>/controls/fuel/dump[1]</toggle-pos-norm>
+    <pick-action-script>
+      setprop("/controls/fuel/dump[1]", 1);
+    </pick-action-script>
+    <release-action-script>
+      setprop("/controls/fuel/dump[1]", 0);
+    </release-action-script>
+   </params>
+  </overlay>
+ </model>
+ <model>
+  <name>Fuel dump toggle 3</name>
+  <path>Aircraft/ZNP-K/Instruments/Toggle/toggle.xml</path>
+  <offsets>
+   <x-m> 0.000</x-m>
+   <y-m> 0.030</y-m>
+   <z-m> 0.040</z-m>
+  </offsets>
+  <overlay>
+   <params>
+    <toggle-pos-norm>/controls/fuel/dump[2]</toggle-pos-norm>
+    <pick-action-script>
+      setprop("/controls/fuel/dump[2]", 1);
+    </pick-action-script>
+    <release-action-script>
+      setprop("/controls/fuel/dump[2]", 0);
+    </release-action-script>
+   </params>
+  </overlay>
+ </model>
+ <model>
+  <name>Fuel dump toggle 4</name>
+  <path>Aircraft/ZNP-K/Instruments/Toggle/toggle.xml</path>
+  <offsets>
+   <x-m> 0.000</x-m>
+   <y-m> 0.090</y-m>
+   <z-m> 0.040</z-m>
+  </offsets>
+  <overlay>
+   <params>
+    <toggle-pos-norm>/controls/fuel/dump[3]</toggle-pos-norm>
+    <pick-action-script>
+      setprop("/controls/fuel/dump[3]", 1);
+    </pick-action-script>
+    <release-action-script>
+      setprop("/controls/fuel/dump[3]", 0);
+    </release-action-script>
+   </params>
+  </overlay>
+ </model>
+
+ <model>
+  <name>Toggle close port gas valve</name>
+  <path>Aircraft/ZNP-K/Instruments/Toggle/toggle.xml</path>
+  <offsets>
+   <x-m> 0.000</x-m>
+   <y-m> 0.320</y-m>
+   <z-m> 0.040</z-m>
+  </offsets>
+  <overlay>
+   <params>
+    <toggle-pos-norm>/controls/gas/close-valve[0]</toggle-pos-norm>
+    <pick-action-script>
+      setprop("/controls/gas/close-valve[0]", 1.0);
+      ZNPK.step_gas_valve_cmd(0, -2.0);
+    </pick-action-script>
+    <release-action-script>
+      setprop("/controls/gas/close-valve[0]", 0.0);
+    </release-action-script>
+   </params>
+  </overlay>
+ </model>
+ <model>
+  <name>Toggle close starboard gas valve</name>
+  <path>Aircraft/ZNP-K/Instruments/Toggle/toggle.xml</path>
+  <offsets>
+   <x-m> 0.000</x-m>
+   <y-m> 0.380</y-m>
+   <z-m> 0.040</z-m>
+  </offsets>
+  <overlay>
+   <params>
+    <toggle-pos-norm>/controls/gas/close-valve[1]</toggle-pos-norm>
+    <pick-action-script>
+      setprop("/controls/gas/close-valve[1]", 1.0);
+      ZNPK.step_gas_valve_cmd(1, -2.0);
+    </pick-action-script>
+    <release-action-script>
+      setprop("/controls/gas/close-valve[1]", 0.0);
+    </release-action-script>
+   </params>
+  </overlay>
+ </model>
+
+</PropertyList>

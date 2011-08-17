@@ -1,0 +1,223 @@
+<?xml version="1.0"?>
+<!--
+  Goodyear K-type airship.
+
+  Copyright (C) 2010 - 2011  Anders Gidenstam  (anders(at)gidenstam.org)
+  This file is licensed under the GPL license v2 or later.
+-->
+<PropertyList>
+
+ <!-- The hull. -->
+ <path>ZNP-K.ac</path>
+ <offsets>
+  <!-- x/y/z == back/right/up -->
+  <x-m> 0.0 </x-m>
+  <y-m> 0.0 </y-m>
+  <z-m> 0.0 </z-m>
+ </offsets>
+
+ <model>
+  <name>Left engine</name>
+  <path>Aircraft/ZNP-K/Models/r1340/r1340.xml</path>
+  <offsets>
+   <!-- x/y/z == back/right/up -->
+   <x-m>  31.55 </x-m>
+   <y-m>  -3.35 </y-m>
+   <z-m> -11.20 </z-m>
+  </offsets>
+ </model>
+ <model>
+  <name>Left propeller</name>
+  <path>Aircraft/ZNP-K/Models/propeller.xml</path>
+  <offsets>
+   <!-- x/y/z == back/right/up -->
+   <x-m>  31.55 </x-m>
+   <y-m>  -3.35 </y-m>
+   <z-m> -11.20 </z-m>
+  </offsets>
+  <overlay>
+   <parameters>
+    <engine-rpm>engines/engine[0]/rpm</engine-rpm>
+   </parameters>
+  </overlay>
+ </model>
+
+ <model>
+  <name>Right engine</name>
+  <path>Aircraft/ZNP-K/Models/r1340/r1340.xml</path>
+  <offsets>
+   <!-- x/y/z == back/right/up -->
+   <x-m>  31.55 </x-m>
+   <y-m>   3.35 </y-m>
+   <z-m> -11.20 </z-m>
+  </offsets>
+ </model>
+ <model>
+  <name>Right propeller</name>
+  <path>Aircraft/ZNP-K/Models/propeller.xml</path>
+  <offsets>
+   <!-- x/y/z == back/right/up -->
+   <x-m>  31.55 </x-m>
+   <y-m>   3.35 </y-m>
+   <z-m> -11.20 </z-m>
+  </offsets>
+  <overlay>
+   <parameters>
+    <engine-rpm>engines/engine[1]/rpm</engine-rpm>
+   </parameters>
+  </overlay>
+ </model>
+
+ <model>
+  <name>Interior</name>
+  <path>Aircraft/ZNP-K/Models/Interior/interior.xml</path>
+  <offsets>
+   <!-- x/y/z == back/right/up -->
+   <x-m>  26.55 </x-m>
+   <y-m>   0.00 </y-m>
+   <z-m>  -9.10 </z-m>
+  </offsets>
+ </model>
+
+ <!-- Control surface animations ===========================================-->
+ <animation>
+  <type>rotate</type>
+  <object-name>upper_rudder</object-name>
+  <property>surface-positions/rudder-pos-norm</property>
+  <factor>20</factor>
+  <axis>
+   <x1-m> 69.45 </x1-m>
+   <y1-m>  0.00 </y1-m>
+   <z1-m>  6.34 </z1-m>
+   <x2-m> 69.21 </x2-m>
+   <y2-m>  0.00 </y2-m>
+   <z2-m>  9.87 </z2-m>
+  </axis>
+ </animation>
+ <animation>
+  <type>rotate</type>
+  <object-name>lower_rudder</object-name>
+  <property>surface-positions/rudder-pos-norm</property>
+  <factor>-40</factor>
+  <axis>
+   <x1-m> 69.57 </x1-m>
+   <y1-m>  0.00 </y1-m>
+   <z1-m> -4.43 </z1-m>
+   <x2-m> 69.24 </x2-m>
+   <y2-m>  0.00 </y2-m>
+   <z2-m> -7.73 </z2-m>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>left_elevator</object-name>
+  <property>surface-positions/elevator-pos-norm</property>
+  <factor>-35</factor>
+  <axis>
+   <x1-m> 69.45 </x1-m>
+   <y1-m> -6.43 </y1-m>
+   <z1-m>  0.00 </z1-m>
+   <x2-m> 69.21 </x2-m>
+   <y2-m> -9.87 </y2-m>
+   <z2-m>  0.00 </z2-m>
+  </axis>
+ </animation>
+ <animation>
+  <type>rotate</type>
+  <object-name>right_elevator</object-name>
+  <property>surface-positions/elevator-pos-norm</property>
+  <factor>35</factor>
+  <axis>
+   <x1-m> 69.45 </x1-m>
+   <y1-m>  6.43 </y1-m>
+   <z1-m>  0.00 </z1-m>
+   <x2-m> 69.21 </x2-m>
+   <y2-m>  9.87 </y2-m>
+   <z2-m>  0.00 </z2-m>
+  </axis>
+ </animation>
+
+ <!-- Landing gear animation ===============================================-->
+ <!-- Main gear -->
+ <animation>
+  <name>Main landing gear</name>
+  <object-name>main_lgear</object-name>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>Main landing gear</object-name>
+  <property>gear/gear/steering-norm</property>
+  <center>
+   <x-m> 31.60 </x-m>
+   <y-m>  0.00 </y-m>
+   <z-m>-13.80 </z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>0.0</y>
+   <z>1.0</z>
+  </axis>
+  <interpolation>
+   <entry>
+    <ind>-1.0</ind>
+    <dep>-360.0</dep>
+   </entry>
+   <entry>
+    <ind>0.0</ind>
+    <dep>0.0</dep>
+   </entry>
+   <entry>
+    <ind>1.0</ind>
+    <dep>360.0</dep>
+   </entry>
+  </interpolation>
+ </animation>
+
+ <animation>
+  <type>translate</type>
+  <object-name>Main landing gear</object-name>
+  <property>gear/gear[0]/compression-ft</property>
+  <axis>
+   <x>0.0</x>
+   <y>0.0</y>
+   <z>1.0</z>
+  </axis>
+  <interpolation>
+   <entry>
+    <ind>0.0</ind>
+    <dep>0.0</dep>
+   </entry>
+   <entry>
+    <ind>2.0</ind>
+    <dep>0.3048</dep>
+   </entry>
+  </interpolation>
+ </animation>
+
+ <!-- LOD for the model as a whole =========================================-->
+ <animation>
+  <type>range</type>
+  <min-m>0</min-m>
+  <max-m>15000</max-m>
+ </animation>
+
+ <nasal>
+  <load>
+##############################################################################
+# The on-load Nasal is not executed when this file is loaded as the user
+# aircraft.
+##############################################################################
+var rplayer = cmdarg();
+print("LOAD ZNP-K", rplayer.getPath());
+##############################################################################
+  </load>
+  <unload>
+##############################################################################
+var rplayer = cmdarg();
+print("UNLOAD ZNP-K ", rplayer.getPath());
+  </unload>
+ </nasal>
+
+</PropertyList>

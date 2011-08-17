@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!--
+  Goodyear K-type airship.
+
+  Copyright (C) 2011  Anders Gidenstam  (anders(at)gidenstam.org)
+  This file is licensed under the GPL license version 2 or later.
+-->
+<PropertyList>
+
+ <parameters>
+  <engine-rpm>engines/engine[0]/rpm</engine-rpm>
+ </parameters>
+
+ <!--
+  The propeller. Model and animations based on the B-25
+  by Emmanuel BARANGER.
+ -->
+ <path>propeller.ac</path>
+ <offsets>
+  <!-- x/y/z == back/right/up -->
+  <x-m> 0.0 </x-m>
+  <y-m> 0.0 </y-m>
+  <z-m> 0.0 </z-m>
+ </offsets>
+
+ <animation>
+  <type>spin</type>
+  <object-name>bolD</object-name>
+  <object-name>heliceD</object-name>
+  <object-name>propdiscD</object-name>
+  <object-name>propblurD</object-name>
+  <property alias="../../parameters/engine-rpm"/>
+  <factor>0.67</factor>
+  <center>
+   <x-m> 0.0 </x-m>
+   <y-m> 0.0 </y-m>
+   <z-m> 0.0 </z-m>
+  </center>
+  <axis>
+   <x> 1.0 </x>
+   <y> 0.0 </y>
+   <z> 0.0 </z>
+  </axis>
+ </animation>
+ <animation>
+  <type>select</type>
+  <object-name>heliceD</object-name>
+  <condition>
+   <less-than>
+    <property alias="../../../../parameters/engine-rpm"/>
+    <value>900.00</value>
+   </less-than>
+  </condition>
+ </animation>
+ <animation>
+  <type>select</type>
+  <object-name>propblurD</object-name>
+  <condition>
+   <and>
+    <greater-than>
+     <property alias="../../../../../parameters/engine-rpm"/>
+     <value>300.00</value>
+    </greater-than>
+    <less-than>
+     <property alias="../../../../../parameters/engine-rpm"/>
+     <value>900.01</value>
+    </less-than>
+   </and>
+  </condition>
+ </animation>
+ <animation>
+  <type>select</type>
+  <object-name>propdiscD</object-name>
+  <condition>
+   <greater-than>
+    <property alias="../../../../parameters/engine-rpm"/>
+    <value>900.00</value>
+   </greater-than>
+  </condition>
+ </animation>
+
+</PropertyList>

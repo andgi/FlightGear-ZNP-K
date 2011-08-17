@@ -1,0 +1,292 @@
+<?xml version="1.0"?>
+<!--
+  Goodyear K-type airship for FlightGear.
+
+  Copyright (C) 2010 - 2011  Anders Gidenstam  (anders(at)gidenstam.org)
+  This file is licensed under the GPL license version 2 or later.
+-->
+<PropertyList>
+
+ <sim>
+
+  <description>Goodyear K-Type Airship</description>
+  <author>Anders Gidenstam</author>
+  <aircraft-version>$Id: ZNP-K-set.xml,v 1.2 2011-05-29 20:43:48 anders Exp $</aircraft-version>
+
+  <status type="string">beta</status>
+  <rating>
+   <FDM type="int">2</FDM>
+   <systems type="int">3</systems>
+   <cockpit type="int">2</cockpit>
+   <model type="int">2</model>
+  </rating>
+
+  <flight-model>jsb</flight-model>
+  <aero>ZNP-K</aero>
+
+  <presets>
+   <onground type="bool">true</onground>
+   <!-- altitude-agl-ft type="double">6.0</altitude-agl-ft -->
+  </presets>
+  <startup>
+   <!-- splash-texture>Aircraft/ZLT-NT/ZLT-NT-splash.jpg</splash-texture -->
+  </startup>
+
+  <!-- 3d model -->
+  <model>
+   <path>Aircraft/ZNP-K/Models/ZNP-K.xml</path>
+   <!-- livery>
+    <file type="string">Classic</file>
+   </livery -->
+   <mast-truck>
+    <mast-head-height-m type="double">11.8</mast-head-height-m>
+    <mast-head-heading-deg type="double"/>
+    <mast-head-pitch-deg type="double"/>
+    <mast-fold-norm type="double">0.0</mast-fold-norm>
+    <legs-fold-norm type="double">0.0</legs-fold-norm>
+   </mast-truck>
+  </model>
+
+  <!-- Views -->
+  <view n="0">
+   <!-- Pilot's position. -->
+   <name>Pilot View</name>
+   <internal>true</internal>
+   <config>
+    <!-- x/y/z == right/up/back -->
+    <x-offset-m type="double">  -0.50 </x-offset-m>
+    <y-offset-m type="double"> -11.00 </y-offset-m>
+    <z-offset-m type="double">  28.70 </z-offset-m>
+    <pitch-offset-deg type="double"> 0.0 </pitch-offset-deg>
+   </config>
+  </view>
+  <view n="100">
+   <!-- Copilot's position. -->
+   <name>Copilot View</name>
+   <internal>true</internal>
+   <config>
+    <!-- x/y/z == right/up/back -->
+    <from-model type="bool">true</from-model>
+    <from-model-idx type="int">0</from-model-idx>
+    <x-offset-m type="double">   0.50 </x-offset-m>
+    <y-offset-m type="double"> -11.00 </y-offset-m>
+    <z-offset-m type="double">  28.70 </z-offset-m>
+    <pitch-offset-deg type="double"> 0.0 </pitch-offset-deg>
+    <default-field-of-view-deg type="double"> 65 </default-field-of-view-deg>
+   </config>
+  </view>
+  <view n="101">
+   <!-- Copilot's position. -->
+   <name>Rigger View</name>
+   <internal>true</internal>
+   <config>
+    <!-- x/y/z == right/up/back -->
+    <from-model type="bool">true</from-model>
+    <from-model-idx type="int">0</from-model-idx>
+    <x-offset-m type="double">   0.00 </x-offset-m>
+    <y-offset-m type="double"> -10.60 </y-offset-m>
+    <z-offset-m type="double">  32.00 </z-offset-m>
+    <pitch-offset-deg type="double"> 0.0 </pitch-offset-deg>
+    <default-field-of-view-deg type="double"> 65 </default-field-of-view-deg>
+   </config>
+  </view>
+
+  <!-- Move the center of the external views. -->
+  <view n="1">
+   <config>
+    <target-z-offset-m archive="y"> 30.0 </target-z-offset-m>
+   </config>
+  </view>
+  <view n="2">
+   <config>
+    <target-z-offset-m archive="y"> 30.0 </target-z-offset-m>
+   </config>
+  </view>
+  <view n="3">
+   <config>
+    <target-z-offset-m archive="y"> 30.0 </target-z-offset-m>
+   </config>
+  </view>
+  <view n="5">
+   <config>
+    <target-z-offset-m archive="y"> 30.0 </target-z-offset-m>
+   </config>
+  </view>
+  <view n="6">
+   <config>
+    <target-z-offset-m archive="y"> 30.0 </target-z-offset-m>
+   </config>
+  </view>
+
+  <chase-distance-m type="double">-120.0</chase-distance-m>
+
+  <sound>
+   <audible>true</audible>
+   <path>Aircraft/ZNP-K/Sounds/ZNP-K-sound.xml</path>
+  </sound>
+
+  <!-- Aircraft specific help. -->
+  <help include="help.xml"/>
+
+  <systems>
+   <electrical>
+    <path/>
+   </electrical>
+   <autopilot>
+    <path/>
+   </autopilot>
+
+   <pitot>
+    <name>pitot</name>
+    <number>0</number>
+   </pitot>
+   <static>
+    <name>static</name>
+    <number>0</number>
+   </static>
+
+   <vacuum>
+    <name>vacuum</name>
+    <number>0</number>
+    <rpm>engines/engine[0]/rpm</rpm>
+    <scale>1.0</scale>
+   </vacuum>
+   <vacuum>
+    <name>vacuum</name>
+    <number>1</number>
+    <rpm>engines/engine[1]/rpm</rpm>
+    <scale>1.0</scale>
+   </vacuum>
+  </systems>
+
+  <instrumentation>
+   <path>Aircraft/ZNP-K/Systems/instrumentation.xml</path>
+  </instrumentation>
+
+  <multiplay>
+   <generic>
+    <!-- float n="0" alias="/fdm/jsbsim/propulsion/engine[0]/pitch-angle-rad"/>
+    <float n="1" alias="/fdm/jsbsim/propulsion/engine[1]/pitch-angle-rad"/>
+    <float n="2" alias="/fdm/jsbsim/propulsion/engine[2]/pitch-angle-rad"/>
+    <float n="3"
+           alias="/instrumentation/heading-indicator/indicated-heading-deg"/>
+    <float n="4"
+           alias="/instrumentation/attitude-indicator/indicated-pitch-deg"/>
+    <float n="5"
+           alias="/instrumentation/attitude-indicator/indicated-roll-deg"/ -->
+    <!-- float n="6"
+           alias="/instrumentation/attitude-indicator/horizon-offset-deg"/ -->
+    <!-- int n="0" type="int">0</int -->         <!-- MP switches 1 -->
+    <!-- string n="0" type="string"></string --> <!-- MP events -->
+    <!-- string n="1" type="string"></string --> <!-- MP TDM1 -->
+    <!-- string n="2" type="string"></string --> <!-- MP TDM2 -->
+    <!-- string n="3" type="string"></string --> <!-- MP TDM3 -->
+   </generic>
+  </multiplay>
+
+  <max-simtime-per-frame n="0" type="double">0.1</max-simtime-per-frame>
+
+  <menubar>
+   <default>
+    <menu n="100">
+     <label>Goodyear K-Type Airship</label>
+     <!-- item>
+      <label>Select MP-copilot</label>
+      <binding>
+       <command>nasal</command>
+       <script>
+        dual_control_tools.
+          copilot_dialog.show(aircraft_dual_control.copilot_type);
+       </script>
+      </binding>
+     </item -->
+     <item>
+      <label>About</label>
+      <binding>
+       <command>nasal</command>
+       <script>ZNPK.about()</script>
+      </binding>
+     </item>
+     <!-- item>
+      <label>Select Livery</label>
+      <binding>
+       <command>nasal</command>
+       <script>aircraft.livery.dialog.toggle()</script>
+      </binding>
+     </item -->
+    </menu>
+   </default>
+  </menubar>
+ </sim>
+
+ <controls>
+  <lighting>
+   <nav-lights type="bool">true</nav-lights> <!-- Should be MP enabled. -->
+  </lighting>
+  <air>
+   <scoop  n="0" alias="/fdm/jsbsim/fcs/ballonet-scoop-cmd-norm[0]"/>
+   <scoop  n="1" alias="/fdm/jsbsim/fcs/ballonet-scoop-cmd-norm[1]"/>
+   <damper n="0" alias="/fdm/jsbsim/fcs/ballonet-damper-cmd-norm[0]"/>
+   <damper n="1" alias="/fdm/jsbsim/fcs/ballonet-damper-cmd-norm[1]"/>
+   <valve  n="0" alias="/fdm/jsbsim/fcs/ballonet-valve-cmd-norm[0]"/>
+   <valve  n="1" alias="/fdm/jsbsim/fcs/ballonet-valve-cmd-norm[1]"/>
+   <blower n="0" alias="/fdm/jsbsim/fcs/blower-cmd-norm[0]"/>
+  </air>
+  <gas>
+   <valve    n="0" alias="/fdm/jsbsim/fcs/gas-valve-cmd-norm[0]"/>
+   <valve    n="1" alias="/fdm/jsbsim/fcs/gas-valve-cmd-norm[1]"/>
+   <rip-cord n="0" alias="/fdm/jsbsim/fcs/rip-cord-cmd-norm[0]"/>
+   <rip-cord n="1" alias="/fdm/jsbsim/fcs/rip-cord-cmd-norm[1]"/>
+  </gas>
+ </controls>
+
+ <instrumentation>
+  <inclinometer>
+   <serviceable type="bool">true</serviceable>
+  </inclinometer>
+ </instrumentation>
+
+ <payload include="Systems/payload.xml"/>
+
+ <limits>
+  <vne>70.0</vne>
+ </limits>
+
+ <nasal>
+  <ZLTNT>
+   <file>Aircraft/ZNP-K/Systems/ZNP-K.nas</file>
+   <file>Aircraft/ZLT-NT/Systems/ground_handling.nas</file>
+   <file>Aircraft/ZLT-NT/Systems/mp-network.nas</file>
+   <script><![CDATA[
+     globals["ZNPK"] = globals["ZLTNT"];
+    ]]>
+   </script>
+  </ZLTNT>
+  <limits>
+   <file>Aircraft/Generic/limits.nas</file>
+  </limits>
+  <!--  Instrument drivers. -->
+  <!-- Dual control. -->
+  <dual_control_tools>
+   <file>Aircraft/Generic/DualControl/dual-control-tools.nas</file>
+  </dual_control_tools>
+  <!-- aircraft_dual_control>
+   <file>Aircraft/ZLT-NT/Systems/ZLT-NT-dual-control.nas</file>
+  </aircraft_dual_control>
+  <dual_control>
+   <file>Aircraft/ZLT-NT/DualControl/pilot-dual-control.nas</file>
+  </dual_control -->
+  <!-- Walk View -->
+  <walkview>
+   <file>Aircraft/Generic/WalkView/walkview.nas</file>
+  </walkview>
+  <walkviews>
+   <file>Aircraft/ZNP-K/Systems/walk-views.nas</file>
+  </walkviews>
+ </nasal>
+
+ <input>
+  <keyboard include="Systems/ZNP-K-keys.xml"/>
+ </input>
+
+</PropertyList>

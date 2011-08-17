@@ -1,0 +1,264 @@
+<?xml version="1.0"?>
+<!--
+
+  Goodyear K-type airship flight model for JSBSim.
+
+    Copyright (C) 2011  Anders Gidenstam  (anders(at)gidenstam.org)
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+  
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+  
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+  
+-->
+<system name="air-system-jsbsim">
+
+ <!--
+ === Ballonet control system ===============================================
+ -->
+
+ <documentation>
+  Air system [GAC:1942:PM],[GAC:1942:DS]:
+  System description
+  - Air is taken in through scoops in the upper engine outriggers, then
+    ducted via a no-return valve into an air chamber.
+  - Air is propagated from the chamber to the forward and aft ballonet via
+    manually controlled damper valves (one each) and ducts.
+  - There is one automatic air release valve for each ballonet which can also
+    be controlled manually.
+    The valves are 36 in in diameter and begin to open at an air pressure of
+    1.5 inH2O (forward) and 2.0 inH2O (aft). The maximum opening is 7 in.
+  - There is an auxiliary blower to supply air when the scoops cannot.
+
+  Valve capacities:
+ </documentation>
+
+ <!-- Pilot inputs. -->
+ <property value="1.0">fcs/ballonet-scoop-cmd-norm[0]</property>
+ <property value="1.0">fcs/ballonet-scoop-cmd-norm[1]</property>
+
+ <property value="0.0">fcs/ballonet-damper-cmd-norm[0]</property>
+ <property value="0.0">fcs/ballonet-damper-cmd-norm[1]</property>
+
+ <property>fcs/ballonet-valve-cmd-norm[0]</property>
+ <property>fcs/ballonet-valve-cmd-norm[1]</property>
+
+ <property value="1.0">fcs/ballonet-blower-cmd-norm</property>
+
+ <!-- Outputs (forward declared in the buoyant forces section). -->
+ <!--
+ <property value="0.0">ballonets/in-flow-ft3ps[0]</property>
+ <property value="0.0">ballonets/in-flow-ft3ps[1]</property>
+ -->
+
+ <!-- Threshold values for the automatic air relief valves. -->
+ <property value="7.803">ballonets/automatic-valve-threshold-psf[0]</property>
+ <property value="10.40">ballonets/automatic-valve-threshold-psf[1]</property>
+
+ <!-- Note: Not properly implemented. -->
+ <property value="2.0">ballonets/blower-capacity-ft3ps</property>
+
+ <limitation>
+   The slip stream pressure calculation does not take the direction of the
+   relative wind into account.
+   The model for the distribution of air flow from the air chamber to the
+   ballonets is naive.
+ </limitation>
+
+ <channel name="Air supply">
+
+  <fcs_function name="ballonets/slip-stream-pressure-psf[0]">
+   <function>
+    <sum>
+     <property>atmosphere/P-psf</property>
+     <product>
+      <value>0.5</value>
+      <property>atmosphere/rho-slugs_ft3</property>
+      <pow>
+       <sum>
+        <property>velocities/u-aero-fps</property>
+        <property>propulsion/engine[0]/prop-induced-velocity_fps</property>
+       </sum>
+       <value>2.0</value>
+      </pow>
+     </product>
+    </sum>
+   </function>
+  </fcs_function>
+  <fcs_function name="ballonets/slip-stream-pressure-psf[1]">
+   <function>
+    <sum>
+     <property>atmosphere/P-psf</property>
+     <product>
+      <value>0.5</value>
+      <property>atmosphere/rho-slugs_ft3</property>
+      <pow>
+       <sum>
+        <property>velocities/u-aero-fps</property>
+        <property>propulsion/engine[1]/prop-induced-velocity_fps</property>
+       </sum>
+       <value>2.0</value>
+      </pow>
+     </product>
+    </sum>
+   </function>
+  </fcs_function>
+
+ </channel>
+
+ <channel name="Ballonet in-flow">
+
+  <fcs_function name="ballonets/damper-flow-ft3ps[0]">
+   <function>
+    <product>
+     <property>fcs/ballonet-damper-cmd-norm[0]</property>
+     <value>40.0</value> <!-- Inflow valve coefficient ft4*sec/slug -->
+     <sum>
+      <max>
+       <value>0.0</value>
+       <product>
+        <property>fcs/ballonet-scoop-cmd-norm[0]</property>
+        <difference>
+         <property>ballonets/slip-stream-pressure-psf[0]</property>
+         <property>buoyant_forces/gas-cell/ballonet[0]/pressure-psf</property>
+        </difference>
+       </product>
+      </max>
+      <max>
+       <value>0.0</value>
+       <product>
+        <property>fcs/ballonet-scoop-cmd-norm[1]</property>
+        <difference>
+         <property>ballonets/slip-stream-pressure-psf[1]</property>
+         <property>buoyant_forces/gas-cell/ballonet[0]/pressure-psf</property>
+        </difference>
+       </product>
+      </max>
+      <product>
+       <property>fcs/ballonet-blower-cmd-norm</property>
+       <property>ballonets/blower-capacity-ft3ps</property>
+      </product>
+     </sum>
+    </product>
+   </function>
+   <output>ballonets/in-flow-ft3ps[0]</output>
+  </fcs_function>
+
+  <fcs_function name="ballonets/damper-flow-ft3ps[1]">
+   <function>
+    <product>
+     <property>fcs/ballonet-damper-cmd-norm[1]</property>
+     <value>40.0</value> <!-- Inflow valve coefficient ft4*sec/slug -->
+     <sum>
+      <max>
+       <value>0.0</value>
+       <product>
+        <property>fcs/ballonet-scoop-cmd-norm[0]</property>
+        <difference>
+         <property>ballonets/slip-stream-pressure-psf[0]</property>
+         <property>buoyant_forces/gas-cell/ballonet[1]/pressure-psf</property>
+        </difference>
+       </product>
+      </max>
+      <max>
+       <value>0.0</value>
+       <product>
+        <property>fcs/ballonet-scoop-cmd-norm[1]</property>
+        <difference>
+         <property>ballonets/slip-stream-pressure-psf[1]</property>
+         <property>buoyant_forces/gas-cell/ballonet[1]/pressure-psf</property>
+        </difference>
+       </product>
+      </max>
+      <product>
+       <property>fcs/ballonet-blower-cmd-norm</property>
+       <property>ballonets/blower-capacity-ft3ps</property>
+      </product>
+     </sum>
+    </product>
+   </function>
+   <output>ballonets/in-flow-ft3ps[1]</output>
+  </fcs_function>
+
+ </channel>
+
+ <channel name="Ballonet out-flow">
+
+  <fcs_function name="ballonets/relief-cmd-norm[0]">
+   <function>
+    <product>
+     <value>1.00</value>
+     <difference>
+      <difference>
+       <property>buoyant_forces/gas-cell/ballonet[0]/pressure-psf</property>
+       <property>atmosphere/P-psf</property>
+      </difference>
+      <property>ballonets/automatic-valve-threshold-psf[0]</property>
+     </difference>
+    </product>
+   </function>   
+   <clipto>
+    <min>0</min>
+    <max>1</max>
+   </clipto>
+  </fcs_function>
+
+  <fcs_function name="ballonets/relief-cmd-norm[1]">
+   <function>
+    <product>
+     <value>1.00</value>
+     <difference>
+      <difference>
+       <property>buoyant_forces/gas-cell/ballonet[1]/pressure-psf</property>
+       <property>atmosphere/P-psf</property>
+      </difference>
+      <property>ballonets/automatic-valve-threshold-psf[1]</property>
+     </difference>
+    </product>
+   </function>   
+   <clipto>
+    <min>0</min>
+    <max>1</max>
+   </clipto>
+  </fcs_function>
+
+  <fcs_function name="ballonets/valve-pos-norm[0]">
+   <function>
+    <max>
+     <property>fcs/ballonet-valve-cmd-norm[0]</property>
+     <property>ballonets/relief-cmd-norm[0]</property>
+    </max>
+   </function>
+   <clipto>
+    <min>0</min>
+    <max>1</max>
+   </clipto>
+   <output>buoyant_forces/gas-cell/ballonet[0]/valve_open</output>
+  </fcs_function>
+
+  <fcs_function name="ballonets/valve-pos-norm[1]">
+   <function>
+    <max>
+     <property>fcs/ballonet-valve-cmd-norm[1]</property>
+     <property>ballonets/relief-cmd-norm[1]</property>
+    </max>
+   </function>
+   <clipto>
+    <min>0</min>
+    <max>1</max>
+   </clipto>
+   <output>buoyant_forces/gas-cell/ballonet[1]/valve_open</output>
+  </fcs_function>
+
+ </channel>
+
+</system>
