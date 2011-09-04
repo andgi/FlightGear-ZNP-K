@@ -31,7 +31,7 @@
   <email>anders at gidenstam dot org</email>
 
   <filecreationdate>2010-01-28</filecreationdate>
-  <version>$Id: ZNP-K.xml,v 1.1 2011-05-21 23:04:13 anders Exp $</version>
+  <version>$Id: ZNP-K.xml,v 1.3 2011/09/04 18:31:11 anders Exp $</version>
 
   <description>JSBSim model of a Goodyear K-type airship.</description>
 
@@ -100,14 +100,14 @@
    Dimensions from [GAC:1942:PM].
   </documentation>
 
-  <wingarea unit="FT2"> 11322.5</wingarea>  <!-- Approximated planfold area. -->
-  <wingspan unit="FT">   57.85 </wingspan>  <!-- Envelope diameter. -->
-  <chord unit="FT">     249.20 </chord>     <!-- Envelope length. -->
-  <htailarea unit="FT2"> 992.0 </htailarea>
-  <htailarm unit="FT">    96.9 </htailarm> <!-- From CG. Guesstimate. -->
-  <vtailarea unit="FT2"> 815.0 </vtailarea>
-  <vtailarm unit="FT">    96.9 </vtailarm> <!-- From CG. Guesstimate. -->
-  <!-- Total envelope volume vol = 12317.83 m^3 -->
+  <wingarea  unit="M2">  525.2 </wingarea>  <!-- V^(2/3).-->
+  <wingspan  unit="M">    22.9 </wingspan>  <!-- V^(1/3). -->
+  <chord     unit="M">    22.9 </chord>     <!-- V^(1/3). -->
+  <htailarea unit="M2">  115.7 </htailarea>
+  <htailarm  unit="M">    25.2 </htailarm> <!-- From CG. Guesstimate. -->
+  <vtailarea unit="M2">  115.7 </vtailarea>
+  <vtailarm  unit="M">    25.2 </vtailarm> <!-- From CG. Guesstimate. -->
+  <!-- Total envelope volume vol = 425,000 ft^3 -->
 
   <!-- Aerodynamic Reference Point.
        Placed at the CoB of the envelope according to [GAC:1942:PM]. -->
