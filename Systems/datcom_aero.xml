@@ -57,7 +57,7 @@
 
   <!-- Tuning parameter for CD, CL, CM and CN due to envelope alpha. -->
   <function name="aero/envelope-tweak-factor">
-   <value> 0.8 </value>
+   <value> 1.0 </value>
   </function>
   <!-- Tuning parameter for CD, CL and CM for the horizontal tail. -->
   <function name="aero/htail-tweak-factor">
@@ -65,7 +65,7 @@
   </function>
   <!-- Tuning parameter for CD, CL and CM for the elevators. -->
   <function name="aero/elevator-tweak-factor">
-   <value> 1.5 </value>
+   <value> 1.25 </value>
   </function>
   <!-- Tuning parameter for CD, CY and CN for the vertical tail. -->
   <function name="aero/vtail-tweak-factor">
@@ -73,7 +73,7 @@
   </function>
   <!-- Tuning parameter for CD, CY and CN for the rudders. -->
   <function name="aero/rudder-tweak-factor">
-   <value> 1.5 </value>
+   <value> 1.25 </value>
   </function>
 
   <!-- Allows turning rate dependend coefficients on/off -->
@@ -934,10 +934,10 @@
      <property>metrics/Sw-sqft</property>
      <property>metrics/bw-ft</property>
      <property>velocities/p-aero-rad_sec</property>
-     <!-- Clp (copied) -->
+     <!-- Clp (guessed) -->
      <value> 0.10 </value> <!-- Sref scaling. -->
-     <value> 2.0  </value> <!-- 4 fins. -->
-     <value> -9.203E-01 </value>
+     <value> 4.0  </value> <!-- 4 fins. -->
+     <value> -1.0 </value>
     </product>
    </function>
 

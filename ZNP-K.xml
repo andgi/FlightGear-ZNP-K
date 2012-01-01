@@ -31,7 +31,7 @@
   <email>anders at gidenstam dot org</email>
 
   <filecreationdate>2010-01-28</filecreationdate>
-  <version>$Id: ZNP-K.xml,v 1.3 2011/09/04 18:31:11 anders Exp $</version>
+  <version>$Id: ZNP-K.xml,v 1.4 2012/01/01 14:36:47 anders Exp $</version>
 
   <description>JSBSim model of a Goodyear K-type airship.</description>
 
@@ -69,6 +69,12 @@
    author="Goodyear Aircraft Corporation"
    title="United States Navy K-Type Airships  Descriptive Specification"
    date="Sep 1942"/>
+
+  <reference
+   refID="GAC:1944:MM"
+   author="Goodyear Aircraft Corporation"
+   title="United States Navy K-Type Airships  Maintenance Manual"
+   date="Sep 1944"/>
 
   <reference
    refID="KNOX:1942:GMK"
@@ -348,7 +354,7 @@
    <weight unit="LBS"> 938.0 </weight>
    <location name="POINTMASS" unit="M">
     <x>  32.3 </x>
-    <y>  -3.4 </y>
+    <y>  -3.32 </y>
     <z> -10.6 </z>
    </location>
   </pointmass>
@@ -356,7 +362,7 @@
    <weight unit="LBS"> 938.0 </weight>
    <location name="POINTMASS" unit="M">
     <x>  32.3 </x>
-    <y>   3.4 </y>
+    <y>   3.32 </y>
     <z> -10.6 </z>
    </location>
   </pointmass>
@@ -404,6 +410,7 @@
   <!--
   === Landing gears ===================================================
   -->
+  <!-- Max compression length 6in, force 8800 lbf ([GAC:1944:MM], pp.111) -->
   <contact type="BOGEY" name="CAR_GEAR">
    <location unit="M">
     <x>  31.70 </x>
@@ -413,15 +420,15 @@
    <static_friction>  0.8 </static_friction>
    <dynamic_friction> 0.5 </dynamic_friction>
    <rolling_friction> 0.2 </rolling_friction>
-   <spring_coeff unit="N/M"> 112500 </spring_coeff>
-   <damping_coeff unit="N/M/SEC"> 22500 </damping_coeff>
+   <spring_coeff unit="N/M"> 256850 </spring_coeff>
+   <damping_coeff unit="N/M/SEC"> 51000 </damping_coeff>
    <max_steer unit="DEG"> 360.0 </max_steer>
    <brake_group> NONE </brake_group>
    <retractable>1</retractable>
   </contact>
   <contact type="BOGEY" name="TAIL_GEAR">
    <location unit="M">
-    <x> 67.2 </x>
+    <x> 67.0 </x>
     <y>  0.0 </y>
     <z> -8.5 </z>
    </location>
@@ -529,7 +536,7 @@
   <engine file="eng_PWR-1430-AN2">
    <location unit="M">
     <x>  32.3 </x>
-    <y>  -3.4 </y>
+    <y>  -3.32 </y>
     <z> -10.6 </z>
    </location>
    <orient unit="DEG">
@@ -541,7 +548,7 @@
    <thruster file="prop_HamiltonStd5415">
     <location unit="M">
      <x>  31.9 </x>
-     <y>  -3.4 </y>
+     <y>  -3.32 </y>
      <z> -10.6 </z>
     </location>
     <orient unit="DEG">
@@ -555,7 +562,7 @@
   <engine file="eng_PWR-1430-AN2">
    <location unit="M">
     <x>  32.3 </x>
-    <y>   3.4 </y>
+    <y>   3.32 </y>
     <z> -10.6 </z>
    </location>
    <orient unit="DEG">
@@ -567,7 +574,7 @@
    <thruster file="prop_HamiltonStd5415">
     <location unit="M">
      <x>  31.9 </x>
-     <y>   3.4 </y>
+     <y>   3.32 </y>
      <z> -10.6 </z>
     </location>
     <orient unit="DEG">
