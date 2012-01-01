@@ -1,0 +1,76 @@
+<!--
+  Goodyear K-type airship.
+
+  Copyright (C) 2011  Anders Gidenstam  (anders(at)gidenstam.org)
+  This file is licensed under the GPL license v2 or later.
+-->
+<PropertyList>
+
+ <!-- No main model. -->
+ <!-- x/y/z == back/right/up -->
+
+ <!-- 
+      Based on the 3d model the origin of the instrument panel is
+      at 6.305, -0.835, -2.274 in the car interior frame. This is at the
+      middle of the lower edge of the panel.
+      The panel is 0.43m wide and 0.654m tall.
+ -->
+
+ <!--
+      According to ([GAC:1944:MM], pp.313) the mechanic's instrument panel
+      contained the following instruments (for ca K14+ -> K-35 (or K-50)):
+        Tachometer (engine)    FSSC 88-I-2500 Mark V
+        Tachometer (generator) FSSC 88-G-1375
+        Cylinder Temp. Ind.    FSSC 88-T-2650
+        Manifold Pres. Ind.    FSSC 88-G-700              0-50 inHG(?)
+        Carb. Air. Temp.       FSSC 88-I-2865
+        Oil Temp. Ind.         FSSC 88-I-2815
+        Fuel Pres. Ind.        FSSC 88-G-502
+        Oil Level Ind. (P & S) RKD Motometer
+        Oil Pres. Ind.         FSSC 88-G-860              0-25 PSI(?)
+        Synchroscope           FSSC 88-I-2200 Mark V
+        Ammeter (Engine Gen.)  0-60A, D.C.
+                               NAF 1091-C-60 with Shunt NAV 1091-1-60
+                               35A Scale, Weston 606
+        Ammeter (Battery Ckt)  NAF 1091-D-120 with shunt
+        Voltmeter              0-30V DC Weston 606 NAF 1091-E-30
+        Ignition Switch        NAF 38919-1
+
+      The layout is two sets of P/S columns, the left set has 4 rows of
+      two large instruments (80mm?) (only one to the left in the lowest);
+      the right set has 6 rows most containing small instruments (2 1/4"?).
+ -->
+
+ <!-- Preliminary instruments and controls.
+      Left-right column, top-bottom, left-right. -->
+ <model>
+  <name>Port tachometer</name>
+  <path>Aircraft/Instruments-3d/tach/tach.xml</path>
+  <offsets>
+   <x-m> 0.002</x-m>
+   <y-m>-0.160</y-m>
+   <z-m> 0.450</z-m>
+  </offsets>
+  <overlay>
+   <animation n="1">
+    <property>/engines/engine[0]/rpm</property>
+   </animation>
+  </overlay>
+ </model>
+
+ <model>
+  <name>Starboard tachometer</name>
+  <path>Aircraft/Instruments-3d/tach/tach.xml</path>
+  <offsets>
+   <x-m> 0.002</x-m>
+   <y-m>-0.060</y-m>
+   <z-m> 0.450</z-m>
+  </offsets>
+  <overlay>
+   <animation n="1">
+    <property>/engines/engine[1]/rpm</property>
+   </animation>
+  </overlay>
+ </model>
+
+</PropertyList>

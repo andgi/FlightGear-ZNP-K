@@ -28,9 +28,9 @@
   <path>Aircraft/ZNP-K/Models/Interior/main_instrument_panel.xml</path>
   <offsets>
    <!-- x/y/z == back/right/up -->
-   <x-m>  1.28 </x-m>
+   <x-m>  1.41 </x-m>
    <y-m>  0.00 </y-m>
-   <z-m> -1.62 </z-m>
+   <z-m> -1.69 </z-m>
    <pitch-deg>11.31</pitch-deg>
   </offsets>
  </model>
@@ -39,13 +39,24 @@
   <path>Aircraft/ZNP-K/Models/Interior/main_toggle_panel.xml</path>
   <offsets>
    <!-- x/y/z == back/right/up -->
-   <x-m>  1.28 </x-m>
+   <x-m>  1.41 </x-m>
    <y-m>  0.00 </y-m>
-   <z-m> -1.62 </z-m>
+   <z-m> -1.69 </z-m>
    <pitch-deg>30.96</pitch-deg>
   </offsets>
  </model>
 
+ <!-- Mechanic's instrument panel ==========================================-->
+ <model>
+  <name>Mechanic's instrument panel</name>
+  <path>Aircraft/ZNP-K/Models/Interior/mechanics_instrument_panel.xml</path>
+  <offsets>
+   <!-- x/y/z == back/right/up -->
+   <x-m>  6.305 </x-m>
+   <y-m> -0.835 </y-m>
+   <z-m> -2.274 </z-m>
+  </offsets>
+ </model>
 
  <!-- Animations ===========================================================-->
  <animation>
@@ -71,14 +82,215 @@
   <property>surface-positions/elevator-pos-norm</property>
   <factor>-360.0</factor>
   <center>
-   <x-m> 28.45 </x-m>
+   <x-m> 28.36 </x-m>
    <y-m> -0.50 </y-m>
-   <z-m>-11.93 </z-m>
+   <z-m>-11.92 </z-m>
   </center>
   <axis>
    <x> 0.00 </x>
    <y> 1.00 </y>
    <z> 0.00 </z>
+  </axis>
+ </animation>
+
+ <!-- Animations for the throttle levers. -->
+ <animation>
+  <type>rotate</type>
+  <object-name>throttle_handle.PL</object-name>
+  <object-name>throttle_lever.PL</object-name>
+  <property>controls/engines/engine[0]/throttle</property>
+  <factor>-90.0</factor>
+  <offset-deg>45.0</offset-deg>
+  <center>
+   <x-m>  28.231 </x-m>
+   <y-m>  -0.810 </y-m>
+   <z-m> -11.680 </z-m>
+  </center>
+  <axis>
+   <x> 0.0 </x>
+   <y> 1.0 </y>
+   <z> 0.0 </z>
+  </axis>
+ </animation>
+ <animation>
+  <type>rotate</type>
+  <object-name>throttle_handle.PR</object-name>
+  <object-name>throttle_lever.PR</object-name>
+  <property>controls/engines/engine[1]/throttle</property>
+  <factor>-90.0</factor>
+  <offset-deg>45.0</offset-deg>
+  <center>
+   <x-m>  28.231 </x-m>
+   <y-m>  -0.810 </y-m>
+   <z-m> -11.680 </z-m>
+  </center>
+  <axis>
+   <x> 0.0 </x>
+   <y> 1.0 </y>
+   <z> 0.0 </z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>throttle_handle.ML</object-name>
+  <object-name>throttle_lever.ML</object-name>
+  <property>controls/engines/engine[0]/throttle</property>
+  <factor>-90.0</factor>
+  <offset-deg>45.0</offset-deg>
+  <center>
+   <x-m>  33.095 </x-m>
+   <y-m>  -0.970 </y-m>
+   <z-m> -11.890 </z-m>
+  </center>
+  <axis>
+   <x> 0.0 </x>
+   <y> 1.0 </y>
+   <z> 0.0 </z>
+  </axis>
+ </animation>
+ <animation>
+  <type>rotate</type>
+  <object-name>throttle_handle.MR</object-name>
+  <object-name>throttle_lever.MR</object-name>
+  <property>controls/engines/engine[1]/throttle</property>
+  <factor>-90.0</factor>
+  <offset-deg>45.0</offset-deg>
+  <center>
+   <x-m>  33.095 </x-m>
+   <y-m>  -0.970 </y-m>
+   <z-m> -11.890 </z-m>
+  </center>
+  <axis>
+   <x> 0.0 </x>
+   <y> 1.0 </y>
+   <z> 0.0 </z>
+  </axis>
+ </animation>
+
+ <!-- Animations for the mixture levers. -->
+ <animation>
+  <type>pick</type>
+  <object-name>mixture_handle.L</object-name>
+  <object-name>mixture_lever.L</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>true</repeatable>
+   <interval-sec>0.2</interval-sec>
+   <binding>
+    <command>property-adjust</command>
+    <property>/controls/engines/engine[0]/mixture</property>
+    <step type="double">0.1</step>
+   </binding>
+  </action>
+  <action>
+   <button>1</button>
+   <repeatable>true</repeatable>
+   <interval-sec>0.2</interval-sec>
+   <binding>
+    <command>property-adjust</command>
+    <property>/controls/engines/engine[0]/mixture</property>
+    <step type="double">-0.1</step>
+   </binding>
+  </action>
+  <action>
+   <button>3</button>
+   <repeatable>false</repeatable>
+   <binding>
+    <command>property-adjust</command>
+    <property>/controls/engines/engine[0]/mixture</property>
+    <step type="double">0.01</step>
+   </binding>
+  </action>
+  <action>
+   <button>4</button>
+   <repeatable>false</repeatable>
+   <binding>
+    <command>property-adjust</command>
+    <property>/controls/engines/engine[0]/mixture</property>
+    <step type="double">-0.01</step>
+   </binding>
+  </action>
+ </animation>
+
+ <animation>
+  <type>pick</type>
+  <object-name>mixture_handle.R</object-name>
+  <object-name>mixture_lever.R</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>true</repeatable>
+   <interval-sec>0.2</interval-sec>
+   <binding>
+    <command>property-adjust</command>
+    <property>/controls/engines/engine[1]/mixture</property>
+    <step type="double">0.1</step>
+   </binding>
+  </action>
+  <action>
+   <button>1</button>
+   <repeatable>true</repeatable>
+   <interval-sec>0.2</interval-sec>
+   <binding>
+    <command>property-adjust</command>
+    <property>/controls/engines/engine[1]/mixture</property>
+    <step type="double">-0.1</step>
+   </binding>
+  </action>
+  <action>
+   <button>3</button>
+   <repeatable>false</repeatable>
+   <binding>
+    <command>property-adjust</command>
+    <property>/controls/engines/engine[1]/mixture</property>
+    <step type="double">0.01</step>
+   </binding>
+  </action>
+  <action>
+   <button>4</button>
+   <repeatable>false</repeatable>
+   <binding>
+    <command>property-adjust</command>
+    <property>/controls/engines/engine[1]/mixture</property>
+    <step type="double">-0.01</step>
+   </binding>
+  </action>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>mixture_handle.L</object-name>
+  <object-name>mixture_lever.L</object-name>
+  <property>controls/engines/engine[0]/mixture</property>
+  <factor>-50.0</factor>
+  <offset-deg>45.0</offset-deg>
+  <center>
+   <x-m>  32.92 </x-m>
+   <y-m>  -0.96 </y-m>
+   <z-m> -11.51 </z-m>
+  </center>
+  <axis>
+   <x> 0.0 </x>
+   <y> 1.0 </y>
+   <z> 0.0 </z>
+  </axis>
+ </animation>
+ <animation>
+  <type>rotate</type>
+  <object-name>mixture_handle.R</object-name>
+  <object-name>mixture_lever.R</object-name>
+  <property>controls/engines/engine[1]/mixture</property>
+  <factor>-50.0</factor>
+  <offset-deg>45.0</offset-deg>
+  <center>
+   <x-m>  32.92 </x-m>
+   <y-m>  -0.96 </y-m>
+   <z-m> -11.51 </z-m>
+  </center>
+  <axis>
+   <x> 0.0 </x>
+   <y> 1.0 </y>
+   <z> 0.0 </z>
   </axis>
  </animation>
 
