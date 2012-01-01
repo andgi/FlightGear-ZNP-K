@@ -22,8 +22,8 @@
   <offsets>
    <!-- x/y/z == back/right/up -->
    <x-m>  31.55 </x-m>
-   <y-m>  -3.35 </y-m>
-   <z-m> -11.20 </z-m>
+   <y-m>  -3.315 </y-m>
+   <z-m> -11.17 </z-m>
   </offsets>
  </model>
  <model>
@@ -32,8 +32,8 @@
   <offsets>
    <!-- x/y/z == back/right/up -->
    <x-m>  31.55 </x-m>
-   <y-m>  -3.35 </y-m>
-   <z-m> -11.20 </z-m>
+   <y-m>  -3.315 </y-m>
+   <z-m> -11.17 </z-m>
   </offsets>
   <overlay>
    <parameters>
@@ -48,8 +48,8 @@
   <offsets>
    <!-- x/y/z == back/right/up -->
    <x-m>  31.55 </x-m>
-   <y-m>   3.35 </y-m>
-   <z-m> -11.20 </z-m>
+   <y-m>   3.315 </y-m>
+   <z-m> -11.17 </z-m>
   </offsets>
  </model>
  <model>
@@ -58,8 +58,8 @@
   <offsets>
    <!-- x/y/z == back/right/up -->
    <x-m>  31.55 </x-m>
-   <y-m>   3.35 </y-m>
-   <z-m> -11.20 </z-m>
+   <y-m>   3.315 </y-m>
+   <z-m> -11.17 </z-m>
   </offsets>
   <overlay>
    <parameters>
@@ -142,13 +142,14 @@
  <!-- Main gear -->
  <animation>
   <name>Main landing gear</name>
+  <object-name>main_lgear_tyre</object-name>
   <object-name>main_lgear</object-name>
  </animation>
 
  <animation>
   <type>rotate</type>
   <object-name>Main landing gear</object-name>
-  <property>gear/gear/steering-norm</property>
+  <property>gear/gear[0]/steering-norm</property>
   <center>
    <x-m> 31.60 </x-m>
    <y-m>  0.00 </y-m>
@@ -190,7 +191,65 @@
     <dep>0.0</dep>
    </entry>
    <entry>
-    <ind>2.0</ind>
+    <ind>0.5</ind>
+    <dep>0.1524</dep>
+   </entry>
+  </interpolation>
+ </animation>
+
+ <!-- Tail gear -->
+ <animation>
+  <name>Tail landing gear</name>
+  <object-name>tail_wheel_strut</object-name>
+  <object-name>tail_wheel</object-name>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>Tail landing gear</object-name>
+  <property>gear/gear[1]/steering-norm</property>
+  <center>
+   <x-m> 66.89 </x-m>
+   <y-m>  0.00 </y-m>
+   <z-m> -8.07 </z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>0.0</y>
+   <z>1.0</z>
+  </axis>
+  <interpolation>
+   <entry>
+    <ind>-1.0</ind>
+    <dep>-360.0</dep>
+   </entry>
+   <entry>
+    <ind>0.0</ind>
+    <dep>0.0</dep>
+   </entry>
+   <entry>
+    <ind>1.0</ind>
+    <dep>360.0</dep>
+   </entry>
+  </interpolation>
+ </animation>
+
+ <animation>
+  <type>translate</type>
+  <object-name>Tail landing gear</object-name>
+  <property>gear/gear[1]/compression-ft</property>
+  <axis>
+   <x>0.0</x>
+   <y>0.0</y>
+   <z>1.0</z>
+  </axis>
+  <interpolation>
+   <entry>
+    <ind>0.0</ind>
+    <dep>0.0</dep>
+   </entry>
+   <entry>
+    <ind>1.0</ind>
     <dep>0.3048</dep>
    </entry>
   </interpolation>
