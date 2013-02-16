@@ -2,7 +2,7 @@
 ##
 ## Goodyear K-type airship for FlightGear.
 ##
-##  Copyright (C) 2010 - 2012  Anders Gidenstam  (anders(at)gidenstam.org)
+##  Copyright (C) 2010 - 2013  Anders Gidenstam  (anders(at)gidenstam.org)
 ##  This file is licensed under the GPL license v2 or later.
 ##
 ###############################################################################
@@ -302,9 +302,9 @@ var dialog = {
         content.set("default-padding", 5);
         props.globals.initNode("sim/about/text",
              "Goodyear K-type airship for FlightGear\n" ~
-             "Copyright (C) 2010 - 2012  Anders Gidenstam\n\n" ~
+             "Copyright (C) 2010 - 2013  Anders Gidenstam\n\n" ~
              "FlightGear flight simulator\n" ~
-             "Copyright (C) 1996 - 2012  http://www.flightgear.org\n\n" ~
+             "Copyright (C) 1996 - 2013  http://www.flightgear.org\n\n" ~
              "This is free software, and you are welcome to\n" ~
              "redistribute it under certain conditions.\n" ~
              "See the GNU GENERAL PUBLIC LICENSE Version 2 for the details.",

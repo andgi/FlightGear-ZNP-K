@@ -60,7 +60,7 @@
 
  <sparkfaildrop>               0.10 </sparkfaildrop>
 
- <minmp unit="INHG">           6.50 </minmp> <!-- Deprecated -->
+ <minmp unit="INHG">          10.0 </minmp>
  <maxmp unit="INHG">          36.00 </maxmp>
  <maxthrottle>                 1.00 </maxthrottle>
  <minthrottle>                 0.10 </minthrottle>
