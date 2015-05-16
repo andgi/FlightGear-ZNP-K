@@ -2,7 +2,7 @@
 <!--
   Goodyear K-type airship.
 
-  Copyright (C) 2010  Anders Gidenstam  (anders(at)gidenstam.org)
+  Copyright (C) 2010 - 2015  Anders Gidenstam  (anders(at)gidenstam.org)
   This file is licensed under the GPL license version 2 or later.
 -->
 <PropertyList>
@@ -72,6 +72,17 @@
   <name>magnetic-compass</name>
   <number>0</number>
  </magnetic-compass>
+
+ <!-- Radio set. Not entirely historic. -->
+ <comm-radio>
+  <name>comm</name>
+  <number>0</number>
+ </comm-radio>
+
+ <comm-radio>
+  <name>comm</name>
+  <number>1</number>
+ </comm-radio>
 
  <nav-radio>
   <name>nav</name>

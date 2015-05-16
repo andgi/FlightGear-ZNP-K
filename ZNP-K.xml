@@ -31,7 +31,7 @@
   <email>anders at gidenstam dot org</email>
 
   <filecreationdate>2010-01-28</filecreationdate>
-  <version>$Id: ZNP-K.xml,v 1.4 2012/01/01 14:36:47 anders Exp $</version>
+  <version>$Id: ZNP-K.xml,v 1.5 2015/05/16 19:38:10 anders Exp $</version>
 
   <description>JSBSim model of a Goodyear K-type airship.</description>
 
