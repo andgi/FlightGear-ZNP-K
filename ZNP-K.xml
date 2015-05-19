@@ -3,7 +3,7 @@
 
   Goodyear K-type airship flight model for JSBSim.
 
-    Copyright (C) 2010 - 2012  Anders Gidenstam  (anders(at)gidenstam.org)
+    Copyright (C) 2010 - 2015  Anders Gidenstam  (anders(at)gidenstam.org)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@
   <email>anders at gidenstam dot org</email>
 
   <filecreationdate>2010-01-28</filecreationdate>
-  <version>$Id: ZNP-K.xml,v 1.5 2015/05/16 19:38:10 anders Exp $</version>
+  <version>$Id: ZNP-K.xml,v 1.6 2015/05/19 20:31:01 anders Exp $</version>
 
   <description>JSBSim model of a Goodyear K-type airship.</description>
 
@@ -1224,16 +1224,16 @@
 
  </external_reactions>
 
- <!-- system file="fgfs4jsbsim"/ -->
+ <system file="visual-reference-point-extensions"/>
  <system file="mooring-jsbsim">
 
   <!-- Constants -->
   <!--  Mooring -->
-  <property value="10000.0"> mooring/mooring-spring-coeff </property>
-  <property value="-10000.0"> mooring/mooring-damping-coeff </property>
-  <property value="100000.0"> mooring/max-mooring-force-lbs </property>
+  <property value="40000.0"> mooring/mooring-spring-coeff-lbs_ft </property>
+  <property value="-10000.0"> mooring/mooring-damping-coeff-lbs_fps </property>
+  <property value="400000.0"> mooring/max-mooring-force-lbs </property>
   <!--  Wire -->
-  <property value="500.0"> mooring/wire-spring-coeff </property>
+  <property value="500.0"> mooring/wire-spring-coeff-lbs_ft </property>
   <property value="10000.0"> mooring/max-wire-force-lbs </property>
   <property value="5.0"> mooring/max-winch-speed-fps </property>
 
@@ -1260,6 +1260,7 @@
   <!-- Added mass constants. -->
   <property value="-0.08"> aero/constants/added-mass/k-axial </property>
   <property value="-0.88"> aero/constants/added-mass/k-traverse </property>
+  <property value="-0.88"> aero/constants/added-mass/k-transverse </property>
   <property value="-0.65"> aero/constants/added-mass/k-rotational </property>
 
   <channel name="Temporary hack to prevent oscillations.">
