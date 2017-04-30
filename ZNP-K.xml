@@ -3,7 +3,7 @@
 
   Goodyear K-type airship flight model for JSBSim.
 
-    Copyright (C) 2010 - 2015  Anders Gidenstam  (anders(at)gidenstam.org)
+    Copyright (C) 2010 - 2017  Anders Gidenstam  (anders(at)gidenstam.org)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@
   <email>anders at gidenstam dot org</email>
 
   <filecreationdate>2010-01-28</filecreationdate>
-  <version>$Id: ZNP-K.xml,v 1.6 2015/05/19 20:31:01 anders Exp $</version>
+  <version>$Id: ZNP-K.xml,v 1.7 2017/04/30 21:32:35 anders Exp $</version>
 
   <description>JSBSim model of a Goodyear K-type airship.</description>
 
@@ -531,9 +531,11 @@
       Primary controls at the altitude pilot and the mechanic's station.
         Throttles
 
+   The propellers are fixed pitch propellers (excluding the 6 Curtis-Wright
+   engined airships K-3 to K-8 that had variable pitch propellers).
   </documentation>
   <!-- Port engine -->
-  <engine file="eng_PWR-1430-AN2">
+  <engine file="eng_PWR-1340-AN2">
    <location unit="M">
     <x>  32.3 </x>
     <y>  -3.32 </y>
@@ -559,7 +561,7 @@
    </thruster>
   </engine>
   <!-- Starboard engine -->
-  <engine file="eng_PWR-1430-AN2">
+  <engine file="eng_PWR-1340-AN2">
    <location unit="M">
     <x>  32.3 </x>
     <y>   3.32 </y>
@@ -1068,6 +1070,10 @@
   </channel>
 
   <channel name="Propellers">
+    <!-- The propellers are fixed pitch propellers, although configured as
+         variable pitch propellers in JSBSim. This is fixed here using
+         constant functions to lock the blade angles.
+    -->
 
    <fcs_function name="fcs/propeller/blade-angle-deg[0]">
     <function>

@@ -11,7 +11,7 @@
 
   <description>Goodyear K-Type Airship</description>
   <author>Anders Gidenstam</author>
-  <aircraft-version>$Id: ZNP-K-set.xml,v 1.5 2017/04/27 21:06:34 anders Exp $</aircraft-version>
+  <aircraft-version>$Id: ZNP-K-set.xml,v 1.6 2017/04/30 21:32:35 anders Exp $</aircraft-version>
 
   <long-description>
 The Goodyear K-Type airship, designated ZNP-K in the US Navy, was the main maritime patrol airship for the US Navy during World War 2. The non-rigid airships (a.k.a. blimps) were 75 to 79 meters long, had a volume of about 11500 to 12000 m^3 and were powered by two Pratt &amp; Whitney R-1340 or Curtis-Wright R-975 engines fitted on outriggers on the control car. The prototype was the K-2 which first flew in December 1938. A total of 133 K-Type airships were built during the war.
@@ -19,11 +19,12 @@ The Goodyear K-Type airship, designated ZNP-K in the US Navy, was the main marit
 
   <tags>
    <tag>airship</tag>
+   <tag>reconnaissance</tag>
    <tag>piston</tag>
    <tag>radial</tag>
    <tag>supercharged</tag>
    <tag>twin-engine</tag>
-   <tag>variable-pitch</tag>
+   <tag>fixed-pitch</tag>
    <tag>retractable-gear</tag>
    <tag>1930s</tag>
    <tag>1940s</tag>
@@ -46,7 +47,7 @@ The Goodyear K-Type airship, designated ZNP-K in the US Navy, was the main marit
    <!-- altitude-agl-ft type="double">6.0</altitude-agl-ft -->
   </presets>
   <startup>
-   <!-- splash-texture>Aircraft/ZLT-NT/ZLT-NT-splash.jpg</splash-texture -->
+   <!-- splash-texture>Aircraft/ZNP-K/ZNP-K-splash.jpg</splash-texture -->
   </startup>
 
   <!-- 3d model -->

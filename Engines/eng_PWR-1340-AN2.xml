@@ -2,7 +2,7 @@
 <!--
   Pratt and Whitney R-1340-AN2 for JSBSim
 
-    Copyright (C) 2010 - 2011  Anders Gidenstam  (anders(at)gidenstam.org)
+    Copyright (C) 2010 - 2017  Anders Gidenstam  (anders(at)gidenstam.org)
     This file is licensed under the GPL license version 2 or later.
 
   <reference
@@ -32,6 +32,9 @@
     Desired Carburetor Air intake Temp.
       Take-Off                            50 degC
       Cruising                            40 degC
+
+  The rating given in [GAC:1942:DS]: 425 hp @ 1775 RPM might mean that the
+  engine is rated lower than in the current type certificate.
 
 -->
 <piston_engine name="R-1340-AN2">
