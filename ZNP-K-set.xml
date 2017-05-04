@@ -11,7 +11,7 @@
 
   <description>Goodyear K-Type Airship</description>
   <author>Anders Gidenstam</author>
-  <aircraft-version>$Id: ZNP-K-set.xml,v 1.6 2017/04/30 21:32:35 anders Exp $</aircraft-version>
+  <aircraft-version>$Id: ZNP-K-set.xml,v 1.7 2017/05/04 20:36:54 anders Exp $</aircraft-version>
 
   <long-description>
 The Goodyear K-Type airship, designated ZNP-K in the US Navy, was the main maritime patrol airship for the US Navy during World War 2. The non-rigid airships (a.k.a. blimps) were 75 to 79 meters long, had a volume of about 11500 to 12000 m^3 and were powered by two Pratt &amp; Whitney R-1340 or Curtis-Wright R-975 engines fitted on outriggers on the control car. The prototype was the K-2 which first flew in December 1938. A total of 133 K-Type airships were built during the war.
@@ -26,6 +26,7 @@ The Goodyear K-Type airship, designated ZNP-K in the US Navy, was the main marit
    <tag>twin-engine</tag>
    <tag>fixed-pitch</tag>
    <tag>retractable-gear</tag>
+   <tag>castering-wheel</tag>
    <tag>1930s</tag>
    <tag>1940s</tag>
    <tag>ww2</tag>
@@ -331,6 +332,13 @@ The Goodyear K-Type airship, designated ZNP-K in the US Navy, was the main marit
   </engine>
  </engines>
 
+ <!--
+   Force the type and initial value of the aliased JSBSim control properties.
+   JSBSim does not write default values to properties that it finds already
+   exist even though they are of undefined type, as e.g. when created by
+   aliases. Setting the default values here allow them to be overriden from
+   the command line.
+ -->
  <fdm>
   <jsbsim>
    <propulsion>
@@ -343,4 +351,5 @@ The Goodyear K-Type airship, designated ZNP-K in the US Navy, was the main marit
    </propulsion>
   </jsbsim>
  </fdm>
+
 </PropertyList>

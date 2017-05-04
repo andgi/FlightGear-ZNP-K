@@ -2,7 +2,7 @@
 ##
 ## Goodyear K-type airship for FlightGear.
 ##
-##  Copyright (C) 2010 - 2015  Anders Gidenstam  (anders(at)gidenstam.org)
+##  Copyright (C) 2010 - 2017  Anders Gidenstam  (anders(at)gidenstam.org)
 ##  This file is licensed under the GPL license v2 or later.
 ##
 ###############################################################################
@@ -188,6 +188,7 @@ var debug_display_view_handler = {
         me.right.add("orientation/pitch-deg");
         me.right.add("surface-positions/elevator-pos-norm");
         me.right.add("surface-positions/rudder-pos-norm");
+        me.right.add("instrumentation/magnetic-compass/indicated-heading-deg");
         me.right.add("instrumentation/altimeter/indicated-altitude-ft");
         me.right.add("instrumentation/airspeed-indicator/indicated-speed-kt");
         # Engines

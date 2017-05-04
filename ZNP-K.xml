@@ -31,7 +31,7 @@
   <email>anders at gidenstam dot org</email>
 
   <filecreationdate>2010-01-28</filecreationdate>
-  <version>$Id: ZNP-K.xml,v 1.7 2017/04/30 21:32:35 anders Exp $</version>
+  <version>$Id: ZNP-K.xml,v 1.8 2017/05/04 20:36:54 anders Exp $</version>
 
   <description>JSBSim model of a Goodyear K-type airship.</description>
 
@@ -155,6 +155,9 @@
    Weights:
      Total empty weight: 18430 lb
      Car   empty weight:  8080 lb
+
+   [GAC:1944:MM] pages 7 - 13 contains a detailed weight breakdown for
+   ships in the K-14 to K-74 range, presumably in 1944 fit.
   </documentation>
 
   <!-- 10350 lb - 600 lb in dummy weights. -->
@@ -240,7 +243,7 @@
      Max car payload: 10,220 lb (2300 lb over design load)
   </documentation>
   <documentation>
-   Typical load calculation according to [GAC:1942:PM]:
+   Typical useful load calculation according to [GAC:1942:PM]:
      Crew
        10 crew members          10*175 lb
      Fuel
@@ -349,9 +352,34 @@
   <!-- 
   === Engines ================================================
   -->
-  <!-- P&W R-1340-AN-2 Wasp: dry weight 938 lb [FAA:TC-5E-2]. -->
+  <documentation>
+   The weight breakdown in [GAC:1944:MM] states the following for the
+   engines, nacelles and the outriggers:
+     Outriggers and Engine Nacelles
+       Structure                      250.0 lb *
+       Metal skin + stiffeners        151.5 lb *
+       Engine mounts                   78.8 lb *
+       Cowlings                        95.0 lb *
+       Engine nacelles                165.8 lb *
+     Power Plant Group
+       Engines as installed          1858.0 lb * (dry weight?)
+       Engine accessories             238.1 lb *
+       Power Plant Controls            39.9 lb   (not in the outriggers?)
+       Propellers                     422.8 lb *
+       Starting system                 84.0 lb *
+     Lubrication system
+       Tanks and protection            44.1 lb * (not all in the outriggers?)
+       Oil coolers                     60.5 lb *
+       Pumps, not integral with engine  4.5 lb   (not in the outriggers?)
+       Piping, etc.                    45.2 lb   (not all in the outriggers?)
+
+
+   Estimated total per outrigger (all marked with * above): 1724.3 lb
+   Additional assumption: The CG of all this is basically the CG of the
+                          engine.
+  </documentation>
   <pointmass name="Left_Engine">
-   <weight unit="LBS"> 938.0 </weight>
+   <weight unit="LBS"> 1724.3.0 </weight>
    <location name="POINTMASS" unit="M">
     <x>  32.3 </x>
     <y>  -3.32 </y>
@@ -359,7 +387,7 @@
    </location>
   </pointmass>
   <pointmass name="Right_Engine">
-   <weight unit="LBS"> 938.0 </weight>
+   <weight unit="LBS"> 1724.3 </weight>
    <location name="POINTMASS" unit="M">
     <x>  32.3 </x>
     <y>   3.32 </y>
@@ -371,8 +399,8 @@
   === Structure ==============================================
   -->
 
-  <pointmass name="Car"> <!-- 8080 lb - 2*938 lb (engines) -->
-   <weight unit="LBS"> 6204.0 </weight>
+  <pointmass name="Car"> <!-- 8080 lb - 2*1724.3 lb (outriggers) -->
+   <weight unit="LBS"> 4631.4 </weight>
    <location name="POINTMASS" unit="M">
     <x>  32.1 </x>
     <y>   0.0 </y>
@@ -1073,18 +1101,33 @@
     <!-- The propellers are fixed pitch propellers, although configured as
          variable pitch propellers in JSBSim. This is fixed here using
          constant functions to lock the blade angles.
+
+         Page 54-a in [GAC:1942:PM] gives a fuel consumption v.s. TAS graph
+         that states that the propellers are set at 20 deg.
+         In this configuration 1775 RPM is reached at 70 knots
+         (= at full throttle?).
+
+         On page 5 in [GAC:1944:MM] contain the following information about
+         the propellers:
+           Propeller                 Hartzell
+           Propeller Diameter        12'6"
+           Propeller Pitch Setting
+           at 42" station:
+             K-9 - K-13              12'0" dia. Pitch 20.5 deg
+             K-14 & Future           12'6" dia. Pitch 19.5 deg
+                                     11'6" dia. Pitch 21.5 deg
     -->
 
    <fcs_function name="fcs/propeller/blade-angle-deg[0]">
     <function>
-     <value>15.0</value>
+     <value>19.5</value>
     </function>
     <output>propulsion/engine[0]/blade-angle</output>
    </fcs_function>
 
    <fcs_function name="fcs/propeller/blade-angle-deg[1]">
     <function>
-     <value>15.0</value>
+     <value>19.5</value>
     </function>
     <output>propulsion/engine[1]/blade-angle</output>
    </fcs_function>
