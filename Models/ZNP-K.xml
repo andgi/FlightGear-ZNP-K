@@ -2,7 +2,7 @@
 <!--
   Goodyear K-type airship.
 
-  Copyright (C) 2010 - 2015  Anders Gidenstam  (anders(at)gidenstam.org)
+  Copyright (C) 2010 - 2017  Anders Gidenstam  (anders(at)gidenstam.org)
   This file is licensed under the GPL license v2 or later.
 -->
 <PropertyList>
@@ -16,9 +16,9 @@
   <z-m> 0.0 </z-m>
  </offsets>
 
- <!-- Rembrandt transparency markup. -->
+ <!-- ALS/Rembrandt transparency markup. -->
  <effect>
-  <inherits-from>Effects/model-transparent</inherits-from>
+  <inherits-from>Models/Effects/transparent-window-outside</inherits-from>
   <object-name>car_windows</object-name>
  </effect>
 
