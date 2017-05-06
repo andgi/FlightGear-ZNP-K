@@ -22,6 +22,18 @@
   <object-name>car_windows</object-name>
  </effect>
 
+ <!-- Volumetric shadow object =============================================-->
+ <model>
+  <name>shadow</name>
+  <path>Aircraft/ZNP-K/Models/shadow.xml</path>
+  <offsets>
+   <!-- x/y/z == back/right/up -->
+   <x-m> 0.00 </x-m>
+   <y-m> 0.00 </y-m>
+   <z-m> 0.00 </z-m>
+  </offsets>
+ </model>
+
  <model>
   <name>Left engine</name>
   <path>Aircraft/ZNP-K/Models/r1340/r1340.xml</path>

@@ -31,7 +31,7 @@
   <email>anders at gidenstam dot org</email>
 
   <filecreationdate>2010-01-28</filecreationdate>
-  <version>$Id: ZNP-K.xml,v 1.8 2017/05/04 20:36:54 anders Exp $</version>
+  <version>$Id: ZNP-K.xml,v 1.9 2017/05/06 20:43:59 anders Exp $</version>
 
   <description>JSBSim model of a Goodyear K-type airship.</description>
 
@@ -77,7 +77,7 @@
    date="Sep 1944"/>
 
   <reference
-   refID="KNOX:1942:GMK"
+   refID="KNOX:1945:GMK"
    author="Captain C. V. S. Knox, USN"
    title="Design Details of the Goodyear Model K Airship"
    date="1945"/>
@@ -619,7 +619,7 @@
   === Fuel tanks ============================================
   -->
   <documentation>
-   Fuel capacity according to [GAC:1942:PM] and [KNOX:1942:GMK]:
+   Fuel capacity according to [GAC:1942:PM] and [KNOX:1945:GMK]:
      8 125 US gallon overhead tanks
      1  80 US gallon slip tank
      1 100 US gallon slip tank
@@ -1007,7 +1007,7 @@
  <flight_control name="FCS">
 
   <documentation>
-   Controls according to [KNOX:1942:GMK]:
+   Controls according to [KNOX:1945:GMK]:
      Control Surface Movements
        Elevators:     +/- 35 degrees.
        Upper rudder:  +/- 20 degrees.
@@ -1330,6 +1330,8 @@
  </system>
 
  <system file="airship_added_mass"/>
+
+ <system file="shadow-jsbsim"/>
 
  <!-- aerodynamics file="Systems/gerris_aero"/ -->
  <aerodynamics file="Systems/datcom_aero"/>
