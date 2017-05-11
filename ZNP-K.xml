@@ -31,7 +31,7 @@
   <email>anders at gidenstam dot org</email>
 
   <filecreationdate>2010-01-28</filecreationdate>
-  <version>$Id: ZNP-K.xml,v 1.9 2017/05/06 20:43:59 anders Exp $</version>
+  <version>$Id: ZNP-K.xml,v 1.10 2017/05/11 21:51:34 anders Exp $</version>
 
   <description>JSBSim model of a Goodyear K-type airship.</description>
 
@@ -113,7 +113,7 @@
   <htailarm  unit="M">    25.2 </htailarm> <!-- From CG. Guesstimate. -->
   <vtailarea unit="M2">  115.7 </vtailarea>
   <vtailarm  unit="M">    25.2 </vtailarm> <!-- From CG. Guesstimate. -->
-  <!-- Total envelope volume vol = 425,000 ft^3 -->
+  <!-- Total theoretical envelope volume vol = 425,000 ft^3 -->
 
   <!-- Aerodynamic Reference Point.
        Placed at the CoB of the envelope according to [GAC:1942:PM]. -->
@@ -267,85 +267,165 @@
        Radar                     480 lb
        MAD                       200 lb
   </documentation>
+  <!-- Crew. Placed after drawing in [GAC:1944:MM]. -->
   <pointmass name="Pilot"> <!-- n=1 -->
-   <weight unit="KG"> 85.0 </weight>
+   <weight unit="LBS"> 175.0 </weight>
    <location name="POINTMASS" unit="M">
-    <x>  29.30 </x>
-    <y>  -0.70 </y>
-    <z> -11.10 </z>
+    <x>  28.50 </x>
+    <y>  -0.60 </y>
+    <z> -11.60 </z>
    </location>
   </pointmass>
   <pointmass name="Pilot"> <!-- n=2 -->
-   <weight unit="KG"> 85.0 </weight>
+   <weight unit="LBS"> 175.0 </weight>
    <location name="POINTMASS" unit="M">
-    <x> 29.30 </x>
-    <y>  0.70 </y>
-    <z>-11.10 </z>
+    <x> 28.50 </x>
+    <y>  0.60 </y>
+    <z>-11.60 </z>
    </location>
   </pointmass>
   <pointmass name="Bombardier"> <!-- n=3 -->
-   <weight unit="KG"> 80.0 </weight>
+   <weight unit="LBS"> 175.0 </weight>
    <location name="POINTMASS" unit="M">
-    <x> 28.70 </x>
+    <x> 28.00 </x>
     <y>  0.00 </y>
-    <z>-11.10 </z>
+    <z>-12.00 </z>
    </location>
   </pointmass>
   <pointmass name="Navigator"> <!-- n=4 -->
-   <weight unit="KG"> 80.0 </weight>
+   <weight unit="LBS"> 175.0 </weight>
    <location name="POINTMASS" unit="M">
-    <x> 30.20 </x>
+    <x> 29.80 </x>
     <y> -0.40 </y>
-    <z>-11.10 </z>
+    <z>-11.60 </z>
    </location>
   </pointmass>
-  <pointmass name="Flight engineer"> <!-- n=5 -->
-   <weight unit="KG"> 80.0 </weight>
+  <pointmass name="Radar/MAD Operator"> <!-- n=5 -->
+   <weight unit="LBS"> 175.0 </weight>
    <location name="POINTMASS" unit="M">
-    <x>  31.70 </x>
+    <x>  31.00 </x>
     <y>  -0.70 </y>
-    <z> -11.10 </z>
+    <z> -11.60 </z>
    </location>
   </pointmass>
-  <pointmass name="Operator 1"> <!-- n=6 -->
-   <weight unit="KG"> 80.0 </weight>
+  <pointmass name="Radio Operator"> <!-- n=6 -->
+   <weight unit="LBS"> 175.0 </weight>
    <location name="POINTMASS" unit="M">
-    <x> 31.70 </x>
+    <x> 31.00 </x>
     <y>  0.70 </y>
-    <z>-11.10 </z>
+    <z>-11.60 </z>
    </location>
   </pointmass>
-  <pointmass name="Operator 2"> <!-- n=7 -->
-   <weight unit="KG"> 80.0 </weight>
+  <pointmass name="Flight engineer"> <!-- n=7 -->
+   <weight unit="LBS"> 175.0 </weight>
    <location name="POINTMASS" unit="M">
-    <x> 34.30 </x>
-    <y> -0.60 </y>
-    <z>-11.10 </z>
+    <x> 33.40 </x>
+    <y> -0.70 </y>
+    <z>-11.60 </z>
    </location>
   </pointmass>
-  <pointmass name="Operator 3"> <!-- n=8 -->
-   <weight unit="KG"> 80.0 </weight>
+  <pointmass name="Off watch crew 1"> <!-- n=8 -->
+   <weight unit="LBS"> 175.0 </weight>
    <location name="POINTMASS" unit="M">
-    <x> 35.60 </x>
+    <x> 34.80 </x>
+    <y>  0.60 </y>
+    <z>-11.60 </z>
+   </location>
+  </pointmass>
+  <pointmass name="Off watch crew 2"> <!-- n=9 -->
+   <weight unit="LBS"> 175.0 </weight>
+   <location name="POINTMASS" unit="M">
+    <x> 35.70 </x>
     <y>  0.40 </y>
-    <z>-11.10 </z>
-   </location>
-  </pointmass>
-  <pointmass name="Operator 4"> <!-- n=9 -->
-   <weight unit="KG"> 80.0 </weight>
-   <location name="POINTMASS" unit="M">
-    <x> 36.80 </x>
-    <y>  0.40 </y>
-    <z>-11.10 </z>
+    <z>-11.60 </z>
    </location>
   </pointmass>
 
-  <pointmass name="Bomb load"> <!-- n=10 -->
+  <!-- Bombs -->
+  <pointmass name="Bomb bay bomb load"> <!-- n=10 -->
    <weight unit="LBS"> 675.0 </weight>
    <location name="POINTMASS" unit="M">
-    <x>  30.2 </x>
+    <x>  29.7 </x>
     <y>   0.0 </y>
-    <z> -12.1 </z>
+    <z> -12.8 </z>
+   </location>
+  </pointmass>
+  <pointmass name="External bomb load"> <!-- n=11 -->
+   <weight unit="LBS"> 0.0 </weight>
+   <location name="POINTMASS" unit="M">
+    <x>  33.2 </x>
+    <y>   0.0 </y>
+    <z> -13.2 </z>
+   </location>
+  </pointmass>
+
+  <!-- Engine oil -->
+  <documentation>
+   In [GAC:1944:MM] page 170 ff. the following is stated:
+    "On K-3 to K-74 inclusive, the oil system consists of one 14 gallon
+    service tank in each engine nacelle, one 30-gallon oil storage tank below
+    deck, ..."
+    "On K-75 and future, the oil storage tank, ... are removed and the oil
+    service tanks in the nacelles are enlarged to the 26-gallon size."
+  </documentation>
+  <pointmass name="Oil left engine"> <!-- n=12 -->
+   <weight unit="LBS"> 105.0 </weight>
+   <location name="POINTMASS" unit="M">
+    <x>  33.0 </x>
+    <y>  -3.32 </y>
+    <z> -11.2 </z>
+   </location>
+  </pointmass>
+  <pointmass name="Oil right engine"> <!-- n=13 -->
+   <weight unit="LBS"> 105.0 </weight>
+   <location name="POINTMASS" unit="M">
+    <x>  33.0 </x>
+    <y>   3.32 </y>
+    <z> -11.2 </z>
+   </location>
+  </pointmass>
+  <pointmass name="Oil storage tank"> <!-- n=14 -->
+   <weight unit="LBS"> 150.0 </weight>
+   <location name="POINTMASS" unit="M">
+    <x>  34.5 </x>
+    <y>   0.6 </y>
+    <z> -12.7 </z>
+   </location>
+  </pointmass>
+
+  <!--
+  === Equipment ==============================================
+  -->
+  <pointmass name="Radio">
+   <weight unit="LBS"> 392.0 </weight>
+   <location name="POINTMASS" unit="M">
+    <x>  30.2 </x>
+    <y>   0.7 </y>
+    <z> -11.1 </z>
+   </location>
+  </pointmass>
+  <pointmass name="Radar screen">
+   <weight unit="LBS"> 180.0 </weight>
+   <location name="POINTMASS" unit="M">
+    <x>  30.6 </x>
+    <y>  -0.7 </y>
+    <z> -11.4 </z>
+   </location>
+  </pointmass>
+  <pointmass name="Radar antenna">
+   <weight unit="LBS"> 300.0 </weight>
+   <location name="POINTMASS" unit="M">
+    <x>  33.3 </x>
+    <y>   0.4 </y>
+    <z> -13.5 </z>
+   </location>
+  </pointmass>
+  <pointmass name="MAD">
+   <weight unit="LBS"> 200.0 </weight>
+   <location name="POINTMASS" unit="M">
+    <x>  30.6 </x>
+    <y>  -0.7 </y>
+    <z> -11.0 </z>
    </location>
   </pointmass>
 
@@ -353,8 +433,8 @@
   === Engines ================================================
   -->
   <documentation>
-   The weight breakdown in [GAC:1944:MM] states the following for the
-   engines, nacelles and the outriggers:
+   The weight breakdown in [GAC:1944:MM] page 7ff. states the following
+   for the engines, nacelles and the outriggers:
      Outriggers and Engine Nacelles
        Structure                      250.0 lb *
        Metal skin + stiffeners        151.5 lb *
@@ -383,7 +463,7 @@
    <location name="POINTMASS" unit="M">
     <x>  32.3 </x>
     <y>  -3.32 </y>
-    <z> -10.6 </z>
+    <z> -11.2 </z>
    </location>
   </pointmass>
   <pointmass name="Right_Engine">
@@ -391,7 +471,7 @@
    <location name="POINTMASS" unit="M">
     <x>  32.3 </x>
     <y>   3.32 </y>
-    <z> -10.6 </z>
+    <z> -11.2 </z>
    </location>
   </pointmass>
 
@@ -536,7 +616,7 @@
   -->
   <documentation>
    [GAC:1942:PM]:
-    Engine     R-1340-AN2  425 H.P. at 1775 RPM (engine or prop RPM?).
+    Engine     R-1340-AN2  425 H.P. at 1775 RPM (engine RPM?).
                Geared 3:2
     Propellers 3 blades 12' 0" diameter (K9- K-13)
     Propellers 3 blades 12' 6" diameter (K-14 -)
@@ -561,6 +641,8 @@
 
    The propellers are fixed pitch propellers (excluding the 6 Curtis-Wright
    engined airships K-3 to K-8 that had variable pitch propellers).
+
+   [GAC:1944:MM] page 148ff.: Engine limits for R-1340-AN2
   </documentation>
   <!-- Port engine -->
   <engine file="eng_PWR-1340-AN2">
@@ -625,7 +707,7 @@
      1 100 US gallon slip tank
 
    Oil system:
-     2 26 US gallon service tanks, one in each narcelle.
+     2 26 US gallon service tanks, one in each nacelle.
      1 tank in the car.
   </documentation>
 

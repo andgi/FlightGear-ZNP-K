@@ -2,7 +2,7 @@
 <!--
   Goodyear K-type airship for FlightGear.
 
-  Copyright (C) 2010 - 2011  Anders Gidenstam  (anders(at)gidenstam.org)
+  Copyright (C) 2010 - 2017  Anders Gidenstam  (anders(at)gidenstam.org)
   This file is licensed under the GPL license version 2 or later.
 -->
 <PropertyList>
@@ -33,31 +33,31 @@
   <max-lb type="double">300.0</max-lb>
  </weight>
  <weight>
-  <name type="string">Flight engineer</name>
+  <name type="string">Radar/MAD Operator</name>
   <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[5]"/>
   <min-lb type="double">0.0</min-lb>
   <max-lb type="double">300.0</max-lb>
  </weight>
  <weight>
-  <name type="string">Operator 1</name>
+  <name type="string">Radio Operator</name>
   <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[6]"/>
   <min-lb type="double">0.0</min-lb>
   <max-lb type="double">300.0</max-lb>
  </weight>
  <weight>
-  <name type="string">Operator 2</name>
+  <name type="string">Flight engineer</name>
   <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[7]"/>
   <min-lb type="double">0.0</min-lb>
   <max-lb type="double">300.0</max-lb>
  </weight>
  <weight>
-  <name type="string">Operator 3</name>
+  <name type="string">Off watch crew 1</name>
   <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[8]"/>
   <min-lb type="double">0.0</min-lb>
   <max-lb type="double">300.0</max-lb>
  </weight>
  <weight>
-  <name type="string">Operator 4</name>
+  <name type="string">Off watch crew 2</name>
   <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[9]"/>
   <min-lb type="double">0.0</min-lb>
   <max-lb type="double">300.0</max-lb>
@@ -65,10 +65,36 @@
 
  <!-- Armament -->
  <weight>
-  <name type="string">Bomb load</name>
+  <name type="string">Bomb bay bomb load</name>
   <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[10]"/>
   <min-lb type="double">0.0</min-lb>
-  <max-lb type="double">1000.0</max-lb>
+  <max-lb type="double">675.0</max-lb>
+ </weight>
+ <weight>
+  <name type="string">External bomb load</name>
+  <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[11]"/>
+  <min-lb type="double">0.0</min-lb>
+  <max-lb type="double">675.0</max-lb>
+ </weight>
+
+ <!-- Engine oil -->
+ <weight>
+  <name type="string">Oil left engine</name>
+  <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[12]"/>
+  <min-lb type="double">0.0</min-lb>
+  <max-lb type="double">105.0</max-lb>
+ </weight>
+ <weight>
+  <name type="string">Oil right engine</name>
+  <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[13]"/>
+  <min-lb type="double">0.0</min-lb>
+  <max-lb type="double">105.0</max-lb>
+ </weight>
+ <weight>
+  <name type="string">Oil storage tank</name>
+  <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[14]"/>
+  <min-lb type="double">0.0</min-lb>
+  <max-lb type="double">225.0</max-lb>
  </weight>
 
  <!-- Ballast -->
