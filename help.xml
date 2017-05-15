@@ -2,7 +2,7 @@
 <!--
   Goodyear K-type airship.
 
-  Copyright (C) 2010  Anders Gidenstam  (anders(at)gidenstam.org)
+  Copyright (C) 2010 - 2017  Anders Gidenstam  (anders(at)gidenstam.org)
   This file is licensed under the GPL license v2 or later.
 -->
 <PropertyList>
@@ -56,6 +56,10 @@
  <key>
   <name>Alt + click</name>
   <desc>Place mooring mast.</desc>
+ </key>
+ <key>
+  <name>G/g</name>
+  <desc>Landing gear in/out.</desc>
  </key>
  <key>
   <name>w</name>

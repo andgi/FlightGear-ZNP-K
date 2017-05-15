@@ -162,6 +162,8 @@
   <name>Main landing gear</name>
   <object-name>main_lgear_tyre</object-name>
   <object-name>main_lgear</object-name>
+  <object-name>main_lgear_fork</object-name>
+  <object-name>main_lgear_strut</object-name>
  </animation>
 
  <animation>
@@ -211,6 +213,32 @@
    <entry>
     <ind>0.5</ind>
     <dep>0.1524</dep>
+   </entry>
+  </interpolation>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>Main landing gear</object-name>
+  <property>gear/gear[0]/position-norm</property>
+  <center>
+   <x-m> 31.43 </x-m>
+   <y-m>  0.00 </y-m>
+   <z-m>-13.12 </z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+  <interpolation>
+   <entry>
+    <ind>0.0</ind>
+    <dep>-90.0</dep>
+   </entry>
+   <entry>
+    <ind>1.0</ind>
+    <dep>0.0</dep>
    </entry>
   </interpolation>
  </animation>
