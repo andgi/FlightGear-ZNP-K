@@ -22,6 +22,12 @@
   </offsets>
  </model>
 
+ <!-- ALS/Rembrandt transparency markup. -->
+ <effect>
+  <inherits-from>Effects/glass</inherits-from>
+  <object-name>car_windows.inside</object-name>
+ </effect>
+
  <!-- Main instrument panel ================================================-->
  <model>
   <name>Main instrument panel</name>

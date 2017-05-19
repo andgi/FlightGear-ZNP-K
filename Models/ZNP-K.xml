@@ -19,7 +19,7 @@
  <!-- ALS/Rembrandt transparency markup. -->
  <effect>
   <inherits-from>Models/Effects/transparent-window-outside</inherits-from>
-  <object-name>car_windows</object-name>
+  <object-name>car_windows.outside</object-name>
  </effect>
 
  <!-- Volumetric shadow object =============================================-->
@@ -34,6 +34,7 @@
   </offsets>
  </model>
 
+ <!-- Engines and propellers ===============================================-->
  <model>
   <name>Left engine</name>
   <path>Aircraft/ZNP-K/Models/r1340/r1340.xml</path>
