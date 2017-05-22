@@ -31,7 +31,7 @@
   <email>anders at gidenstam dot org</email>
 
   <filecreationdate>2010-01-28</filecreationdate>
-  <version>$Id: ZNP-K.xml,v 1.10 2017/05/11 21:51:34 anders Exp $</version>
+  <version>$Id: ZNP-K.xml,v 1.11 2017/05/22 21:44:19 anders Exp $</version>
 
   <description>JSBSim model of a Goodyear K-type airship.</description>
 
@@ -160,22 +160,22 @@
    ships in the K-14 to K-74 range, presumably in 1944 fit.
   </documentation>
 
-  <!-- 10350 lb - 600 lb in dummy weights. -->
-  <emptywt unit="LBS"> 9750.0 </emptywt> 
+  <emptywt unit="LBS">8202.0</emptywt>
 
   <documentation>
    The empty weight is estimated to consist of:
-    - The weight of the envelope and fittings, estimated as
-      total empty weight - car empty weight.
+    - The weight of the envelope and fittings, estimated from [GAC:1944:MM]
+      as the Envelope Group (8895.3 lb) - Bow Stiffening (693.3 lb).
 
-   The car and engines etc will be added as point masses.
+   The the bow stiffening, the fins, the car and engines etc will be
+   added as point masses.
   </documentation>
 
   <documentation>
    % Very rough estimation model of the empty weight CG and inertia tensor.
    % Assume the empty weight is to 100% a cylindrical shell.
 
-   m = 3895.0   % KG
+   m = 3720.4   % KG
    r = 8.82     % meter
    l = 75.96    % meter
 
@@ -201,12 +201,12 @@
 
   </documentation>
 
-  <ixx unit="KG*M2">  303000.0 </ixx>
-  <iyy unit="KG*M2"> 2024300.0 </iyy>
-  <izz unit="KG*M2"> 2024300.0 </izz>
-  <ixy unit="KG*M2">       0.0 </ixy>
-  <ixz unit="KG*M2">       0.0 </ixz>
-  <iyz unit="KG*M2">       0.0 </iyz>
+  <ixx unit="KG*M2"> 289420.0</ixx>
+  <iyy unit="KG*M2">1933600.0</iyy>
+  <izz unit="KG*M2">1933600.0</izz>
+  <ixy unit="KG*M2">      0.0</ixy>
+  <ixz unit="KG*M2">      0.0</ixz>
+  <iyz unit="KG*M2">      0.0</iyz>
 
   <location name="CG" unit="M">
    <x> 37.78 </x> <!-- 37.78 m according to [GAC:1942:PM]. -->
@@ -253,8 +253,11 @@
        Service tanks             150 lb (20 usgal  @ 7.5 lb/gal)
        Storage tanks             187 lb (25 usgal  @ 7.5 lb/gal)
      Armament
-       30. cal MGs                31 lb
-       500 rounds amunition       44 lb
+       .30 cal MGs                31 lb
+       (.50 cal MG               105 lb [GAC:1944:MM])
+       (.50 cal MG                61 lb (AN/M2 [Wikipedia:M2_Browning]))
+       500 rounds ammunition      44 lb
+       (.50 cal ammunition       132 lb [GAC:1944:MM])
        4 bomb racks 4-MkXLIm2     83 lb (20.8 lb each)
        4 Depth bombs M17m2-4    1300 lb (325 lb each)
      Pyrotechnics
@@ -341,24 +344,6 @@
    </location>
   </pointmass>
 
-  <!-- Bombs -->
-  <pointmass name="Bomb bay bomb load"> <!-- n=10 -->
-   <weight unit="LBS"> 675.0 </weight>
-   <location name="POINTMASS" unit="M">
-    <x>  29.7 </x>
-    <y>   0.0 </y>
-    <z> -12.8 </z>
-   </location>
-  </pointmass>
-  <pointmass name="External bomb load"> <!-- n=11 -->
-   <weight unit="LBS"> 0.0 </weight>
-   <location name="POINTMASS" unit="M">
-    <x>  33.2 </x>
-    <y>   0.0 </y>
-    <z> -13.2 </z>
-   </location>
-  </pointmass>
-
   <!-- Engine oil -->
   <documentation>
    In [GAC:1944:MM] page 170 ff. the following is stated:
@@ -368,7 +353,7 @@
     "On K-75 and future, the oil storage tank, ... are removed and the oil
     service tanks in the nacelles are enlarged to the 26-gallon size."
   </documentation>
-  <pointmass name="Oil left engine"> <!-- n=12 -->
+  <pointmass name="Oil left engine"> <!-- n=10 -->
    <weight unit="LBS"> 105.0 </weight>
    <location name="POINTMASS" unit="M">
     <x>  33.0 </x>
@@ -376,7 +361,7 @@
     <z> -11.2 </z>
    </location>
   </pointmass>
-  <pointmass name="Oil right engine"> <!-- n=13 -->
+  <pointmass name="Oil right engine"> <!-- n=11 -->
    <weight unit="LBS"> 105.0 </weight>
    <location name="POINTMASS" unit="M">
     <x>  33.0 </x>
@@ -384,12 +369,46 @@
     <z> -11.2 </z>
    </location>
   </pointmass>
-  <pointmass name="Oil storage tank"> <!-- n=14 -->
+  <pointmass name="Oil storage tank"> <!-- n=12 -->
    <weight unit="LBS"> 150.0 </weight>
    <location name="POINTMASS" unit="M">
     <x>  34.5 </x>
     <y>   0.6 </y>
     <z> -12.7 </z>
+   </location>
+  </pointmass>
+
+  <!-- Bombs -->
+  <pointmass name="Bomb bay bomb load"> <!-- n=13 -->
+   <weight unit="LBS"> 675.0 </weight>
+   <location name="POINTMASS" unit="M">
+    <x>  29.7 </x>
+    <y>   0.0 </y>
+    <z> -12.8 </z>
+   </location>
+  </pointmass>
+  <pointmass name="External bomb load"> <!-- n=14 -->
+   <weight unit="LBS"> 0.0 </weight>
+   <location name="POINTMASS" unit="M">
+    <x>  33.2 </x>
+    <y>   0.0 </y>
+    <z> -13.2 </z>
+   </location>
+  </pointmass>
+  <pointmass name="M.G. ammunition"> <!-- n=15 -->
+   <weight unit="LBS">132.0</weight>
+   <location name="POINTMASS" unit="M">
+    <x> 27.5</x>
+    <y>  0.0</y>
+    <z>-10.2</z>
+   </location>
+  </pointmass>
+  <pointmass name="Browning .50 caliber machine gun"> <!-- n=16 -->
+   <weight unit="LBS">105.0</weight>
+   <location name="POINTMASS" unit="M">
+    <x> 26.5</x>
+    <y>  0.0</y>
+    <z>-10.0</z>
    </location>
   </pointmass>
 
@@ -430,8 +449,162 @@
   </pointmass>
 
   <!-- 
-  === Engines ================================================
+  === Structure ==============================================
   -->
+  <documentation>
+   The weight breakdown in [GAC:1944:MM] page 7ff. states the following
+   for the bow stiffening:
+     Bow Stiffening
+       Bow Cone                       106.8 lb
+       Batten Patches, Laces, etc     102.0 lb
+       Battens                        378.0 lb
+       Batten Cables                   28.6 lb
+       Mooring Cone Spindle + Pendant  45.4 lb
+       Misc.                           32.5 lb
+
+    Total                            693.3 lb
+
+   Unfounded assumption: CG of all this is 2.5 m behind the mooring cone.
+  </documentation>
+
+  <pointmass name="Bow Stiffening">
+   <weight unit="LBS">693.3</weight>
+   <location name="POINTMASS" unit="M">
+    <x>2.50</x>
+    <y>0.00</y>
+    <z>0.00</z>
+   </location>
+  </pointmass>
+
+  <documentation>
+   The weight breakdown in [GAC:1944:MM] page 7ff. states the following
+   for the empennage group:
+     Empennage Group
+       Upper Fin                      241.0 lb
+       Horizontal Fins (2)            482.0 lb
+       Lower Fin                      217.0 lb
+       Upper Rudder                    86.0 lb
+       Elevators (2)                  172.0 lb
+       Lower Rudder                    56.0 lb
+       Fin Brace System               100.0 lb
+
+   Unfounded assumption: CG of each complete fin is 66.8 m back and 6.8 m from
+   the symmetry line.
+  </documentation>
+
+  <pointmass name="Upper Fin">
+   <weight unit="LBS">352.0</weight>
+   <location name="POINTMASS" unit="M">
+    <x>66.8</x>
+    <y> 0.0</y>
+    <z> 6.8</z>
+   </location>
+  </pointmass>
+  <pointmass name="Lower Fin">
+   <weight unit="LBS">298.0</weight>
+   <location name="POINTMASS" unit="M">
+    <x>66.8</x>
+    <y> 0.0</y>
+    <z> 6.8</z>
+   </location>
+  </pointmass>
+  <pointmass name="Port Fin">
+   <weight unit="LBS">352.0</weight>
+   <location name="POINTMASS" unit="M">
+    <x>66.8</x>
+    <y>-6.8</y>
+    <z> 0.0</z>
+   </location>
+  </pointmass>
+  <pointmass name="Starboard Fin">
+   <weight unit="LBS">352.0</weight>
+   <location name="POINTMASS" unit="M">
+    <x>66.8</x>
+    <y> 6.8</y>
+    <z> 0.0</z>
+   </location>
+  </pointmass>
+
+  <documentation>
+   The weight breakdown in [GAC:1944:MM] page 7ff. states the following
+   for the control car (excepting the parts accounted for separately):
+     Car
+       Framework                     1056.0 lb
+       Metal skin + stiffeners        436.6 lb
+       Fabric covering                  5.6 lb
+       Windows                        120.1 lb
+       Doors complete                  61.1 lb
+       Handling rope boxes and doors    9.5 lb
+       Bomb hatch doors + mechanism    44.6 lb
+       Hand rails + brackets           32.7 lb
+       Insulation + partition          33.8 lb
+       Flooring + supports            322.6 lb
+       Access ladders (if carried)     16.8 lb
+       Misc.                          110.6 lb
+     Power Plant Group
+       Power Plant Controls            39.9 lb
+     Lubrication system
+       Pumps, not integral with engine  4.5 lb
+       Piping, etc.                    45.2 lb
+     Fuel System
+       Tanks + protection, instal-
+       lation, Pumps + hose           314.4 lb
+       Piping for fuel + vents        233.6 lb
+     Fixed Equipment
+       Instruments                    127.2 lb
+       Major controls, complete       125.8 lb
+       Minor controls, complete        42.5 lb
+       Pressure Tube Assembly          32.6 lb
+       Electrical                     624.8 lb
+       Communication (see above)
+     Furnishings
+       Personnel                      287.4 lb
+       Emergency                       47.4 lb
+       Chair base in aft section        3.2 lb
+       Navigator's table               19.9 lb
+       Radio table                     26.7 lb
+       Heating equipment               33.0 lb
+       Car Ceiling                     27.3 lb
+       Rigger's cabinet                15.0 lb
+       Navigational Gear Rack           5.3 lb
+       Misc.                            1.7 lb
+     Air System                       352.8 lb
+     Auxiliary Power Plant            200.3 lb
+
+    Total                           4860.5 lb
+  </documentation>
+
+  <pointmass name="Car">
+   <weight unit="LBS">4860.5</weight>
+   <location name="POINTMASS" unit="M">
+    <x> 32.1</x>
+    <y>  0.0</y>
+    <z>-11.6</z>
+   </location>
+  </pointmass>
+
+  <documentation>
+   The weight breakdown in [GAC:1944:MM] page 7ff. states the following
+   for the landing gear:
+     Landing Gear
+       Wheel and Tire                  77.5 lb
+       Fork and Axle                   45.9 lb
+       Shock Absorber                  43.6 lb
+       Retracting Mechanism            37.5 lb
+       Misc.                           24.0 lb
+
+    Total                            228.5 lb
+  </documentation>
+
+  <pointmass name="Main Landing Gear">
+   <weight unit="LBS">228.5</weight>
+   <location name="POINTMASS" unit="M">
+    <x> 31.70</x>
+    <y>  0.00</y>
+    <z>-13.00</z>
+   </location>
+  </pointmass>
+
   <documentation>
    The weight breakdown in [GAC:1944:MM] page 7ff. states the following
    for the engines, nacelles and the outriggers:
@@ -453,58 +626,25 @@
        Pumps, not integral with engine  4.5 lb   (not in the outriggers?)
        Piping, etc.                    45.2 lb   (not all in the outriggers?)
 
-
    Estimated total per outrigger (all marked with * above): 1724.3 lb
    Additional assumption: The CG of all this is basically the CG of the
                           engine.
   </documentation>
   <pointmass name="Left_Engine">
-   <weight unit="LBS"> 1724.3.0 </weight>
+   <weight unit="LBS">1724.3</weight>
    <location name="POINTMASS" unit="M">
-    <x>  32.3 </x>
-    <y>  -3.32 </y>
-    <z> -11.2 </z>
+    <x> 32.30</x>
+    <y> -3.32</y>
+    <z>-11.20</z>
    </location>
   </pointmass>
   <pointmass name="Right_Engine">
-   <weight unit="LBS"> 1724.3 </weight>
+   <weight unit="LBS">1724.3</weight>
    <location name="POINTMASS" unit="M">
-    <x>  32.3 </x>
-    <y>   3.32 </y>
-    <z> -11.2 </z>
+    <x> 32.30</x>
+    <y>  3.32</y>
+    <z>-11.20</z>
    </location>
-  </pointmass>
-
-  <!-- 
-  === Structure ==============================================
-  -->
-
-  <pointmass name="Car"> <!-- 8080 lb - 2*1724.3 lb (outriggers) -->
-   <weight unit="LBS"> 4631.4 </weight>
-   <location name="POINTMASS" unit="M">
-    <x>  32.1 </x>
-    <y>   0.0 </y>
-    <z> -11.6 </z>
-   </location>
-  </pointmass>
-
-  <!-- Dummy weights. Do they keep the added mass system in check? -->
-  <pointmass name="Ballast_Forward">
-   <location unit="M">
-    <x> 0.0 </x>
-    <y> 0.0 </y>
-    <z> -1.0 </z>
-   </location>
-   <weight unit="LBS"> 400 </weight>
-  </pointmass>
-  <!-- Aft ballast n=2 -->
-  <pointmass type="Ballast_Aft">
-   <location unit="M">
-    <x> 75.0 </x>
-    <y>  0.0 </y>
-    <z> -1.0 </z>
-   </location>
-   <weight unit="LBS"> 200 </weight>
   </pointmass>
 
  </mass_balance>
@@ -957,7 +1097,7 @@
     <z_radius unit="M">   5.0 </z_radius>
     <max_overpressure unit="PA"> 750.0 </max_overpressure> 
     <valve_coefficient unit="M4*SEC/KG"> 0.01 </valve_coefficient>
-    <fullness>0.6</fullness>
+    <fullness>0.4</fullness>
     <heat>
      <!-- Heat transfer due to temperature difference. -->
      <function name="buoyant_forces/gas-cell/ballonet[0]/dU_conduction">
@@ -1007,7 +1147,7 @@
     <z_radius unit="M">  5.0 </z_radius>
     <max_overpressure unit="PA"> 750.0 </max_overpressure> 
     <valve_coefficient unit="M4*SEC/KG"> 0.01 </valve_coefficient>
-    <fullness>0.5</fullness>
+    <fullness>0.2</fullness>
     <heat>
      <!-- Heat transfer due to temperature difference. -->
      <function name="buoyant_forces/gas-cell/ballonet[1]/dU_conduction">
