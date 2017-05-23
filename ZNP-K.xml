@@ -31,7 +31,7 @@
   <email>anders at gidenstam dot org</email>
 
   <filecreationdate>2010-01-28</filecreationdate>
-  <version>$Id: ZNP-K.xml,v 1.11 2017/05/22 21:44:19 anders Exp $</version>
+  <version>$Id: ZNP-K.xml,v 1.12 2017/05/23 20:16:58 anders Exp $</version>
 
   <description>JSBSim model of a Goodyear K-type airship.</description>
 
@@ -98,7 +98,7 @@
 
   <documentation>
    NOTE: The center of the mooring coupler at bow of the hull is the
-         origo of the body coordinate system.
+         origin of the body coordinate system.
          x/y/z = back/right/up
   </documentation>
 
@@ -167,8 +167,8 @@
     - The weight of the envelope and fittings, estimated from [GAC:1944:MM]
       as the Envelope Group (8895.3 lb) - Bow Stiffening (693.3 lb).
 
-   The the bow stiffening, the fins, the car and engines etc will be
-   added as point masses.
+   The bow stiffening, the fins, the car and engines etc will be added
+   as point masses.
   </documentation>
 
   <documentation>
@@ -269,6 +269,58 @@
        Total radio               392 lb
        Radar                     480 lb
        MAD                       200 lb
+  </documentation>
+  <documentation>
+   Typical useful/example load calculation according to [GAC:1944:MM]
+   page 7ff.:
+     Crew
+       10 crew members             10*175.0 lb
+     Fuel for main and aux. engines
+       Overhead Tanks                2850.0 lb (475 usgal @ 6 lb/usgal)
+       Slip Tanks                    1080.0 lb (180 usgal @ 6 lb/usgal)
+     Oil
+       Main engines                   390.0 lb (52 usgal @ 7.5 lb/usgal)
+       Aux. power plant                22.5 lb (3 usgal @ 7.5 lb/usgal)
+     Droppable fuel tanks (2)          42.1 lb
+     Armament
+       50 cal M.G.                    105.0 lb
+       M.G. ammunition                132.0 lb
+       Bomb racks (2)                  41.6 lb
+       Bombs M-17 (2)                 650.0 lb
+       Bomb racks (2)                  41.6 lb
+       Bombs M-17 (2)                 650.0 lb
+     Navigation Gear
+       Charts, publications             7.5 lb
+       Optical drift sight             13.5 lb
+       Wiley drift sight                1.5 lb
+       Parallel rulers, binoculars,
+       stop watch, dividers            14.0 lb
+       Misc. gear                      18.5 lb
+     Photographic gear                 55.0 lb
+     Phyrotechnics
+       Signal pistol                    2.1 lb
+       24 rounds signal flares          7.2 lb
+       24 float lights                 52.8 lb
+       24 bronze powder markers        48.0 lb
+     Emergency life saving equipment
+       10 life jackets                 30.0 lb
+       Life raft                       66.0 lb
+     Food and water
+       Food, canned                    30.0 lb
+       Food, fresh                     55.0 lb
+       Water, fresh                    35.0 lb
+       Rescue rations                  16.0 lb
+       Emergency food and water        27.0 lb
+     Misc. equipment
+       Classified container             2.2 lb
+       Emergency cable                  5.0 lb
+       Flash lights (2)                 1.5 lb
+       Fuel pick-up, Green marker buoys,
+       Grapnel                         28.0 lb
+       One chute, one harness          18.0 lb
+       Pratt and Whitney Engine Kit    15.0 lb
+       Wire cutter and knife            5.0 lb
+       Rigger's Kit                    15.5 lb
   </documentation>
   <!-- Crew. Placed after drawing in [GAC:1944:MM]. -->
   <pointmass name="Pilot"> <!-- n=1 -->
@@ -378,7 +430,7 @@
    </location>
   </pointmass>
 
-  <!-- Bombs -->
+  <!-- Armament -->
   <pointmass name="Bomb bay bomb load"> <!-- n=13 -->
    <weight unit="LBS"> 675.0 </weight>
    <location name="POINTMASS" unit="M">
@@ -1220,6 +1272,64 @@
    </summer>
 
   </channel>
+  <channel name="Static Weight Report">
+
+   <summer name="static-condition/flight-heaviness-lbs">
+    <input>-static-condition/net-lift-lbs</input>
+   </summer>
+
+   <fcs_function name="static-condition/design-heaviness-lbs">
+    <function>
+     <difference>
+      <sum> <!-- Total car weight -->
+       <!-- Crew -->
+       <property>inertia/pointmass-weight-lbs[1]</property>
+       <property>inertia/pointmass-weight-lbs[2]</property>
+       <property>inertia/pointmass-weight-lbs[3]</property>
+       <property>inertia/pointmass-weight-lbs[4]</property>
+       <property>inertia/pointmass-weight-lbs[5]</property>
+       <property>inertia/pointmass-weight-lbs[6]</property>
+       <property>inertia/pointmass-weight-lbs[7]</property>
+       <property>inertia/pointmass-weight-lbs[8]</property>
+       <property>inertia/pointmass-weight-lbs[8]</property>
+       <property>inertia/pointmass-weight-lbs[9]</property>
+       <!-- Fuel -->
+       <property>propulsion/tank[0]/contents-lbs</property>
+       <property>propulsion/tank[1]/contents-lbs</property>
+       <property>propulsion/tank[2]/contents-lbs</property>
+       <property>propulsion/tank[3]/contents-lbs</property>
+       <property>propulsion/tank[4]/contents-lbs</property>
+       <property>propulsion/tank[5]/contents-lbs</property>
+       <property>propulsion/tank[6]/contents-lbs</property>
+       <property>propulsion/tank[7]/contents-lbs</property>
+       <property>propulsion/tank[8]/contents-lbs</property>
+       <property>propulsion/tank[9]/contents-lbs</property>
+       <!-- Oil -->
+       <property>inertia/pointmass-weight-lbs[10]</property>
+       <property>inertia/pointmass-weight-lbs[11]</property>
+       <property>inertia/pointmass-weight-lbs[12]</property>
+       <!-- Armament -->
+       <property>inertia/pointmass-weight-lbs[14]</property>
+       <property>inertia/pointmass-weight-lbs[15]</property>
+       <property>inertia/pointmass-weight-lbs[16]</property>
+       <!-- Equipment -->
+       <property>inertia/pointmass-weight-lbs[17]</property>
+       <property>inertia/pointmass-weight-lbs[18]</property>
+       <property>inertia/pointmass-weight-lbs[19]</property>
+       <property>inertia/pointmass-weight-lbs[20]</property>
+       <!-- Car structure -->
+       <property>inertia/pointmass-weight-lbs[26]</property>
+       <property>inertia/pointmass-weight-lbs[27]</property>
+       <property>inertia/pointmass-weight-lbs[28]</property>
+       <property>inertia/pointmass-weight-lbs[29]</property>
+      </sum>
+      <value>16000.0</value> <!-- Car design suspension load -->
+     </difference>
+    </function>
+   </fcs_function>
+
+  </channel>
+
  </system>
 
  <!--

@@ -99,13 +99,17 @@
      Normal                    1346.4 in
 
  Maximum total car load:   18300 lbs (2300 lbs over design load)
+ Maximum Design heaviness:  2300 lbs
+ Design heaviness is total car load - the design load (16000 lbs).
 
+ <!--
  Maximum equilibrium weight                   :  lbs ( kg)
  Maximum static heavyness:   In Flight        :  lbs ( kg)
                              Take off/Landing :  lbs ( kg)
  Maximum static lightness                     :  lbs ( kg)
 
  Maximum operating altitude                   :  ft
+ -->
 
  ________________FlightGear Pilot's Notes_______________
 

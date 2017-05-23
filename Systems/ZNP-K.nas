@@ -177,6 +177,8 @@ var debug_display_view_handler = {
             ("/fdm/jsbsim/buoyant_forces/gas-cell/ballonet[0]/volume-ft3",
              "/fdm/jsbsim/buoyant_forces/gas-cell/ballonet[1]/volume-ft3");
         me.left.add("/fdm/jsbsim/static-condition/net-lift-lbs");
+        me.left.add("/fdm/jsbsim/static-condition/flight-heaviness-lbs");
+        me.left.add("/fdm/jsbsim/static-condition/design-heaviness-lbs");
         me.left.add("/fdm/jsbsim/atmosphere/T-R");
         me.left.add("/fdm/jsbsim/buoyant_forces/gas-cell/temp-R");
         me.left.add("/fdm/jsbsim/ballonets/valve-pos-norm[0]",
