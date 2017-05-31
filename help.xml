@@ -7,7 +7,7 @@
 -->
 <PropertyList>
 
- <title>Goodyear Type-K airship</title>
+ <title>US Navy ZNP-K / Goodyear Type-K airship</title>
  <!-- Specific keys -->
  <key>
   <name>W</name>
@@ -113,6 +113,6 @@
 
  ________________FlightGear Pilot's Notes_______________
 
- http://wiki.flightgear.org/index.php/Goodyear_K-Type_Airship
+ http://wiki.flightgear.org/Goodyear_K-Type_Airship
  </text>
 </PropertyList>
