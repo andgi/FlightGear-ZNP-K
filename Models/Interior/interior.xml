@@ -1,7 +1,7 @@
 <!--
   Goodyear K-type airship.
 
-  Copyright (C) 2011  Anders Gidenstam  (anders(at)gidenstam.org)
+  Copyright (C) 2011 - 2017  Anders Gidenstam  (anders(at)gidenstam.org)
   This file is licensed under the GPL license v2 or later.
 -->
 <PropertyList>
@@ -79,6 +79,41 @@
    <x> 1.00 </x>
    <y> 0.00 </y>
    <z> 0.00 </z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>pedal.L</object-name>
+  <object-name>pedal_arm.L</object-name>
+  <property>surface-positions/rudder-pos-norm</property>
+  <factor>20.0</factor>
+  <center>
+   <x-m> 27.97</x-m>
+   <y-m>  0.00</y-m>
+   <z-m>-12.32</z-m>
+  </center>
+  <axis>
+   <x>0.00</x>
+   <y>1.00</y>
+   <z>0.00</z>
+  </axis>
+ </animation>
+ <animation>
+  <type>rotate</type>
+  <object-name>pedal.R</object-name>
+  <object-name>pedal_arm.R</object-name>
+  <property>surface-positions/rudder-pos-norm</property>
+  <factor>-20.0</factor>
+  <center>
+   <x-m> 27.97</x-m>
+   <y-m>  0.00</y-m>
+   <z-m>-12.32</z-m>
+  </center>
+  <axis>
+   <x>0.00</x>
+   <y>1.00</y>
+   <z>0.00</z>
   </axis>
  </animation>
 
