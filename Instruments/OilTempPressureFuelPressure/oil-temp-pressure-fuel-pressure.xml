@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<!--
+  Oil temperature and pressure and fuel pressure combination instrument for
+  FlightGear.
+
+  Copyright (C) 2017  Anders Gidenstam  (anders(at)gidenstam.org)
+  This file is licensed under the GPL license version 2 or later.
+
+  The 3d model, texture and animations are originally from the FlightGear p51d
+  aircraft.
+-->
+<PropertyList>
+
+ <!-- Overlay these to set the controlling properties. -->
+ <params>
+  <serviceable          type="string"/>
+ 
+  <oil-temperature-degf type="string"/>
+  <oil-pressure-psi     type="string"/>
+  <fuel-pressure-psi    type="string"/>
+
+  <lighting-norm        type="string"/>
+ </params>
+
+ <path>oil-temp-pressure-fuel-pressure.ac</path>
+
+ <offsets>
+  <!-- x/y/z == back/right/up -->
+  <x-m>0.000</x-m>
+  <y-m>0.000</y-m>
+  <z-m>0.000</z-m>
+ </offsets>
+
+ <!-- Oil Temperature -->
+ <animation>
+  <type>rotate</type>
+  <object-name>NeedleOilTemp</object-name>
+  <property alias="../../params/oil-temperature-degf"/>
+  <min>0</min>
+  <max>100</max>
+  <interpolation>
+   <entry>
+    <ind>32</ind>
+    <dep>-30</dep>
+   </entry>
+   <entry>
+    <ind>212</ind>
+    <dep>123</dep>
+   </entry>
+  </interpolation>
+  <center>
+   <x-m>0.000</x-m>
+   <y-m>0.000</y-m>
+   <z-m>0.000</z-m>
+  </center>
+  <axis>
+   <x>-1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <!-- Oil Pressure -->
+ <animation>
+  <type>rotate</type>
+  <object-name>NeedleOilPress</object-name>
+  <property alias="../../params/oil-pressure-psi"/>
+  <min>0</min>
+  <max>200</max>
+  <interpolation>
+   <entry>
+    <ind>0</ind>
+    <dep>0</dep>
+   </entry>
+   <entry>
+    <ind>200</ind>
+    <dep>190</dep>
+   </entry>
+  </interpolation>
+  <center>
+   <x-m>0.0000</x-m>
+   <y-m>-0.0087</y-m>
+   <z-m>-0.0116</z-m>
+  </center>
+  <axis>
+   <x>-1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <!-- Fuel Pressure -->
+ <animation>
+  <type>rotate</type>
+  <object-name>NeedleFuel</object-name>
+  <property alias="../../params/fuel-pressure-psi"/>
+  <min>0.0</min>
+  <max>25.0</max>
+  <interpolation>
+   <entry>
+    <ind>0</ind>
+    <dep>0</dep>
+   </entry>
+   <entry>
+    <ind>12</ind>
+    <dep>92</dep>
+   </entry>
+   <entry>
+    <ind>25</ind>
+    <dep>180</dep>
+   </entry>
+  </interpolation>
+  <center>
+   <x-m>0.0000</x-m>
+   <y-m>0.0087</y-m>
+   <z-m>-0.0116</z-m>
+  </center>
+  <axis>
+   <x>1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <animation> 
+  <type>material</type>
+  <object-name>Face</object-name>
+  <object-name>NeedleOilTemp</object-name>
+  <object-name>NeedleOilPress</object-name>
+  <object-name>NeedleFuel</object-name>
+  <emission> 
+   <factor-prop alias="../../../params/lighting-norm"/>
+   <red>0.35</red>
+   <green>0.35</green>
+   <blue>0.40</blue>
+  </emission>
+ </animation>
+
+ <animation>
+  <type>noshadow</type>
+ </animation>
+
+</PropertyList>

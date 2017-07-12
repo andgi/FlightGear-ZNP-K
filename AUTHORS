@@ -29,6 +29,10 @@ Emmanuel BARANGER
   - R1340 engines (scaled by 1.45). (From FlightGear/Aircraft/Sikorsky-S38)
   - Propellers. (From FlightGear/Aircraft/B-25)
 
+Jim Wilson and Hal Van Engel
+  - Oil temperature and pressure and fuel pressure instrument.
+    (From FlightGear/Aircraft/p51d)
+
 Dependencies:
 
 Aircraft/Short_Empire   Instruments/SmithForeAftLevel/smith_fore_aft_level.*
@@ -36,8 +40,5 @@ Aircraft/ZLT-NT         Systems/ground_handling.nas
                         Systems/mp-network.nas
                         Models/GroundCrew/scania-mast-truck.xml
 
-Potential use:
-Aircraft/p51d
-p51d/Models/p51d-jw-remote.*
-p51d/Models/p51d-jw-vsi.*
-p51d/Models/switch.ac
+Temporary dependency:
+Aircraft/p51d           Various instruments.

@@ -1,7 +1,7 @@
 <!--
   Goodyear K-type airship.
 
-  Copyright (C) 2011  Anders Gidenstam  (anders(at)gidenstam.org)
+  Copyright (C) 2011 - 2017  Anders Gidenstam  (anders(at)gidenstam.org)
   This file is licensed under the GPL license v2 or later.
 -->
 <PropertyList>
@@ -40,9 +40,48 @@
       two large instruments (80mm?) (only one to the left in the lowest);
       the right set has 6 rows most containing small instruments (2 1/4"?).
  -->
+ <!--
+      In photo "K-Type_interior_U-134-212.jpg" (probably a mid-late series
+      K-Type ship) the following layout can be deduced:
+        Left-most two columns downwards:
+          Two large single pointer clock-like instruments. RPM?
+          Two large single pointer clock-like instruments. Manifold pressure?
+          Two large three scale, three pointer instruments.
+            At the top a horizontal +/- 35ish deg scale. Oil temp?
+            Below two (left, right) +/-90ish deg scales. Oil + Fuel pressure?
+            DHC-3 Otters and T-6 (which also use a P&W 1340) seem to have a very
+            similar looking instrument which shows oil temp (0-100 degC) on the
+            upper scale and oil (0 - 200 PSI) and fuel (0 - 25 PSI) pressure
+            below.
+          A single large (left column) instrument with two crossing pointers.
+          Well below: two push buttons or indicator lamps.
+        Right-most two columns downwards:
+          An empty (left) small instrument hole. Place for synchroscope?
+          A large (right) three pointer clock like instrument. Clock?
+          Two small horizontal +/-35ish deg single pointer instruments.
+          Two small horizontal +/-40ish deg single pointer instruments.
+            Vertical marking "CARB" in between? Carb. Air. Temp.?
+          Two small horizontal +/-40ish deg single pointer instruments.
+            Placard below.
+          Two toggle switches with a small horizontal +/-35ish deg single
+            pointer instrument in between.
+            For the toggles possibly vertical markings OFF above, ON below.
+          A single (left) small horizontal +/-40ish deg single pointer
+            instrument with some sort of rotating toggle to the right which
+            seems to have three markings left-top-right above it.
+
+      The photo "NEAM_K-28_mechpanel-1.jpg" of the restored K-28 car shows a
+      somewhat different layout. However, the period photo "K-28-14.jpg",
+      claiming to be from K-28 shows yet another different layout where the
+      three and two pointer instruments in the left-most columns seem to be
+      replaced by 2 columns of 4 (one large and 3 small) single pointer
+      intruments.
+ -->
 
  <!-- Preliminary instruments and controls.
       Left-right column, top-bottom, left-right. -->
+
+ <!-- Left-most two columns. -->
  <model>
   <name>Port tachometer</name>
   <path>Aircraft/Instruments-3d/tach/tach.xml</path>
@@ -57,7 +96,6 @@
    </animation>
   </overlay>
  </model>
-
  <model>
   <name>Starboard tachometer</name>
   <path>Aircraft/Instruments-3d/tach/tach.xml</path>
@@ -72,5 +110,216 @@
    </animation>
   </overlay>
  </model>
+
+ <model>
+  <name>Port manifold pressure</name>
+  <path>Aircraft/p51d/Models/Instruments/ManifoldPressure/p51d-jw-man.xml</path>
+  <offsets>
+   <x-m> 0.002</x-m>
+   <y-m>-0.160</y-m>
+   <z-m> 0.350</z-m>
+  </offsets>
+  <overlay>
+   <params>
+    <mp-inhg>/engines/engine[0]/mp-inhg</mp-inhg>
+   </params>
+  </overlay>
+ </model>
+ <model>
+  <name>Starboard manifold pressure</name>
+  <path>Aircraft/p51d/Models/Instruments/ManifoldPressure/p51d-jw-man.xml</path>
+  <offsets>
+   <x-m> 0.002</x-m>
+   <y-m>-0.060</y-m>
+   <z-m> 0.350</z-m>
+  </offsets>
+  <overlay>
+   <params>
+    <mp-inhg>/engines/engine[1]/mp-inhg</mp-inhg>
+   </params>
+  </overlay>
+ </model>
+
+ <model>
+  <name>Port oil and fuel pressure</name>
+  <path>Aircraft/ZNP-K/Instruments/OilTempPressureFuelPressure/oil-temp-pressure-fuel-pressure.xml</path>
+  <offsets>
+   <x-m>-0.002</x-m>
+   <y-m>-0.160</y-m>
+   <z-m> 0.250</z-m>
+  </offsets>
+  <overlay>
+   <params>
+    <oil-temperature-degf>/engines/engine[0]/oil-temperature-degf</oil-temperature-degf>
+    <oil-pressure-psi>/engines/engine[0]/oil-pressure-psi</oil-pressure-psi>
+    <fuel-pressure-psi></fuel-pressure-psi>
+   </params>
+  </overlay>
+ </model>
+ <model>
+  <name>Starboard oil and fuel pressure</name>
+  <path>Aircraft/ZNP-K/Instruments/OilTempPressureFuelPressure/oil-temp-pressure-fuel-pressure.xml</path>
+  <offsets>
+   <x-m>-0.002</x-m>
+   <y-m>-0.060</y-m>
+   <z-m> 0.250</z-m>
+  </offsets>
+  <overlay>
+   <params>
+    <oil-temperature-degf>/engines/engine[1]/oil-temperature-degf</oil-temperature-degf>
+    <oil-pressure-psi>/engines/engine[1]/oil-pressure-psi</oil-pressure-psi>
+    <fuel-pressure-psi></fuel-pressure-psi>
+   </params>
+  </overlay>
+ </model>
+
+ <!-- Right-most two columns. -->
+ <!-- model>
+  <name>Synchroscope</name>
+  <path>Aircraft/</path>
+  <offsets>
+   <x-m>-0.002</x-m>
+   <y-m> 0.060</y-m>
+   <z-m> 0.450</z-m>
+  </offsets>
+  <overlay>
+   <params>
+    <oil-temperature-degC></oil-temperature-degC>
+    <oil-pressure-psi></oil-pressure-psi>
+    <fuel-pressure-psi></fuel-pressure-psi>
+   </params>
+  </overlay>
+ </model -->
+ <model>
+  <name>Clock</name>
+  <path>Aircraft/p51d/Models/Instruments/Clock/p51d-jw-clock.xml</path>
+  <offsets>
+   <x-m>-0.002</x-m>
+   <y-m> 0.160</y-m>
+   <z-m> 0.450</z-m>
+  </offsets>
+  <overlay>
+   <params>
+   </params>
+  </overlay>
+ </model>
+
+ <model>
+  <name></name>
+  <path>Aircraft/p51d/Models/Instruments/CarbAndCoolingTemp/p51d-jw-carbtemp.xml</path>
+  <offsets>
+   <x-m>-0.002</x-m>
+   <y-m> 0.060</y-m>
+   <z-m> 0.360</z-m>
+  </offsets>
+  <overlay>
+   <params>
+   </params>
+  </overlay>
+ </model>
+ <model>
+  <name></name>
+  <path>Aircraft/p51d/Models/Instruments/CarbAndCoolingTemp/p51d-jw-carbtemp.xml</path>
+  <offsets>
+   <x-m>-0.002</x-m>
+   <y-m> 0.160</y-m>
+   <z-m> 0.360</z-m>
+  </offsets>
+  <overlay>
+   <params>
+   </params>
+  </overlay>
+ </model>
+
+ <model>
+  <name>Port carburettor air temperature</name>
+  <path>Aircraft/p51d/Models/Instruments/CarbAndCoolingTemp/p51d-jw-carbtemp.xml</path>
+  <offsets>
+   <x-m>-0.002</x-m>
+   <y-m> 0.060</y-m>
+   <z-m> 0.280</z-m>
+  </offsets>
+  <overlay>
+   <params>
+   </params>
+  </overlay>
+ </model>
+ <model>
+  <name>Starboard carburettor air temperature</name>
+  <path>Aircraft/p51d/Models/Instruments/CarbAndCoolingTemp/p51d-jw-carbtemp.xml</path>
+  <offsets>
+   <x-m>-0.002</x-m>
+   <y-m> 0.160</y-m>
+   <z-m> 0.280</z-m>
+  </offsets>
+  <overlay>
+   <params>
+   </params>
+  </overlay>
+ </model>
+
+ <model>
+  <name></name>
+  <path>Aircraft/p51d/Models/Instruments/CarbAndCoolingTemp/p51d-jw-carbtemp.xml</path>
+  <offsets>
+   <x-m>-0.002</x-m>
+   <y-m> 0.060</y-m>
+   <z-m> 0.200</z-m>
+  </offsets>
+  <overlay>
+   <params>
+   </params>
+  </overlay>
+ </model>
+ <model>
+  <name></name>
+  <path>Aircraft/p51d/Models/Instruments/CarbAndCoolingTemp/p51d-jw-carbtemp.xml</path>
+  <offsets>
+   <x-m>-0.002</x-m>
+   <y-m> 0.160</y-m>
+   <z-m> 0.200</z-m>
+  </offsets>
+  <overlay>
+   <params>
+   </params>
+  </overlay>
+ </model>
+
+ <!-- model>
+  <name>Toggle</name>
+ </model -->
+ <model>
+  <name></name>
+  <path>Aircraft/p51d/Models/Instruments/CarbAndCoolingTemp/p51d-jw-carbtemp.xml</path>
+  <offsets>
+   <x-m>-0.002</x-m>
+   <y-m> 0.110</y-m>
+   <z-m> 0.120</z-m>
+  </offsets>
+  <overlay>
+   <params>
+   </params>
+  </overlay>
+ </model>
+ <!-- model>
+  <name>Toggle</name>
+ </model -->
+
+ <model>
+  <name></name>
+  <path>Aircraft/p51d/Models/Instruments/CarbAndCoolingTemp/p51d-jw-carbtemp.xml</path>
+  <offsets>
+   <x-m>-0.002</x-m>
+   <y-m> 0.060</y-m>
+   <z-m> 0.040</z-m>
+  </offsets>
+  <overlay>
+   <params>
+   </params>
+  </overlay>
+ </model>
+ <!-- model>
+  <name>Knob</name>
+ </model -->
 
 </PropertyList>
