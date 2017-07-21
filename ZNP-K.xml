@@ -31,7 +31,7 @@
   <email>anders at gidenstam dot org</email>
 
   <filecreationdate>2010-01-28</filecreationdate>
-  <version>$Id: ZNP-K.xml,v 1.12 2017/05/23 20:16:58 anders Exp $</version>
+  <version>$Id: ZNP-K.xml,v 1.13 2017/07/21 21:18:00 anders Exp $</version>
 
   <description>JSBSim model of a Goodyear K-type airship.</description>
 
@@ -87,6 +87,18 @@
    author="FAA"
    title="http://www.airweb.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/557844629a50a6388525676a006740c9/$FILE/ATTY2APL/5E-2.pdf"
    date="?"/>
+
+  <reference
+   refID="ALTHOFF:2009:FW"
+   author="William F. Althoff"
+   title="Forgotten weapon: U.S. Navy airships and the U-boat war"
+   date="2009"/>
+
+  <reference
+   refID="RVT:2009:AVS"
+   author="Richard G. Van Treuren"
+   title="Airships vs. Submarines"
+   date="2009"/>
 
  </fileheader>
 
@@ -911,6 +923,7 @@
     <z> -9.2 </z>
    </location>
    <!-- 125 US gallon AVGAS, density 0.72 kg/liter. -->
+   <type>AVGAS</type>
    <capacity unit="KG"> 347.0 </capacity>
    <contents unit="KG"> 347.0 </contents>
   </tank>
@@ -921,6 +934,7 @@
     <z> -9.2 </z>
    </location>
    <!-- 125 US gallon AVGAS, density 0.72 kg/liter. -->
+   <type>AVGAS</type>
    <capacity unit="KG"> 347.0 </capacity>
    <contents unit="KG"> 347.0 </contents>
   </tank>
@@ -933,6 +947,7 @@
     <z> -9.2 </z>
    </location>
    <!-- 125 US gallon AVGAS, density 0.72 kg/liter. -->
+   <type>AVGAS</type>
    <capacity unit="KG"> 347.0 </capacity>
    <contents unit="KG"> 200.0 </contents>
   </tank>
@@ -945,6 +960,7 @@
     <z> -9.2 </z>
    </location>
    <!-- 125 US gallon AVGAS, density 0.72 kg/liter. -->
+   <type>AVGAS</type>
    <capacity unit="KG"> 347.0 </capacity>
    <contents unit="KG"> 200.0 </contents>
   </tank>
@@ -957,6 +973,7 @@
     <z> -9.2 </z>
    </location>
    <!-- 125 US gallon AVGAS, density 0.72 kg/liter. -->
+   <type>AVGAS</type>
    <capacity unit="KG"> 347.0 </capacity>
    <contents unit="KG"> 200.0 </contents>
   </tank>
@@ -967,6 +984,7 @@
     <z> -9.2 </z>
    </location>
    <!-- 125 US gallon AVGAS, density 0.72 kg/liter. -->
+   <type>AVGAS</type>
    <capacity unit="KG"> 347.0 </capacity>
    <contents unit="KG"> 200.0 </contents>
   </tank>
@@ -979,6 +997,7 @@
     <z> -9.2 </z>
    </location>
    <!-- 125 US gallon AVGAS, density 0.72 kg/liter. -->
+   <type>AVGAS</type>
    <capacity unit="KG"> 347.0 </capacity>
    <contents unit="KG"> 200.0 </contents>
   </tank>
@@ -989,6 +1008,7 @@
     <z> -9.2 </z>
    </location>
    <!-- 125 US gallon AVGAS, density 0.72 kg/liter. -->
+   <type>AVGAS</type>
    <capacity unit="KG"> 347.0 </capacity>
    <contents unit="KG"> 200.0 </contents>
   </tank>
@@ -1001,6 +1021,7 @@
     <z> -11.1 </z>
    </location>
    <!-- 80 US gallon AVGAS, density 0.72 kg/liter. -->
+   <type>AVGAS</type>
    <capacity unit="KG"> 218.0 </capacity>
    <contents unit="KG"> 100.0 </contents>
   </tank>
@@ -1013,6 +1034,7 @@
     <z> -11.1 </z>
    </location>
    <!-- 80 US gallon AVGAS, density 0.72 kg/liter. -->
+   <type>AVGAS</type>
    <capacity unit="KG"> 272.5 </capacity>
    <contents unit="KG"> 100.0 </contents>
   </tank>

@@ -44,20 +44,21 @@
       In photo "K-Type_interior_U-134-212.jpg" (probably a mid-late series
       K-Type ship) the following layout can be deduced:
         Left-most two columns downwards:
-          Two large single pointer clock-like instruments. RPM?
-          Two large single pointer clock-like instruments. Manifold pressure?
+          Two large single pointer clock-like instruments. RPM.
+          Two large single pointer clock-like instruments. Manifold pressure.
           Two large three scale, three pointer instruments.
-            At the top a horizontal +/- 35ish deg scale. Oil temp?
-            Below two (left, right) +/-90ish deg scales. Oil + Fuel pressure?
+            At the top a horizontal +/- 35ish deg scale. Oil temp.
+            Below two (left, right) +/-90ish deg scales. Oil + Fuel pressure.
             DHC-3 Otters and T-6 (which also use a P&W 1340) seem to have a very
             similar looking instrument which shows oil temp (0-100 degC) on the
             upper scale and oil (0 - 200 PSI) and fuel (0 - 25 PSI) pressure
             below.
           A single large (left column) instrument with two crossing pointers.
+            Cylinder head temperature?
           Well below: two push buttons or indicator lamps.
         Right-most two columns downwards:
           An empty (left) small instrument hole. Place for synchroscope?
-          A large (right) three pointer clock like instrument. Clock?
+          A large (right) three pointer clock like instrument. Clock.
           Two small horizontal +/-35ish deg single pointer instruments.
           Two small horizontal +/-40ish deg single pointer instruments.
             Vertical marking "CARB" in between? Carb. Air. Temp.?
@@ -76,6 +77,17 @@
       three and two pointer instruments in the left-most columns seem to be
       replaced by 2 columns of 4 (one large and 3 small) single pointer
       intruments.
+
+      A sketch by Bill Aldrin from a manual on page 348 in [RVT:2009:AVS] shows
+      a layout mostly consistent with "K-28-14.jpg". The text is not very
+      readable, however, but confirms the manifold pressure gauges, the clock
+      and that the three lowest rows of small gauges in the left-most columns
+      in "K-28-14.jpg" are fuel pressure, oil pressure and oil temperature
+      gauges, i.e. those replaced by the large three pointer gauges in
+      "K-Type_interior_U-134-212.jpg". The row above of two large instruments
+      may be the cylinder head temperature gauges, perhaps indicating that the
+      large gauge with two crossing pointers in "K-Type_interior_U-134-212.jpg"
+      also shows these.
  -->
 
  <!-- Preliminary instruments and controls.
