@@ -3,7 +3,7 @@
 
   Goodyear K-type airship flight model for JSBSim.
 
-    Copyright (C) 2010 - 2017  Anders Gidenstam  (anders(at)gidenstam.org)
+    Copyright (C) 2010 - 2018  Anders Gidenstam  (anders(at)gidenstam.org)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@
   <email>anders at gidenstam dot org</email>
 
   <filecreationdate>2010-01-28</filecreationdate>
-  <version>$Id: ZNP-K.xml,v 1.13 2017/07/21 21:18:00 anders Exp $</version>
+  <version>$Id: ZNP-K.xml,v 1.14 2018/04/08 20:29:20 anders Exp $</version>
 
   <description>JSBSim model of a Goodyear K-type airship.</description>
 
@@ -1575,55 +1575,27 @@
    </direction>
   </force>
 
-  <force name="added-mass-pitch[0]" frame="BODY">
-   <location unit="M">
-    <x> 34.73 </x>
-    <y>  0.00 </y>
-    <z> -0.3048 </z>
-   </location>
+  <moment name="added-mass-pitch" frame="BODY" unit="LBSFT">
+   <direction>
+    <x> 0.0 </x>
+    <y> 1.0 </y>
+    <z> 0.0 </z>
+   </direction>
+  </moment>
+  <moment name="added-mass-roll" frame="BODY" unit="LBSFT">
    <direction>
     <x> 1.0 </x>
     <y> 0.0 </y>
     <z> 0.0 </z>
    </direction>
-  </force>
-  <force name="added-mass-pitch[1]" frame="BODY">
-   <location unit="M">
-    <x> 34.73 </x>
-    <y>  0.00 </y>
-    <z>  0.3048 </z>
-   </location>
+  </moment>
+  <moment name="added-mass-yaw" frame="BODY" unit="LBSFT">
    <direction>
-    <x> 1.0 </x>
+    <x> 0.0 </x>
     <y> 0.0 </y>
-    <z> 0.0 </z>
+    <z> 1.0 </z>
    </direction>
-  </force>
-
-  <force name="added-mass-yaw[0]" frame="BODY">
-   <location unit="M">
-    <x> 34.73 </x>
-    <y> -0.3048 </y>
-    <z>  0.0 </z>
-   </location>
-   <direction>
-    <x> 1.0 </x>
-    <y> 0.0 </y>
-    <z> 0.0 </z>
-   </direction>
-  </force>
-  <force name="added-mass-yaw[1]" frame="BODY">
-   <location unit="M">
-    <x> 34.73 </x>
-    <y>  0.3048 </y>
-    <z>  0.00 </z>
-   </location>
-   <direction>
-    <x> 1.0 </x>
-    <y> 0.0 </y>
-    <z> 0.0 </z>
-   </direction>
-  </force>
+  </moment>
 
  </external_reactions>
 
@@ -1662,8 +1634,8 @@
 
   <!-- Added mass constants. -->
   <property value="-0.08"> aero/constants/added-mass/k-axial </property>
+  <property value="0.88"> aero/constants/added-mass/k-transverse </property>
   <property value="-0.88"> aero/constants/added-mass/k-traverse </property>
-  <property value="-0.88"> aero/constants/added-mass/k-transverse </property>
   <property value="-0.65"> aero/constants/added-mass/k-rotational </property>
 
   <channel name="Temporary hack to prevent oscillations.">
