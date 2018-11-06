@@ -31,7 +31,7 @@
   <email>anders at gidenstam dot org</email>
 
   <filecreationdate>2010-01-28</filecreationdate>
-  <version>$Id: ZNP-K.xml,v 1.14 2018/04/08 20:29:20 anders Exp $</version>
+  <version>$Id: ZNP-K.xml,v 1.15 2018/11/06 08:32:05 anders Exp $</version>
 
   <description>JSBSim model of a Goodyear K-type airship.</description>
 
@@ -1376,6 +1376,7 @@
    <summer name="fcs/elevator/cmd-norm">
     <input>fcs/elevator-cmd-norm</input>
     <input>fcs/pitch-trim-cmd-norm</input>
+    <input>crew/elevator-pilot/elevator-cmd-norm</input>
     <clipto>
      <min>-1</min>
      <max>1</max>
@@ -1417,6 +1418,7 @@
     <input>fcs/rudder-cmd-norm</input>
     <input>-fcs/aileron-cmd-norm</input> <!-- For convenience -->
     <input>fcs/yaw-trim-cmd-norm</input>
+    <input>crew/rudder-pilot/rudder-cmd-norm</input>
     <clipto>
      <min>-1</min>
      <max>1</max>
@@ -1633,10 +1635,9 @@
   <property value="5652.7"> aero/constants/volume-ft3_2_3 </property>
 
   <!-- Added mass constants. -->
-  <property value="-0.08"> aero/constants/added-mass/k-axial </property>
+  <property value="0.08"> aero/constants/added-mass/k-axial </property>
   <property value="0.88"> aero/constants/added-mass/k-transverse </property>
-  <property value="-0.88"> aero/constants/added-mass/k-traverse </property>
-  <property value="-0.65"> aero/constants/added-mass/k-rotational </property>
+  <property value="0.65"> aero/constants/added-mass/k-rotational </property>
 
   <channel name="Temporary hack to prevent oscillations.">
    <fcs_function name="aero/constants/added-mass/tweak-factor">
@@ -1657,6 +1658,7 @@
 
  <system file="airship_added_mass"/>
 
+ <system file="crew-jsbsim"/>
  <system file="shadow-jsbsim"/>
 
  <!-- aerodynamics file="Systems/gerris_aero"/ -->
