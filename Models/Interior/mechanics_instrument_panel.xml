@@ -1,7 +1,7 @@
 <!--
   Goodyear K-type airship.
 
-  Copyright (C) 2011 - 2017  Anders Gidenstam  (anders(at)gidenstam.org)
+  Copyright (C) 2011 - 2023  Anders Gidenstam  (anders(at)gidenstam.org)
   This file is licensed under the GPL license v2 or later.
 -->
 <PropertyList>
@@ -125,7 +125,7 @@
 
  <model>
   <name>Port manifold pressure</name>
-  <path>Aircraft/p51d/Models/Instruments/ManifoldPressure/p51d-jw-man.xml</path>
+  <path>Aircraft/ZNP-K/Instruments/ManifoldPressure/p51d-jw-man.xml</path>
   <offsets>
    <x-m> 0.002</x-m>
    <y-m>-0.160</y-m>
@@ -139,7 +139,7 @@
  </model>
  <model>
   <name>Starboard manifold pressure</name>
-  <path>Aircraft/p51d/Models/Instruments/ManifoldPressure/p51d-jw-man.xml</path>
+  <path>Aircraft/ZNP-K/Instruments/ManifoldPressure/p51d-jw-man.xml</path>
   <offsets>
    <x-m> 0.002</x-m>
    <y-m>-0.060</y-m>
@@ -204,7 +204,7 @@
  </model -->
  <model>
   <name>Clock</name>
-  <path>Aircraft/p51d/Models/Instruments/Clock/p51d-jw-clock.xml</path>
+  <path>Aircraft/ZNP-K/Instruments/Clock/p51d-jw-clock.xml</path>
   <offsets>
    <x-m>-0.002</x-m>
    <y-m> 0.160</y-m>
@@ -218,7 +218,7 @@
 
  <model>
   <name></name>
-  <path>Aircraft/p51d/Models/Instruments/CarbAndCoolingTemp/p51d-jw-carbtemp.xml</path>
+  <path>Aircraft/ZNP-K/Instruments/CarbAndCoolingTemp/p51d-jw-carbtemp.xml</path>
   <offsets>
    <x-m>-0.002</x-m>
    <y-m> 0.060</y-m>
@@ -231,7 +231,7 @@
  </model>
  <model>
   <name></name>
-  <path>Aircraft/p51d/Models/Instruments/CarbAndCoolingTemp/p51d-jw-carbtemp.xml</path>
+  <path>Aircraft/ZNP-K/Instruments/CarbAndCoolingTemp/p51d-jw-carbtemp.xml</path>
   <offsets>
    <x-m>-0.002</x-m>
    <y-m> 0.160</y-m>
@@ -245,7 +245,7 @@
 
  <model>
   <name>Port carburettor air temperature</name>
-  <path>Aircraft/p51d/Models/Instruments/CarbAndCoolingTemp/p51d-jw-carbtemp.xml</path>
+  <path>Aircraft/ZNP-K/Instruments/CarbAndCoolingTemp/p51d-jw-carbtemp.xml</path>
   <offsets>
    <x-m>-0.002</x-m>
    <y-m> 0.060</y-m>
@@ -258,7 +258,7 @@
  </model>
  <model>
   <name>Starboard carburettor air temperature</name>
-  <path>Aircraft/p51d/Models/Instruments/CarbAndCoolingTemp/p51d-jw-carbtemp.xml</path>
+  <path>Aircraft/ZNP-K/Instruments/CarbAndCoolingTemp/p51d-jw-carbtemp.xml</path>
   <offsets>
    <x-m>-0.002</x-m>
    <y-m> 0.160</y-m>
@@ -272,7 +272,7 @@
 
  <model>
   <name></name>
-  <path>Aircraft/p51d/Models/Instruments/CarbAndCoolingTemp/p51d-jw-carbtemp.xml</path>
+  <path>Aircraft/ZNP-K/Instruments/CarbAndCoolingTemp/p51d-jw-carbtemp.xml</path>
   <offsets>
    <x-m>-0.002</x-m>
    <y-m> 0.060</y-m>
@@ -285,7 +285,7 @@
  </model>
  <model>
   <name></name>
-  <path>Aircraft/p51d/Models/Instruments/CarbAndCoolingTemp/p51d-jw-carbtemp.xml</path>
+  <path>Aircraft/ZNP-K/Instruments/CarbAndCoolingTemp/p51d-jw-carbtemp.xml</path>
   <offsets>
    <x-m>-0.002</x-m>
    <y-m> 0.160</y-m>
@@ -302,7 +302,7 @@
  </model -->
  <model>
   <name></name>
-  <path>Aircraft/p51d/Models/Instruments/CarbAndCoolingTemp/p51d-jw-carbtemp.xml</path>
+  <path>Aircraft/ZNP-K/Instruments/CarbAndCoolingTemp/p51d-jw-carbtemp.xml</path>
   <offsets>
    <x-m>-0.002</x-m>
    <y-m> 0.110</y-m>
@@ -319,7 +319,7 @@
 
  <model>
   <name></name>
-  <path>Aircraft/p51d/Models/Instruments/CarbAndCoolingTemp/p51d-jw-carbtemp.xml</path>
+  <path>Aircraft/ZNP-K/Instruments/CarbAndCoolingTemp/p51d-jw-carbtemp.xml</path>
   <offsets>
    <x-m>-0.002</x-m>
    <y-m> 0.060</y-m>

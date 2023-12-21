@@ -1,6 +1,6 @@
 US Navy ZNP-K / Goodyear K-Type airship flight model for JSBSim.
 
-    Copyright (C) 2010 - 2017  Anders Gidenstam  (anders(at)gidenstam.org)
+    Copyright (C) 2010 - 2023  Anders Gidenstam  (anders(at)gidenstam.org)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -30,8 +30,9 @@ Emmanuel BARANGER
   - Propellers. (From FlightGear/Aircraft/B-25)
 
 Jim Wilson and Hal Van Engel
-  - Oil temperature and pressure and fuel pressure instrument.
-    (From FlightGear/Aircraft/p51d)
+  - Oil temperature and pressure and fuel pressure instrument, manifold
+    pressure instrument, clock and carburettor and cooling temperature
+    instrument. (From FlightGear/Aircraft/p51d)
 
 Dependencies:
 
@@ -39,6 +40,3 @@ Aircraft/Short_Empire   Instruments/SmithForeAftLevel/smith_fore_aft_level.*
 Aircraft/ZLT-NT         Systems/ground_handling.nas
                         Systems/mp-network.nas
                         Models/GroundCrew/scania-mast-truck.xml
-
-Temporary dependency:
-Aircraft/p51d           Various instruments.
