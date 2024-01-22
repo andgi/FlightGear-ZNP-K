@@ -35,7 +35,7 @@
    <set name="mooring/longitude-deg" value="-122.00"/>
    <set name="mooring/altitude-ft" value="45.0"/>
    <!-- Weigh-off. -->
-   <!-- set name="inertia/pointmass-weight-lbs[0]" value="2500.0"/ -->
+   <set name="inertia/pointmass-weight-lbs[0]" value="1000.0"/>
   </event>
 
   <event name="Initialize 2">
