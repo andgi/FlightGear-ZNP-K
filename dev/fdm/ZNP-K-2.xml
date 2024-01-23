@@ -9,6 +9,7 @@
  <use aircraft="ZNP-K" initialize="dev/fdm/reset01"/>
  <run start="0.0" end="480.1" dt="0.004166666667">
 
+  <property value="0">simulation/course-time-trigger</property>
   <property value="0">simulation/notify-time-trigger</property>
 
   <event name="Initialize 1">
@@ -86,10 +87,48 @@
    <condition>
     position/h-agl-ft GE 1050
    </condition>
-   <set name="fcs/elevator-cmd-norm" value="0.4"/>
+   <set name="fcs/elevator-cmd-norm" value="0.66"/>
   </event>
 
-  <event name="Time Notify" persistent="true">
+  <event name="Stay at course" persistent="true">
+   <description>Check course at 1 second intervals</description>
+   <condition>
+    simulation/sim-time-sec GE simulation/course-time-trigger
+    attitude/psi-deg LT 4
+    attitude/psi-deg GT 1
+   </condition>
+   <set name="fcs/rudder-cmd-norm" value="0.0"/>
+   <set name="simulation/course-time-trigger" value="1" type="FG_DELTA"/>
+  </event>
+  <event name="Reduce course" persistent="true">
+   <description>Check course at 1 second intervals</description>
+   <condition>
+    simulation/sim-time-sec GE simulation/course-time-trigger
+    attitude/psi-deg GT 5
+    attitude/psi-deg LT 180
+   </condition>
+   <notify>
+    <property>fcs/rudder-pos-norm</property>
+    <property>attitude/psi-deg</property>
+   </notify>
+   <set name="fcs/rudder-cmd-norm" value="0.5"/>
+   <set name="simulation/course-time-trigger" value="1" type="FG_DELTA"/>
+  </event>
+  <event name="Increase course" persistent="true">
+   <description>Check course at 1 second intervals</description>
+   <condition>
+    simulation/sim-time-sec GE simulation/course-time-trigger
+    attitude/psi-deg GT 200
+   </condition>
+   <notify>
+    <property>fcs/rudder-pos-norm</property>
+    <property>attitude/psi-deg</property>
+   </notify>
+   <set name="fcs/rudder-cmd-norm" value="-0.5"/>
+   <set name="simulation/course-time-trigger" value="1" type="FG_DELTA"/>
+  </event>
+
+  <event name="Time notify" persistent="true">
    <description>Output message at 5 second intervals</description>
    <notify>
     <property>position/distance-from-start-mag-mt</property>
