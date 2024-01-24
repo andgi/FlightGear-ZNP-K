@@ -33,6 +33,9 @@
    <set name="inertia/pointmass-weight-lbs[0]" value="1000.0"/>
    <!-- Set elevator. -->
    <set name="fcs/elevator-cmd-norm" value="-0.1"/>
+   <!-- Fill the forward ballonet. -->
+   <set name="fcs/ballonet-damper-cmd-norm[0]" value="1.0"/>
+   <set name="fcs/ballonet-valve-cmd-norm[1]" value="0.8"/>
   </event>
 
   <event name="Initialize 2">
@@ -82,12 +85,25 @@
    <set name="fcs/throttle-cmd-norm[1]" value="0.6"/>
   </event>
 
+  <event name="Close the forward damper">
+   <description>Close the forward damper</description>
+   <condition>
+    inertia/cg-x-in LT 1325.0
+   </condition>
+   <notify>
+    <property>ballonets/damper-flow-ft3ps[0]</property>
+    <property>fcs/ballonet-damper-cmd-norm[0]</property>
+   </notify>
+   <set name="fcs/ballonet-damper-cmd-norm[0]" value="0.0"/>
+   <set name="fcs/ballonet-valve-cmd-norm[1]" value="0.0"/>
+  </event>
+
   <event name="Reset the elevator">
    <description>Reset the elevator for constant elevation</description>
    <condition>
     position/h-agl-ft GE 1050
    </condition>
-   <set name="fcs/elevator-cmd-norm" value="0.66"/>
+   <set name="fcs/elevator-cmd-norm" value="0.10"/>
   </event>
 
   <event name="Stay at course" persistent="true">
@@ -150,6 +166,11 @@
     <property>position/vrp-latitude-deg</property>
     <property>position/vrp-longitude-deg</property>
     <property>position/vrp-altitude-ft</property>
+    <property>buoyant_forces/gas-cell/contents-mol</property>
+    <property>buoyant_forces/gas-cell/pressure-psf</property>
+    <property>buoyant_forces/gas-cell/volume-ft3</property>
+    <property>buoyant_forces/gas-cell/ballonet[0]/volume-ft3</property>
+    <property>buoyant_forces/gas-cell/ballonet[1]/volume-ft3</property>
     <property>fcs/rudder-pos-norm</property>
     <property>fcs/elevator-pos-norm</property>
     <property>fcs/throttle-pos-norm[0]</property>
