@@ -305,9 +305,9 @@ var dialog = {
         content.set("default-padding", 5);
         props.globals.initNode("sim/about/text",
              "Goodyear K-type airship for FlightGear\n" ~
-             "Copyright (C) 2010 - 2023  Anders Gidenstam\n\n" ~
+             "Copyright (C) 2010 - 2025  Anders Gidenstam\n\n" ~
              "FlightGear flight simulator\n" ~
-             "Copyright (C) 1996 - 2023  http://www.flightgear.org\n\n" ~
+             "Copyright (C) 1996 -       http://www.flightgear.org\n\n" ~
              "This is free software, and you are welcome to\n" ~
              "redistribute it under certain conditions.\n" ~
              "See the GNU GENERAL PUBLIC LICENSE Version 2 for the details.",

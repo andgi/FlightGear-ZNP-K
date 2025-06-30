@@ -3,7 +3,7 @@
 
   Goodyear K-type airship flight model for JSBSim.
 
-    Copyright (C) 2017 - 2018  Anders Gidenstam  (anders(at)gidenstam.org)
+    Copyright (C) 2017 - 2025  Anders Gidenstam  (anders(at)gidenstam.org)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -31,12 +31,12 @@
  <property value="0.0">crew/rudder-pilot/enabled</property>
  <property value="0.0">crew/rudder-pilot/heading-magnetic-cmd-deg</property>
 
- <property value="1.00">crew/rudder-pilot/heading-pid-kp</property>
- <property value="0.05">crew/rudder-pilot/heading-pid-ki</property>
+ <property value="0.50">crew/rudder-pilot/heading-pid-kp</property>
+ <property value="0.03">crew/rudder-pilot/heading-pid-ki</property>
  <property value="0.00">crew/rudder-pilot/heading-pid-kd</property>
 
  <property value="0.50">crew/rudder-pilot/turn-rate-pid-kp</property>
- <property value="0.20">crew/rudder-pilot/turn-rate-pid-ki</property>
+ <property value="0.10">crew/rudder-pilot/turn-rate-pid-ki</property>
  <property value="0.00">crew/rudder-pilot/turn-rate-pid-kd</property>
 
  <property value="5.0">crew/rudder-pilot/max-turn-deg_sec</property>
@@ -129,12 +129,12 @@
  <property value="0.0">crew/elevator-pilot/altitude-cmd-ft</property>
  <!-- property value="0.0">crew/elevator-pilot/pitch-cmd-deg</property -->
 
- <property value="-0.025">crew/elevator-pilot/altitude-pid-kp</property>
- <property value="-0.001">crew/elevator-pilot/altitude-pid-ki</property>
+ <property value="-0.050">crew/elevator-pilot/altitude-pid-kp</property>
+ <property value="-0.002">crew/elevator-pilot/altitude-pid-ki</property>
  <property value="0.00">crew/elevator-pilot/altitude-pid-kd</property>
 
  <property value="0.50">crew/elevator-pilot/pitch-pid-kp</property>
- <property value="0.30">crew/elevator-pilot/pitch-pid-ki</property>
+ <property value="0.15">crew/elevator-pilot/pitch-pid-ki</property>
  <property value="0.00">crew/elevator-pilot/pitch-pid-kd</property>
 
  <!-- Limits: 2400 ft/min is the maximum permissible rate of climb.
@@ -239,8 +239,8 @@
     <max>1</max>
    </domain>
    <range>
-    <min>300</min>
-    <max>1460</max>
+    <min>550</min>
+    <max>2250</max>
    </range>
    <zero_centered>0</zero_centered>
   </aerosurface_scale>
@@ -251,8 +251,8 @@
     <max>1</max>
    </domain>
    <range>
-    <min>300</min>
-    <max>1460</max>
+    <min>550</min>
+    <max>2250</max>
    </range>
    <zero_centered>0</zero_centered>
   </aerosurface_scale>
