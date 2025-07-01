@@ -11,7 +11,7 @@
 
   <description>Goodyear K-Type Airship</description>
   <author>Anders Gidenstam</author>
-  <aircraft-version>2025-06-30</aircraft-version>
+  <aircraft-version>2025-07-01</aircraft-version>
 
   <long-description>
 The Goodyear K-Type airship, designated ZNP-K in the US Navy, was the main maritime patrol airship for the US Navy during World War 2. The non-rigid airships (a.k.a. blimps) were 75 to 79 meters long, had a volume of about 11500 to 12000 m^3 and were powered by two Pratt &amp; Whitney R-1340 or Curtis-Wright R-975 engines fitted on outriggers on the control car. The prototype was the K-2 which first flew in December 1938. A total of 133 K-Type airships were built during the war.
@@ -78,7 +78,7 @@ The Goodyear K-Type airship, designated ZNP-K in the US Navy, was the main marit
     <x-offset-m type="double">  -0.50 </x-offset-m>
     <y-offset-m type="double"> -11.00 </y-offset-m>
     <z-offset-m type="double">  28.70 </z-offset-m>
-    <pitch-offset-deg type="double"> 0.0 </pitch-offset-deg>
+    <pitch-offset-deg type="double"> -5.0 </pitch-offset-deg>
     <default-field-of-view-deg type="double"> 70 </default-field-of-view-deg>
    </config>
   </view>
@@ -93,7 +93,7 @@ The Goodyear K-Type airship, designated ZNP-K in the US Navy, was the main marit
     <x-offset-m type="double">   0.50 </x-offset-m>
     <y-offset-m type="double"> -11.00 </y-offset-m>
     <z-offset-m type="double">  28.70 </z-offset-m>
-    <pitch-offset-deg type="double"> 0.0 </pitch-offset-deg>
+    <pitch-offset-deg type="double"> -5.0 </pitch-offset-deg>
     <default-field-of-view-deg type="double"> 70 </default-field-of-view-deg>
    </config>
   </view>
@@ -345,9 +345,19 @@ The Goodyear K-Type airship, designated ZNP-K in the US Navy, was the main marit
  <fdm>
   <jsbsim>
    <crew>
+    <elevator-pilot>
+     <enabled type="double">0.0</enabled>
+     <altitude-cmd-ft type="double">0.0</altitude-cmd-ft>
+    </elevator-pilot>
     <rudder-pilot>
+     <enabled type="double">0.0</enabled>
      <heading-magnetic-cmd-deg type="double">0.0</heading-magnetic-cmd-deg>
     </rudder-pilot>
+    <mechanic>
+     <enabled type="double">1.0</enabled>
+     <speed-cmd-rpm n="0" type="double">550.0</speed-cmd-rpm>
+     <speed-cmd-rpm n="1" type="double">550.0</speed-cmd-rpm>
+    </mechanic>
    </crew>
    <propulsion>
     <engine n="0">
@@ -365,5 +375,22 @@ The Goodyear K-Type airship, designated ZNP-K in the US Navy, was the main marit
    <heading-bug-deg alias="/fdm/jsbsim/crew/rudder-pilot/heading-magnetic-cmd-deg"/>
   </settings>
  </autopilot>
+
+ <crew>
+  <elevator-pilot>
+   <enabled alias="/fdm/jsbsim/crew/elevator-pilot/enabled"/>
+   <altitude-cmd-ft alias="/fdm/jsbsim/crew/elevator-pilot/altitude-cmd-ft"/>
+  </elevator-pilot>
+  <rudder-pilot>
+   <enabled alias="/fdm/jsbsim/crew/rudder-pilot/enabled"/>
+   <heading-magnetic-cmd-deg
+     alias="/fdm/jsbsim/crew/rudder-pilot/heading-magnetic-cmd-deg"/>
+  </rudder-pilot>
+  <mechanic>
+   <enabled alias="/fdm/jsbsim/crew/mechanic/enabled"/>
+   <speed-cmd-rpm n="0" alias="/fdm/jsbsim/crew/mechanic/speed-cmd-rpm[0]"/>
+   <speed-cmd-rpm n="1" alias="/fdm/jsbsim/crew/mechanic/speed-cmd-rpm[1]"/>
+  </mechanic>
+ </crew>
 
 </PropertyList>
